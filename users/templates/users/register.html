@@ -1,0 +1,44 @@
+{% extends 'users/user_dashboard.html'%}
+
+
+{% block content %}
+<div class="col-lg-8">
+<div class="card mb-4">
+    <div class="card-header">
+        Register New Staff / Student
+    </div>
+    <div class="card-body">      
+{% if user.profile.user_type == 'parent' or user.is_superuser %}
+<form action="" method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type='submit', value='Submit'>
+    {% else %}
+    <h4>You are not permitted to view this page</h4>
+    {% endif %} 
+</form>
+      
+</div>
+</div>
+</div>
+
+
+{% endblock content %}
+
+
+      
+  
+
+
+
+
+{% comment %} 
+{% if user.profile.user_type == 'teacher' or user.is_superuser %}
+<form action="" method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type='submit', value='Submit'>
+    {% else %}
+    <h4>You are not permitted to view this page</h4>
+    {% endif %} 
+</form> {% endcomment %}

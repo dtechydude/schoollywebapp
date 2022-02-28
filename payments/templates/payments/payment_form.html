@@ -1,0 +1,12 @@
+
+{% if user.is_superuser or user.profile.user_type == 'parent'%}
+<h3>Enter Payment for Students</h3>
+<form action="" method="post">
+    {% csrf_token %}
+    {{payment_form.as_p}}
+    <input type='submit', value='Submit'>
+  
+</form>
+{% else %}
+<h1>Oops! You are not permitted to use this resource</h1>
+{% endif %}

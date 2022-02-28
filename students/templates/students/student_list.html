@@ -1,0 +1,15 @@
+{% block content %}
+{% if user.is_superuser or user.profile.user_type == 'parent' %}
+{% for n in studentlist %}
+<ul>
+    <li>{{ n.user.first_name}} - {{ n.date_admitted}} - {{ n.class_on_admission }} - {{ n.dob}}</li>
+</ul>
+
+
+{% endfor %}
+{% else %}
+<h1> Oops! You do not have permission to view this resource</h1>
+
+{% endif %} 
+
+{% endblock content%}

@@ -1,0 +1,14 @@
+{% block content %}
+
+hello:  {{ user.username }} <br />
+Name :<b>  - {{ user.first_name }} - {{ user.profile.middle_name }} - {{ user.last_name }}</b><br />
+Your Gender: {{ user.profile.gender }}<br />
+Your are a - {{ user.studentacademicinfo.student_type }}<br />
+
+Your Class On admission: {{ user.studentprofile.class_on_admission }}--<br />
+Admission Date: {{ user.studentprofile.date_admitted }}--<br />
+{{ user.studentacademicinfo.current_class }}<br />
+{{ user.studentacademicinfo.class_teacher }}<br />
+
+
+{% endblock content%}
