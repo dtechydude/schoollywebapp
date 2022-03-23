@@ -1,19 +1,19 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import StudentAcademicInfo, StudentProfile
+from .models import Mystudents, StudentDetail, StudentProfile
 
 
-class StudentProfile(forms.ModelForm):
+class StudentProfileForm(forms.ModelForm):
 
     class Meta:
-        model = StudentProfile
+        model = Mystudents
         fields = '__all__'
 
 
-class StudentAcademicInfo(forms.ModelForm):
+class StudentUpdateForm(forms.ModelForm):
 
     class Meta:
-        model = StudentAcademicInfo
+        model = StudentDetail
         fields = '__all__'
 

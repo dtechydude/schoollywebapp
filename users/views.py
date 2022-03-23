@@ -15,8 +15,8 @@ def register(request):
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
-            messages.success(request, f'Your account has been created, you can now login')
-            return redirect('profile')
+            messages.success(request, f'New user account has been created. You can register another user.')
+            return redirect('register')
     else:
         form = UserRegisterForm()
     return render(request, 'users/register.html', {'form': form})
@@ -30,7 +30,7 @@ def profile(request):
         if u_form.is_valid() and p_form.is_valid():
             u_form.save()
             p_form.save()
-            messages.success(request, f'Your account has been updated successfully')
+            messages.success(request, f'Your profile has been updated successfully')
             return redirect('profile')
     else:
         u_form = UserUpdateForm(instance=request.user)

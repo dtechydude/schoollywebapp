@@ -1,0 +1,19 @@
+<html>
+    <head>
+        <meta charset ='utf-8'>
+        <title>PDF Main</title>
+    </head>
+    <body>
+        {% for student in object_list %}
+        {{ student }}
+        <a href="{% url 'students:student-pdf-view' student.pk % }"> <button class="btn btn-prmary"> pdf </button></a>
+        
+        <br />
+        {{ student.class_on_admission }}<br />
+
+
+        {% endfor %}
+        <a href="{% url 'students:student-pdf-view' pdf.pk=1 % }"> <button class="btn btn-prmary"> pdf </button></a>
+      
+    </body>
+    </html>

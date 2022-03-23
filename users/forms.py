@@ -16,10 +16,18 @@ class UserUpdateForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['username', 'email']
+        fields = ['email']
 
 
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['middle_name', 'address', 'state', 'gender', 'user_type']
+        fields = ['middle_name', 'phone', 'address', 'state', 'bio']
+        widgets = {
+            'dob': forms.DateInput(
+                format=('%d/%m/%Y'),
+                attrs={'class': 'form-control', 
+                       'placeholder': 'Select a date',
+                       'type': 'date'  # <--- IF I REMOVE THIS LINE, THE INITIAL VALUE IS DISPLAYED
+                      }),
+        }

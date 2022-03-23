@@ -5,6 +5,7 @@ from .utils import generate_ref_code
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    image = models.ImageField(default='default.jpg', upload_to='profile_pics')
     middle_name = models.CharField(max_length=20, blank=True)
     address = models.CharField(max_length=20, blank=True, null=True)
     state = models.CharField(max_length=20, blank=True, null=True)
@@ -20,7 +21,9 @@ class Profile(models.Model):
     gender= models.CharField(max_length=10, choices=gender_type, default=female)
     bio = models.TextField(max_length=150, blank=True)
     code = models.CharField(max_length=6, blank=True)
+    phone = models.CharField(max_length=11, blank=True)
     updated = models.DateTimeField(auto_now=True)
+    dob = models.DateField(null=True)
     created = models.DateTimeField(auto_now_add=True)
 
     # image = models.ImageField(upload_to=path_and_rename, verbose_name="Profile Picture", blank=True )

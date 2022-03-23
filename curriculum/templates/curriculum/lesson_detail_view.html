@@ -1,0 +1,23 @@
+
+
+{% block content %}
+
+
+
+<p>{% if user.is_authenticated %}</p>
+    <h4>Lesson Detail Page</h4
+    Class:{{ lessons.standard }} - <br /> 
+    Subject: {{ lessons.subject }} - <br />
+    <b> Title:  {{ lessons.name }}</b><br />
+    <b>Created on {{ lessons.created_at }} by: {{ lessons.created_by}}</b></p><br />
+<p> <b>Download Lesson Note: </b>{{ lessons.Notes }} <br /><br /><b>Teacher's Highlights:</b><br /> {{ lessons.comment}}</p><br />
+{% else %}
+<h3>You must be registered </h3>
+{% endif %}
+{% comment %} {% if object.user == user %} {% endcomment %}
+{% if user.is_authenticated and user.profile.user_type == 'teacher' %}
+<a href="{% url 'curriculum:lesson_update' standard=lessons.standard.slug subject=lessons.subject.slug slug=lessons.slug %}">Update Lesson</a>
+
+<a href="{% url 'curriculum:lesson_delete' standard=lessons.standard.slug subject=lessons.subject.slug slug=lessons.slug %}">Delete Lesson</a>
+{% endif %}
+{% endblock %}

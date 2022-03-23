@@ -16,7 +16,7 @@ class Result(models.Model):
     exam = models.ForeignKey(Examination, on_delete=models.CASCADE)
     session = models.CharField(max_length=150, blank=True) 
     standard =models.CharField(max_length=150, blank=True) 
-    exam_date = models.CharField(max_length=150, blank=True)  
+    exam_date = models.DateField(null=True)  
     subject_name = models.CharField(max_length=150, blank=True)  
     cand_score = models.CharField(max_length=150, blank=True) 
     pass_mark =  models.CharField(max_length=150, blank=True) 
@@ -31,7 +31,8 @@ class PrintResult(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     exam = models.ForeignKey(Examination, on_delete=models.CASCADE)
     session = models.CharField(max_length=150, blank=True)
-    file = models.CharField(max_length=200, blank=True)
+    exam_year = models.DateField(null=True)
+    file = models.FileField(upload_to='result', blank=True)
 
     def __str__ (self):
         return f'{self.user.username} - {self.session} '

@@ -1,0 +1,14 @@
+
+
+{% block content %}
+<h3>Create New Lesson</h3> 
+<form method="post">
+    {% if user.is_authenticated %}
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" name="" value="Submit">
+    {% endif %}
+</form>
+
+
+{% endblock %}

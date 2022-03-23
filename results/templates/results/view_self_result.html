@@ -1,0 +1,50 @@
+{% extends 'users/user_dashboard.html'%} 
+
+{% block content %}
+<div class="col-lg-8">
+<div class="card mb-4">
+    <div class="card-header">
+        My Examination Results
+    </div>
+    <div class="card-body">   
+
+    {% if user.is_superuser or user.profile.user_type == 'student' %}
+    <table class = "table">
+        <thead class="thead-dark">
+        <tr>
+          <th>Exam Name</th>
+          <th>Exam Year</th>
+          <th>Exam Session</th>
+          <th>Action</th>
+          <th>Action</th>
+        </tr>
+    </thead>
+        {% for result in myresult %}
+        <tbody>
+        <tr>
+          <th> {{ result.exam}}</th>
+          <th> {{ result.exam_year}}</th>
+          <th> {{ result.session}}</th>
+                  
+          <th><a href="{{ result.file.url }}" download = "{{ result.file.url }}"> <button type="button" class="btn btn-info">Download</button></a> </th>
+        </tr> 
+    </tbody>
+        {% endfor %}
+        </table>
+
+
+    {% else %}
+    <h1> Oops! You do not have permission to view this resource</h1>
+    
+    {% endif %} 
+      
+</div>
+</div>
+</div>
+</div>
+</div> 
+{% endblock content %}
+
+
+
+

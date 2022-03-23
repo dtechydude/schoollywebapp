@@ -1,0 +1,15 @@
+
+
+{% block content %}
+<h3>Create Lesson</h3>
+<form method="post">
+    {% if user.is_authenticated%}
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" name="" value="Submit">
+    <a href="{% url 'curriculum:lesson_detail' standard=lessons.standard.slug subject=lessons.subject.slug slug=lessons.slug % }" class="btn btn-danger btn-block"> Cancel Update</a>
+    {% endif %}
+</form>
+
+
+{% endblock %}

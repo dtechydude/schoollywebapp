@@ -7,6 +7,8 @@ urlpatterns = [
 
     path('', page_views.homepage, name='home'),
     path('contact/', page_views.contact, name='contact'),
+    path('affiliate/', page_views.affiliate, name='affiliate'),
+    path('demo/', page_views.demo, name='demo'),
     # path('pages/', include('pages.urls')),
     
 ]

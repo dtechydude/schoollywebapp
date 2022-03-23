@@ -9,9 +9,6 @@ class FeesPayments(models.Model):
     def __str__ (self):
         return f'{self.name} Fees'
 
-    
-
-
 class PaymentDetail(models.Model):
     # student_id = models.ForeignKey(User, on_delete=models.CASCADE)
     user = models.ForeignKey(User, default=0, on_delete=models.CASCADE)

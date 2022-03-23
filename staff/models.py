@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
 
+import datetime
+
 
 # Create your models here.
 
@@ -40,7 +42,7 @@ class StaffProfile(models.Model):
     next_of_kin = models.CharField(max_length=150, blank=True)  
     next_of_kin_address = models.CharField(max_length=150, blank=True)  
     next_of_kin_phone = models.CharField(max_length=150, blank=True) 
-    date_employed = models.CharField(max_length=150, blank=True) 
+    date_employed = models.CharField(max_length=150, blank=True, null=True) 
     
 
 
@@ -64,7 +66,7 @@ class StaffAcademicInfo(models.Model):
     next_of_kin = models.CharField(max_length=150, blank=True)  
     next_of_kin_address = models.CharField(max_length=150, blank=True)  
     next_of_kin_phone = models.CharField(max_length=150, blank=True) 
-    date_employed = models.CharField(max_length=150, blank=True) 
+    date_employed = models.CharField(max_length=150, blank=True, null=True) 
     
 
 

@@ -1,15 +1,55 @@
+{% extends 'users/user_dashboard.html'%}
+
 {% block content %}
-{% if user.is_superuser or user.profile.user_type == 'parent' %}
-{% for n in studentlist %}
-<ul>
-    <li>{{ n.user.first_name}} - {{ n.date_admitted}} - {{ n.class_on_admission }} - {{ n.dob}}</li>
-</ul>
+<div class="col-lg-8">
+<div class="card mb-4">
+    <div class="card-header">
+        Student List
+    </div>
+    <div class="card-body">   
+
+        {% if user.is_superuser or user.profile.user_type == 'parent' %}
+
+        <table class = "table">
+            <thead class="thead-dark">
+            <tr>
+              <th>Username</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Current Class</th>
+              <th>Action</th>
+             
+            </tr>
+        </thead>
+            {% for s in studentlist %}
+            <tbody>
+            <tr>
+              <th> {{ s.user.username}}</th>
+              <th> {{ s.user.first_name}}</th>
+              <th> {{ s.user.last_name}}</th>
+              <th> {{ s.user.current_class}}</th>
+              <th> <a href="{% url 'students:all-students' %}">pdf</a></th>
+              
+            </tr> 
+        </tbody>
+            {% endfor %}
+            </table>
+            <a href="{% url 'students:all-students' %}">view pdf</a>
+        
+    
+    {% comment %} {% endfor %} {% endcomment %}
+    {% else %}
+    <h1> Oops! You do not have permission to view this resource</h1>
+    
+    {% endif %} 
+      
+</div>
+</div>
+</div>
+</div>
+</div>
+{% endblock content %}
 
 
-{% endfor %}
-{% else %}
-<h1> Oops! You do not have permission to view this resource</h1>
 
-{% endif %} 
 
-{% endblock content%}

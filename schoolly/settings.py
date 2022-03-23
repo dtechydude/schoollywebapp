@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'payments.apps.PaymentsConfig',
     'pages.apps.PagesConfig',
     'results.apps.ResultsConfig',
+    'crispy_forms',
+    #'bootstrap_datepicker_plus',
 ]
 
 MIDDLEWARE = [
@@ -131,6 +133,9 @@ STATICFILES_DIRS = [
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -161,3 +166,6 @@ EMAIL_USE_TLS = False
 # EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
 # EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
 # #not advisable to put your raw user and password
+
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

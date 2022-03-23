@@ -1,11 +1,64 @@
+{% extends 'inner-page.html'%}
 
+{% block pagedesc %}
+
+
+<p> For support and enquries</p>
+{% endblock pagedesc %}
 {% block content %}
 {% if message_name %}
 Thanks {{ message_name }}!<br />
 We received your email and will respond shortly
 {% endif %}
-<section>
+{% comment %} <section> {% endcomment %}
+  <section id="contact" class="contact">
+
+    <div class="container" data-aos="fade-up">
+      <header class="section-header">
+        <p>Get in touch</p>
+      </header>
+
+      <div class="row gy-4">
+
+        <div class="col-lg-6">
+
+          <div class="row gy-4">
+            <div class="col-md-6">
+              <div class="info-box">
+                <i class="bi bi-geo-alt"></i>
+                <h3>Address</h3>
+                  <p>2, Oremeji Street,<br>Iyana-Ipaja, Lagos</p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="info-box">
+                <i class="bi bi-telephone"></i>
+                <h3>Call Us</h3>
+                  <p>+234 08162803828<br>+234 08082643606/Whatsapp</p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="info-box">
+                <i class="bi bi-envelope"></i>
+                <h3>Email Us</h3>
+                  <p>support@schoolly.ng<br>contact@schoolly.ng</p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="info-box">
+                <i class="bi bi-clock"></i>
+                <h3>Support</h3>
+                  <p>24/7<br>Always available</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+
 <div class="col-lg-6">
+  <h5>Send us a message</h5>
+    
     <form action="{% url 'contact' %}" method="post" >
       {% csrf_token %}
       <div class="row gy-4">
@@ -41,4 +94,7 @@ We received your email and will respond shortly
 </div>
 
 </section>
-{% endblock content %}<!-- End Contact Sec
+{% endblock content %}<!-- End Contact Section-->
+
+{% block footer %}
+{% endblock footer %}
