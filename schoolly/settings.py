@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'payments.apps.PaymentsConfig',
     'pages.apps.PagesConfig',
     'results.apps.ResultsConfig',
+    'attendance.apps.ResultsConfig',
     'crispy_forms',
     #'bootstrap_datepicker_plus',
 ]
