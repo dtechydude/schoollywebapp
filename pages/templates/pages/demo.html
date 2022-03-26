@@ -13,7 +13,10 @@ We received your email and will respond shortly
 
     <div class="container" data-aos="fade-up">
       <header class="section-header">
-        <p>Request a demo</p>
+        <p>Request A Demo</p>
+          <small>
+            Interest schools can request for a demo presentaion of the Schoolly School Management System<br />
+            .</small>
       </header>
 
       <div class="row gy-4">
@@ -23,58 +26,63 @@ We received your email and will respond shortly
           <div class="row gy-4">
             <div class="col-md-6">
               <div class="info-box">
-                <i class="bi bi-geo-alt"></i>
-                <h3>Address</h3>
-                  <p>2, Oremeji Street,<br>Iyana-Ipaja, Lagos</p>
+                <!-- <i class="bi bi-geo-alt"></i> -->
+                <h3>Online Presentation</h3>
+                <p>Refer a school and earn a consistent commision on the subscription termly.</p>
               </div>
             </div>
             <div class="col-md-6">
               <div class="info-box">
-                <i class="bi bi-telephone"></i>
-                <h3>Call Us</h3>
-                  <p>+234 08162803828<br>+234 08082643606/Whatsapp</p>
+                <!-- <i class="bi bi-telephone"></i> -->
+                <h3>Live Training</h3>
+                <p>For school that refers another school, enjoy a subscription free benefit for a term.</p>
               </div>
             </div>
-            <div class="col-md-6">
+            
+            <div class="col-md-12">
               <div class="info-box">
-                <i class="bi bi-envelope"></i>
-                <h3>Email Us</h3>
-                  <p>support@schoolly.ng<br>contact@schoolly.ng</p>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="info-box">
-                <i class="bi bi-clock"></i>
-                <h3>Support</h3>
-                  <p>24/7<br>Always available</p>
+                <!-- <i class="bi bi-clock"></i> -->
+                <h3>Terms & Policy</h3>
+                <p>Ensure you read our full documentation on affiliate terms and policy. <a href="#">Read More</a></p>
               </div>
             </div>
           </div>
 
         </div>
 
-
 <div class="col-lg-6">
-  <h5>Request a demo</h5>
+  <h5>Complete this form to request a demo</h5>
     
     <form action="{% url 'contact' %}" method="post" >
       {% csrf_token %}
-      <div class="row gy-4">
+         
+        <div class="row gy-4">
+          <div class="col-md-9">
+            <input type="text" name="fname" class="form-control" placeholder="Full Name" required>
+            </div>
+            
+            <div class="col-md-9">
+                <input type="text" name="schoolname" class="form-control" placeholder="Name of school" required>
+            </div>
+          
+          <div class="col-md-9">
+            <input type="text" name="phone" class="form-control" placeholder="Phone Number" required>
+            </div>
+            
+            <div class="col-md-9">
+                <input type="text" name="email" class="form-control" placeholder="Email" required>
+            </div>
+          
+          <div class="col-md-9">
+            <input type="text" name="state" class="form-control" placeholder="State" required>
+            </div>
+            
+            <div class="col-md-9">
+                <input type="text" name="role" class="form-control" placeholder="Your Designation" required>
+            </div>
 
-        <div class="col-md-6">
-          <input type="text" name="name" class="form-control" placeholder="Your Name" required>
-        </div>
-
-        <div class="col-md-6 ">
-          <input type="email" class="form-control" name="email" placeholder="Your Email" required>
-        </div>
-
-        <div class="col-md-12">
-          <input type="text" class="form-control" name="subject" placeholder="Subject" required>
-        </div>
-
-        <div class="col-md-12">
-          <textarea class="form-control" name="message" rows="6" placeholder="Message" required></textarea>
+        <div class="col-md-9">
+          <textarea class="form-control" name="message" rows="4" placeholder="Other information or inquiry" required></textarea>
         </div>
 
         <div class="col-md-12 text-center">
@@ -83,6 +91,7 @@ We received your email and will respond shortly
         </div>
 
       </div>
+
     </form>
 
   </div>

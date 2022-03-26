@@ -24,13 +24,13 @@ class SubjectListView(DetailView):
 class LessonListView(DetailView):
     context_object_name = 'subjects'
     model = Subject
-    template_name = 'curriculum/lesson_list_view.html'
+    template_name = 'curriculum/our-courses-list.html'
 
 
 class LessonDetailView(DetailView):
     context_object_name = 'lessons'
     model = Lesson
-    template_name = 'curriculum/lesson_detail_view.html'
+    template_name = 'curriculum/course-detail.html'
 
 
 
@@ -57,7 +57,7 @@ class LessonCreateView(CreateView):
 class LessonUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     fields = ('name', 'position', 'video', 'ppt', 'Notes', 'comment')
     model = Lesson
-    template_name = 'curriculum/lesson_update.html'
+    template_name = 'curriculum/lesson_update_view.html'
     context_object_name = 'lessons'
     
     #function to check if user is the login user

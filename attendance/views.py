@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from attendance.models import StudentDetail, StudentProfile
+from attendance.models import Attendance
 from attendance.forms import StudentAttendanceForm
 
 
@@ -30,4 +30,4 @@ def student_attendance(request):
    
     }
 
-    return render(request, 'students/student_attendance_form.html', context)
+    return render(request, 'attendance/attendance_form.html', context)

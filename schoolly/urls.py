@@ -34,6 +34,9 @@ urlpatterns = [
     path('results/', include('results.urls')),
     path('students/', include('students.urls', namespace='students')),
     path('staff/', include('staff.urls')),
+    # path('demopage/', include('demopage.urls')),
+    path('attendance/', include('attendance.urls')),
+    path('demoschool/', include('demoschool.urls')),
     
 
 #PATH FOR DOWNLOAD URL

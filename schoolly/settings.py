@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-2ovaj4hr3(fs0gxof7-&pedx_7-&wze503u*0u$4u26^vat!)5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'pages.apps.PagesConfig',
     'results.apps.ResultsConfig',
     'attendance.apps.AttendanceConfig',
+    # 'demopage.apps.DemopageConfig',
+    'demoschool.apps.DemoschoolConfig',
     'crispy_forms',
     #'bootstrap_datepicker_plus',
 ]

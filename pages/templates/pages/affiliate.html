@@ -19,7 +19,7 @@ We received your email and will respond shortly
           <small>
             Schoolly affiliate program is open to interested individual, school, organization and
             marketing experts who want to earn a consistent flow of income.<br />
-            It is a simple affiliate system where you get minimum of 10% of each sales.</small>
+            It is an affiliate system that offers as much as 25% on each sales.</small>
       </header>
 
       <div class="row gy-4">
@@ -30,29 +30,36 @@ We received your email and will respond shortly
             <div class="col-md-6">
               <div class="info-box">
                 <!-- <i class="bi bi-geo-alt"></i> -->
-                <h3>Individual Earn 10%</h3>
-                <p>Refer a school and earn 10% of the subscription termly.</p>
+                <h3>Individual Earning</h3>
+                <p>Refer a school and earn a consistent commision on the subscription termly.</p>
               </div>
             </div>
             <div class="col-md-6">
               <div class="info-box">
                 <!-- <i class="bi bi-telephone"></i> -->
                 <h3>Subscription Free</h3>
-                <p>For school that refers another school, one-term subscription-free</p>
+                <p>For school that refers another school, enjoy a subscription free benefit for a term.</p>
               </div>
             </div>
             <div class="col-md-6">
               <div class="info-box">
                 <!-- <i class="bi bi-envelope"></i> -->
                 <h3>We Follow-Up</h3>
-                <p>Our team will follow up any prospective school with necessary information.</p>
+                <p>We support our affiliates with necessary assistance, once a prospective customer is identified.</p>
               </div>
             </div>
             <div class="col-md-6">
               <div class="info-box">
                 <!-- <i class="bi bi-clock"></i> -->
                 <h3>Affilate Training</h3>
-                <p>Afffiliate access to complete manual of the Schoolly application</p>
+                <p>Afffiliate enjoy unlimited access to our complete material and training of the Schoolly application</p>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="info-box">
+                <!-- <i class="bi bi-clock"></i> -->
+                <h3>Terms & Policy</h3>
+                <p>Ensure you read our full documentation on affiliate terms and policy. <a href="#">Read More</a></p>
               </div>
             </div>
           </div>
@@ -64,37 +71,34 @@ We received your email and will respond shortly
     
     <form action="{% url 'contact' %}" method="post" >
       {% csrf_token %}
-
-      <div class="row gy-4">
-
-        <div class="col-md-8">
-          <input type="text" name="name" class="form-control" placeholder="Your Name again" required>
-        </div>
-       
-
-            <div class="col-md-8">
-              <input type="text" name="name" class="form-control" placeholder="Your age" required>
-            </div>
-        
-
-  
-            <div class="row gy-4">
-
-                <div class="col-md-9">
-                <input type="text" name="name" class="form-control" placeholder="Your  again" required>
-                </div>
-                
-                <div class="col-md-9">
-                    <input type="text" name="name" class="form-control" placeholder="Your  again" required>
-                </div>
+         
         <div class="row gy-4">
+          <div class="col-md-9">
+            <input type="text" name="fname" class="form-control" placeholder="First Name" required>
+            </div>
+            
+            <div class="col-md-9">
+                <input type="text" name="lname" class="form-control" placeholder="Last Name" required>
+            </div>
+          
+          <div class="col-md-9">
+            <input type="text" name="phone" class="form-control" placeholder="Phone Number" required>
+            </div>
+            
+            <div class="col-md-9">
+                <input type="text" name="email" class="form-control" placeholder="Email" required>
+            </div>
+          
+          <div class="col-md-9">
+            <input type="text" name="state" class="form-control" placeholder="State" required>
+            </div>
+            
+            <div class="col-md-9">
+                <input type="text" name="job" class="form-control" placeholder="Job Description" required>
+            </div>
 
         <div class="col-md-9">
-          <input type="text" class="form-control" name="subject" placeholder="Subject" required>
-        </div>
-
-        <div class="col-md-9">
-          <textarea class="form-control" name="message" rows="6" placeholder="Message" required></textarea>
+          <textarea class="form-control" name="message" rows="4" placeholder="Other information or inquiry" required></textarea>
         </div>
 
         <div class="col-md-12 text-center">
