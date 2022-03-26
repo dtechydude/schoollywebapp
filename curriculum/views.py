@@ -13,24 +13,24 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 class StandardListView(ListView):
     context_object_name = 'standards'
     model = Standard
-    template_name = 'curriculum/standard_list_view.html'
+    template_name = 'curriculum/class_list.html'
 
 class SubjectListView(DetailView):
     context_object_name = 'standards'
     model = Standard
-    template_name = 'curriculum/subject_list_view.html'
+    template_name = 'curriculum/class_subjects.html'
 
 
 class LessonListView(DetailView):
     context_object_name = 'subjects'
     model = Subject
-    template_name = 'curriculum/our-courses-list.html'
+    template_name = 'curriculum/lesson_list_view.html'
 
 
 class LessonDetailView(DetailView):
     context_object_name = 'lessons'
     model = Lesson
-    template_name = 'curriculum/course-detail.html'
+    template_name = 'curriculum/course_details.html'
 
 
 
