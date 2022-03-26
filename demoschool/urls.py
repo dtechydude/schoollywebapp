@@ -3,7 +3,7 @@ from demoschool import views as user_views
 
 
 
-app_name = 'school'
+app_name = 'demoschool'
 
 urlpatterns = [
     path('', user_views.demoschool, name="demoschool"),
