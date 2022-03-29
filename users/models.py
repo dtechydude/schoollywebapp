@@ -8,6 +8,15 @@ class Profile(models.Model):
     image = models.ImageField(default='default.jpg', upload_to='profile_pics')
     middle_name = models.CharField(max_length=20, blank=True)
     address = models.CharField(max_length=20, blank=True, null=True)
+
+    lagos = 'Lagos'
+    ogun = 'Ogun'
+    
+    gender_type = [
+        ('Lagos', lagos),
+        ('Ogun', ogun),
+    ]
+
     state = models.CharField(max_length=20, blank=True, null=True)
 
     male = 'male'
@@ -32,12 +41,14 @@ class Profile(models.Model):
     teacher = 'teacher'
     student = 'student'
     parent = 'parent'
+    admin = 'admin'
  
 
     user_types = [
         (teacher, 'teacher'),
         (student, 'student'),
         (parent, 'parent'),
+        (admin, 'admin'),
       
     ]
 

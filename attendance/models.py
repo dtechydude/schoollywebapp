@@ -7,9 +7,9 @@ from django.db import models
 
 class Attendance(models.Model):
     student_name = models.CharField(max_length=11, null=True)
-    date = models.CharField(max_length=11, null=True)
+    date = models.DateField(null=True)
     status = models.CharField(max_length=11, null=True)
-    attendance_date = models.CharField(max_length=11, null=True)
+    attendance_date = models.DateField(null=True)
 
 
     def __str__ (self):

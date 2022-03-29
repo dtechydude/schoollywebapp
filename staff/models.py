@@ -42,7 +42,7 @@ class StaffProfile(models.Model):
     next_of_kin = models.CharField(max_length=150, blank=True)  
     next_of_kin_address = models.CharField(max_length=150, blank=True)  
     next_of_kin_phone = models.CharField(max_length=150, blank=True) 
-    date_employed = models.CharField(max_length=150, blank=True, null=True) 
+    date_employed = models.DateField(null=True)
     
 
 
@@ -66,8 +66,7 @@ class StaffAcademicInfo(models.Model):
     next_of_kin = models.CharField(max_length=150, blank=True)  
     next_of_kin_address = models.CharField(max_length=150, blank=True)  
     next_of_kin_phone = models.CharField(max_length=150, blank=True) 
-    date_employed = models.CharField(max_length=150, blank=True, null=True) 
-    
+    date_employed = models.DateField(null=True)
 
 
 
