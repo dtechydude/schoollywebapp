@@ -1,1 +1,1 @@
-web: gunicorn schoolly_single.wsgi
+web: gunicorn schoolly_single.wsgi --log-file -
