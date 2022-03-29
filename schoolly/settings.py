@@ -40,7 +40,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
 
 
-ALLOWED_HOSTS = ['127.0.0.1', 'schoollyapp.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'schoollywebapp.herokuapp.com']
 
 
 # Application definition
