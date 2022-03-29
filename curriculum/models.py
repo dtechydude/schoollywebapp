@@ -2,7 +2,9 @@ from enum import unique
 from django.db import models
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
+
 import os
+from embed_video.fields import EmbedVideoField
 
 from django.urls import reverse
 
@@ -68,6 +70,7 @@ class Lesson(models.Model):
     position = models.PositiveSmallIntegerField(verbose_name="Chapter no.")
     slug = models.SlugField(null=True, blank=True)
     video = models.FileField(upload_to=save_lesson_files, verbose_name="video", blank=True, null=True)
+    # video_url = EmbedVideoField(null=True,blank=True)
     ppt = models.FileField(upload_to=save_lesson_files, verbose_name="Presentation", blank=True)
     Notes = models.FileField(upload_to=save_lesson_files, verbose_name="Notes", blank=True)
     comment = models.CharField(max_length=2300, default="add comments")

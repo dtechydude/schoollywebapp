@@ -6,7 +6,7 @@
 <form method="post">
     {% csrf_token %}
     <input type="submit" name="" value="delete">
-    <a href="{% url 'curriculum:lesson_detail' standard=lessons.Standard.slug subject=lessons.subject.slug slug=lessons.slug % }"> Cancel</a>
+    <a href="{% url 'curriculum:curriculum'  % }"> Cancel</a>
 </form>
 
 {% endblock %}

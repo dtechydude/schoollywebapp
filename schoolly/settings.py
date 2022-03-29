@@ -46,9 +46,9 @@ INSTALLED_APPS = [
     'pages.apps.PagesConfig',
     'results.apps.ResultsConfig',
     'attendance.apps.AttendanceConfig',
-    # 'demopage.apps.DemopageConfig',
     'demoschool.apps.DemoschoolConfig',
     'crispy_forms',
+    # 'embed_video',
     #'bootstrap_datepicker_plus',
 ]
 

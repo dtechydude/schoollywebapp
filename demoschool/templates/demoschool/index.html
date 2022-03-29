@@ -73,8 +73,8 @@
                             </ul>
                             <h4>All Pages</h4>
                             <ul>
-                                <li><a href="index-2.html">Home</a></li>
-                                <li><a href="about.html">About us</a></li>
+                                <li><a href="{% url 'demoschool:demoschool' %}">Home</a></li>
+                                <li><a href="{% url 'demoschool:about_us' %}">About us</a></li>
                                 <li><a href="admission.html">Admission</a></li>
                                 <li><a href="{% url 'curriculum:standard_list' %}">All courses</a></li>
                                 <li><a href="course-details.html">Course details</a></li>
@@ -83,7 +83,7 @@
                                 <li><a href="events.html">Events</a></li>
                                 <li><a href="event-details.html">Event details</a></li>
                                 <li><a href="event-register.html">Event register</a></li>
-                                <li><a href="contact-us.html">Contact us</a></li>
+                                <li><a href="{% url 'demoschool:contact_us' %}">Contact us</a></li>
                             </ul>
                             <h4>User Profile</h4>
                             <ul>
@@ -149,10 +149,10 @@
                         </div>
                         <div class="main-menu">
                             <ul>
-                                <li><a href="index-2.html">Home</a>
+                                <li><a href="{% url 'demoschool:demoschool' %}">Home</a>
                                 </li>
                                 <li class="about-menu">
-                                    <a href="about.html" class="mm-arr">About us</a>
+                                    <a href="{% url 'demoschool:about_us' %}" class="mm-arr">About us</a>
                                     <!-- MEGA MENU 1 -->
                                     <div class="mm-pos">
                                         <div class="about-mm m-menu">
@@ -257,7 +257,7 @@
 														<li><a href="index-1.html">Home - 1</a></li>
 														<li><a href="{% url 'curriculum:standard_list' %}">All Courses</a></li>
 														<li><a href="course-details.html">Course Details</a></li>
-														<li><a href="about.html">About us</a></li>
+														<li><a href="{% url 'demoschool:about_us' %}">About us</a></li>
 														<li><a href="admission.html">admission</a></li>
 														<li><a href="awards.html">awards</a></li>
 														<li><a href="blog.html">blog</a></li>
@@ -352,7 +352,7 @@
                                 </li>
                                 <li><a href="dashboard.html">Student</a>
                                 </li>
-                                <li><a href="contact-us.html">Contact us</a>
+                                <li><a href="{% url 'demoschool:contact_us' %}">Contact us</a>
                                 </li>
                             </ul>
                         </div>
@@ -1050,11 +1050,11 @@
                             <img src="{% static 'demoschool/images/3.png' %}" alt="">
                         </div>
                         <div class="col-md-7 bb-text">
-                            <h4>therefore always free from repetition</h4>
-                            <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour</p>
+                            <h4>Admission is open</h4>
+                            <p>Make inquiry about our admission</p>
                         </div>
                         <div class="col-md-3 bb-link">
-                            <a href="course-details.html">Book This Course</a>
+                            <a href="course-details.html">Admission</a>
                         </div>
                     </div>
                 </div>

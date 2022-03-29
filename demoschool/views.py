@@ -12,6 +12,12 @@ def allcourses(request):
 def school_gallery(request):
     return render(request, 'demoschool/school_gallery.html')
 
+def contact_us(request):
+    return render(request, 'demoschool/contact_us.html')
+
+def about_us(request):
+    return render(request, 'demoschool/about_us.html')
+
 
 def test(request):
     return render(request, 'demoschool/test.html')
