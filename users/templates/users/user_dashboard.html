@@ -32,7 +32,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'users-dashboard' %}">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -72,17 +72,19 @@
                     aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
                     {% if user.profile.user_type == 'parent' or user.is_superuser %}
-                    <span>Report Center</span>
+                    <span>Reports & Tasks</span>
                 </a>
                 <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">View School Report</h6>
-                        <a class="collapse-item" href="{% url 'staff:staff-list' %}">Staff List</a>
+                        <h6 class="collapse-header">Explore Reports/Tasks</h6>
+                        <a class="collapse-item" href="{% url 'staff:staff_list' %}">Staff List</a>
                         <a class="collapse-item" href="{% url 'students:student-list' %}">Student List</a>
                         <a class="collapse-item" href="{% url 'print-resultform' %}">Upload Student Result</a>
                         <a class="collapse-item" href="{% url 'upload-result' %}">Enter Subject Result</a>
                         <a class="collapse-item" href="{% url 'print-result' %}">View Exam Records</a>
+                        <a class="collapse-item" href="{% url 'payment' %}">Record New Payments</a>
+                        <a class="collapse-item" href="{% url 'payment_record' %}">View All Payments</a>
                         {% else %}
                         <span>Quick Links</span>
                     </a>
@@ -248,8 +250,8 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <div class="small text-gray-500">December 12, 2019</div>
-                                        <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                                        <div class="small text-gray-500">December 12, 2021</div>
+                                        <span class="font-weight-bold">The School launches a new web portal!</span>
                                     </div>
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
@@ -259,8 +261,8 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <div class="small text-gray-500">December 7, 2019</div>
-                                        $290.29 has been deposited into your account!
+                                        <div class="small text-gray-500">January 10, 2022</div>
+                                        School resumption date!
                                     </div>
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
@@ -270,8 +272,8 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <div class="small text-gray-500">December 2, 2019</div>
-                                        Spending Alert: We've noticed unusually high spending for your account.
+                                        <div class="small text-gray-500">February 28, 2022</div>
+                                        School vacates for mid-term break.
                                     </div>
                                 </a>
                                 <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
@@ -299,9 +301,9 @@
                                         <div class="status-indicator bg-success"></div>
                                     </div>
                                     <div class="font-weight-bold">
-                                        <div class="text-truncate">Hi there! I am wondering if you can help me with a
+                                        <div class="text-truncate">Hi there! Your mid-term result is ready for download
                                             problem I've been having.</div>
-                                        <div class="small text-gray-500">Emily Fowler · 58m</div>
+                                        <div class="small text-gray-500">School Admin · 58m</div>
                                     </div>
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
@@ -311,9 +313,9 @@
                                         <div class="status-indicator"></div>
                                     </div>
                                     <div>
-                                        <div class="text-truncate">I have the photos that you ordered last month, how
+                                        <div class="text-truncate">New lessons are ready on the e-learning platform
                                             would you like them sent to you?</div>
-                                        <div class="small text-gray-500">Jae Chun · 1d</div>
+                                        <div class="small text-gray-500">School Admin · 1d</div>
                                     </div>
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
@@ -325,7 +327,7 @@
                                     <div>
                                         <div class="text-truncate">Last month's report looks great, I am very happy with
                                             the progress so far, keep up the good work!</div>
-                                        <div class="small text-gray-500">Morgan Alvarez · 2d</div>
+                                        <div class="small text-gray-500">School Admin · 2d</div>
                                     </div>
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
@@ -335,9 +337,9 @@
                                         <div class="status-indicator bg-success"></div>
                                     </div>
                                     <div>
-                                        <div class="text-truncate">Am I a good boy? The reason I ask is because someone
-                                            told me that people say this to all dogs, even if they aren't good...</div>
-                                        <div class="small text-gray-500">Chicken the Dog · 2w</div>
+                                        <div class="text-truncate">Better ways to make all payments 
+                                            You can use any of the online payment methods...</div>
+                                        <div class="small text-gray-500">School Admin · 2w</div>
                                     </div>
                                 </a>
                                 <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
@@ -645,7 +647,7 @@
                                                             <div class="text-white-90 small">Admission registration</div>
                                                         </div>
                                                     </div></a>
-                                                </div><a style="text-decoration:none" href="#">
+                                                </div><a style="text-decoration:none" href="{% url 'curriculum:standard_list' %}">
                                                 <div class="col-lg-6 mb-4">
                                                     <div class="card bg-info text-white shadow">
                                                         <div class="card-body">
@@ -654,6 +656,24 @@
                                                           
                                                         </div>
                                                     </div></a>
+                                                </div><a style="text-decoration:none" href="{% url 'attendance_form' %}">
+                                                    <div class="col-lg-6 mb-4">
+                                                        <div class="card bg-success text-white shadow">
+                                                            <div class="card-body">
+                                                                Take Attendance
+                                                                <div class="text-white-90 small">Student Online Attendance</div>
+                                                              
+                                                            </div>
+                                                        </div></a>
+                                                    </div><a style="text-decoration:none" href="#">
+                                                        <div class="col-lg-6 mb-4">
+                                                            <div class="card bg-secondary text-white shadow">
+                                                                <div class="card-body">
+                                                                    Set Exam / Test
+                                                                    <div class="text-white-90 small">Examination, Test, Quiz</div>
+                                                                  
+                                                                </div>
+                                                            </div></a>
                                             {% endif %}
                                         </div>
                                     </div> 
@@ -667,6 +687,7 @@
                         </div>
 
                         <div class="col-lg-6">
+                            {% if user.is_superuser %}
                             
 
                             <!-- Dropdown Card Example -->
@@ -674,7 +695,7 @@
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Basic info about my school</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Using the Admin Dashboard</h6>
                                     <div class="dropdown no-arrow">
                                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -692,9 +713,9 @@
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
-                                    Dropdown menus can be placed in the card header in order to extend the functionality
-                                    of a basic card. In this dropdown card example, the Font Awesome vertical ellipsis
-                                    icon in the card header can be clicked on in order to toggle a dropdown menu.
+                                    This admin dashboard enables you to perform all priviledged task relating to your
+                                    user account preference. The school reserves the right to edit and update your permission 
+                                    and general information aat any given time.
                                 </div>
                             </div>
 
@@ -703,12 +724,13 @@
                                 <!-- Card Header - Accordion -->
                                 <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse"
                                     role="button" aria-expanded="true" aria-controls="collapseCardExample">
-                                    <h6 class="m-0 font-weight-bold text-primary">School Newsletter</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">For Complaint and Guides</h6>
                                 </a>
                                 <!-- Card Content - Collapse -->
                                 <div class="collapse show" id="collapseCardExample">
                                     <div class="card-body">
-                                        The news letter goes here. <strong>click here</strong> Get more information about my school
+                                        For latest information about the school please, check the news letter
+                                        . <strong>click here</strong> to get more information about the school
                                     </div>
                                 </div>
                             </div>
@@ -718,6 +740,60 @@
                     </div>
 
                 </div>
+                {% else %}
+                                        <!-- Dropdown Card Example -->
+                                        <div class="card shadow mb-4">
+                                            <!-- Card Header - Dropdown -->
+                                            <div
+                                                class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                                <h6 class="m-0 font-weight-bold text-primary">Basic info about my school</h6>
+                                                <div class="dropdown no-arrow">
+                                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                                        aria-labelledby="dropdownMenuLink">
+                                                        <div class="dropdown-header">Dropdown Header:</div>
+                                                        <a class="dropdown-item" href="#">Action</a>
+                                                        <a class="dropdown-item" href="#">Another action</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item" href="#">Something else here</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Card Body -->
+                                            <div class="card-body">
+                                                This admin dashboard enables you to perform all priviledged task relating to your
+                                                user account preference. The school reserves the right to edit and update your permission 
+                                                and general information aat any given time.
+                                            </div>
+                                        </div>
+            
+                                        <!-- Collapsable Card Example -->
+                                        <div class="card shadow mb-4">
+                                            <!-- Card Header - Accordion -->
+                                            <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse"
+                                                role="button" aria-expanded="true" aria-controls="collapseCardExample">
+                                                <h6 class="m-0 font-weight-bold text-primary">School Newsletter</h6>
+                                            </a>
+                                            <!-- Card Content - Collapse -->
+                                            <div class="collapse show" id="collapseCardExample">
+                                                <div class="card-body">
+                                                    For latest information about the school please, check the news letter
+                                                    . <strong>click here</strong> to get more information about the school
+                                                </div>
+                                            </div>
+                                        </div>
+            
+                                    </div>
+            
+                                </div>
+            
+                            </div>
+
+                {% endif %}
+
                 {% endblock content %}
                 <!-- /.container-fluid -->
 

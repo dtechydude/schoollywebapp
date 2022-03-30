@@ -1,18 +1,54 @@
+{% extends 'users/user_dashboard.html'%} 
+
 {% block content %}
+<div class="col-lg-8">
+<div class="card mb-4">
+    <div class="card-header">
+        Payment Record List
+    </div>
+    <div class="card-body">   
+
+    {% if user.is_superuser or user.profile.user_type == 'parent' %}
 
 
-{% if user.is_superuser or user.profile.user_type == 'parent' %}
-<h5>Payment Record List </h5>
-{% for n in paymentlist %}
-<ul>
-    <li>{{ n.user.first_name}} - {{ n.payment_name}} - {{ n.amount_paid}} - {{ n.payment_date }}</li>
-</ul>
+    <a href="{% url 'staff:staff-pdf' %}">PDF Format</a> - - <a href="{% url 'staff:staff-csv' %}">CSV Format</a>
+    <table class = "table">
+        <thead class="thead-dark">
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Payment Type</th>
+          <th>Amount Paid</th>
+          <th>Payment Date</th>
+        </tr>
+    </thead>
+        {% for n in paymentlist %}
+        <tbody>
+        <tr>
+          <th> {{ n.user.first_name}}</th>
+          <th> {{ n.user.last_name}}</th>
+          <th> {{ n.payment_name}}</th>
+          <th> {{ n.amount_paid}}</th>
+          <th> {{ n.payment_date}}</th>
+        </tr> 
+    </tbody>
+        {% endfor %}
+        </table>
 
 
-{% endfor %}
-{% else %}
-<h1> Oops! You do not have permission to view this resource</h1>
+    {% else %}
+    <h1> Oops! You do not have permission to view this resource</h1>
+    
+    {% endif %} 
+    
+      
+</div>
+</div>
+</div>
+</div>
+</div> 
+{% endblock content %}
 
-{% endif %} 
 
-{% endblock content%}
+
+

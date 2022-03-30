@@ -1,3 +1,4 @@
+from email.policy import default
 from django.db import models
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
@@ -58,7 +59,6 @@ class StaffAcademicInfo(models.Model):
     institution = models.CharField(max_length=150, blank=True)
     professional_body = models.CharField(max_length=150, blank=True)  
     academic = models.CharField(max_length=150, blank=True)  
-
     marital_status = models.BooleanField(blank=True, null=True)
     phone = models.CharField(max_length=11, null=True)
     staff_type = models.OneToOneField(StaffCategory, on_delete=models.CASCADE, blank=True, null=True)
@@ -66,7 +66,7 @@ class StaffAcademicInfo(models.Model):
     next_of_kin = models.CharField(max_length=150, blank=True)  
     next_of_kin_address = models.CharField(max_length=150, blank=True)  
     next_of_kin_phone = models.CharField(max_length=150, blank=True) 
-    date_employed = models.DateField(null=True)
+    date_employed = models.CharField(max_length=150, blank=True, default="000000")
 
 
 

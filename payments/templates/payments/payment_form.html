@@ -1,12 +1,38 @@
+{% extends 'users/user_dashboard.html'%}
+    {% load crispy_forms_tags %}
 
-{% if user.is_superuser or user.profile.user_type == 'parent'%}
-<h3>Enter Payment for Students</h3>
-<form action="" method="post">
+
+    {% block content %}
+ 
+    <div class="col-lg-8">
+    <div class="card mb-4">
+    <div class="card-header">
+        {% if messages %}
+        {% for message in messages %}
+        <div class ="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor%}
+        {% endif%}
+        Enter Student's Payments
+    </div>
+    <div class="card-body">      
+    {% if user.profile.user_type == 'parent' or user.is_superuser %}
+    <form action="" method="post">
     {% csrf_token %}
-    {{payment_form.as_p}}
-    <input type='submit', value='Submit'>
-  
-</form>
-{% else %}
-<h1>Oops! You are not permitted to use this resource</h1>
-{% endif %}
+    {{ payment_form|crispy }}
+
+    <div class="form-group">
+        <button class="btn btn-outline-info" type="submit">Submit</button>
+    </div>
+
+    {% else %}
+    <h4>You are not permitted to view this page</h4>
+    {% endif %} 
+
+    </form>
+
+    </div>
+    </div>
+    </div>
+
+
+    {% endblock content %}

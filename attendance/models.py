@@ -1,3 +1,4 @@
+from email.policy import default
 from django.db import models
 
 from django.db import models
@@ -6,10 +7,11 @@ from django.db import models
 
 
 class Attendance(models.Model):
-    student_name = models.CharField(max_length=11, null=True)
+    select_class = models.CharField(max_length=11, null=True)
+    select_student = models.CharField(max_length=11, null=True)
     date = models.DateField(null=True)
-    status = models.CharField(max_length=11, null=True)
-    attendance_date = models.DateField(null=True)
+    status = models.BooleanField(default=False)
+    attendance_date = models.DateTimeField(auto_now_add=True)
 
 
     def __str__ (self):
