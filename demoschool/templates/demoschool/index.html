@@ -75,12 +75,12 @@
                             <ul>
                                 <li><a href="{% url 'demoschool:demoschool' %}">Home</a></li>
                                 <li><a href="{% url 'demoschool:about_us' %}">About us</a></li>
-                                <li><a href="admission.html">Admission</a></li>
+                                <li><a href="{% url 'demoschool:admission' %}">Admission</a></li>
                                 <li><a href="{% url 'curriculum:standard_list' %}">All courses</a></li>
                                 <li><a href="course-details.html">Course details</a></li>
                                 <li><a href="awards.html">Awards</a></li>
                                 <li><a href="seminar.html">Seminar</a></li>
-                                <li><a href="events.html">Events</a></li>
+                                <li><a href="{% url 'demoschool:demoschool' %}">Events</a></li>
                                 <li><a href="event-details.html">Event details</a></li>
                                 <li><a href="event-register.html">Event register</a></li>
                                 <li><a href="{% url 'demoschool:contact_us' %}">Contact us</a></li>
@@ -159,7 +159,7 @@
                                             <div class="m-menu-inn">
                                                 <div class="mm1-com mm1-s1">
                                                     <div class="ed-course-in">
-                                                        <a class="course-overlay menu-about" href="admission.html">
+                                                        <a class="course-overlay menu-about" href="{% url 'demoschool:admission' %}">
                                                             <img src="{% static 'demoschool/images/h-about.jpg' %}" alt="">
                                                             <span>Academics</span>
                                                         </a>
@@ -173,8 +173,8 @@
                                                     <ul>
                                                         <li><a href="{% url 'curriculum:standard_list' %}">All Courses</a></li>
                                                         <li><a href="course-details.html">Course details</a></li>
-                                                        <li><a href="about.html">About</a></li>
-                                                        <li><a href="admission.html">Admission</a></li>
+                                                        <li><a href="{% url 'demoschool:about_us' %}">About</a></li>
+                                                        <li><a href="{% url 'demoschool:admission' %}">Admission</a></li>
                                                         <li><a href="awards.html">Awards</a></li>
                                                     </ul>
                                                 </div>
@@ -192,14 +192,14 @@
                                     </div>
                                 </li>
                                 <li class="admi-menu">
-                                    <a href="#" class="mm-arr">Admission</a>
+                                    <a href="{% url 'demoschool:admission' %}" class="mm-arr">Admission</a>
                                     <!-- MEGA MENU 1 -->
                                     <div class="mm-pos">
                                         <div class="admi-mm m-menu">
                                             <div class="m-menu-inn">
                                                 <div class="mm2-com mm1-com mm1-s1">
                                                     <div class="ed-course-in">
-                                                        <a class="course-overlay" href="about.html">
+                                                        <a class="course-overlay" href="{% url 'demoschool:about_us' %}">
                                                             <img src="{% static 'demoschool/images/h-about1.jpg' %}" alt="">
                                                             <span>Academics</span>
                                                         </a>
@@ -209,13 +209,13 @@
                                                 </div>
                                                 <div class="mm2-com mm1-com mm1-s1">
                                                     <div class="ed-course-in">
-                                                        <a class="course-overlay" href="admission.html">
+                                                        <a class="course-overlay" href="{% url 'demoschool:admission' %}">
                                                             <img src="{% static 'demoschool/images/h-adm1.jpg' %}" alt="">
                                                             <span>Admission</span>
                                                         </a>
                                                     </div>
                                                     <p>Donec lacus libero, rutrum ac sollicitudin sed, mattis non eros. Vestibulum congue nec eros quis lacinia. Mauris non tincidunt lectus. Nulla mollis, orci vitae accumsan rhoncus.</p>
-                                                    <a href="admission.html" class="mm-r-m-btn">Read more</a>
+                                                    <a href="{% url 'demoschool:admission' %}" class="mm-r-m-btn">Read more</a>
                                                 </div>
                                                 <div class="mm2-com mm1-com mm1-s1">
                                                     <div class="ed-course-in">
@@ -231,7 +231,7 @@
                                                     <div class="ed-course-in">
                                                         <a class="course-overlay" href="seminar.html">
                                                             <img src="{% static 'demoschool/images/h-res1.jpg' %}" alt="">
-                                                            <span>Seminar 2018</span>
+                                                            <span>Seminar 2022</span>
                                                         </a>
                                                     </div>
                                                     <p>Donec lacus libero, rutrum ac sollicitudin sed, mattis non eros. Vestibulum congue nec eros quis lacinia. Mauris non tincidunt lectus. Nulla mollis, orci vitae accumsan rhoncus.</p>
@@ -253,12 +253,12 @@
                                                 <div class="mm1-com mm1-cour-com mm1-s3">
 													<h4>Frontend pages:1</h4>
                                                     <ul>
-                                                        <li><a href="index-2.html">Home</a></li>
-														<li><a href="index-1.html">Home - 1</a></li>
+                                                        <li><a href="{% url 'demoschool:demoschool' %}">Home</a></li>
+														
 														<li><a href="{% url 'curriculum:standard_list' %}">All Courses</a></li>
 														<li><a href="course-details.html">Course Details</a></li>
 														<li><a href="{% url 'demoschool:about_us' %}">About us</a></li>
-														<li><a href="admission.html">admission</a></li>
+														<li><a href="{% url 'demoschool:admission' %}">admission</a></li>
 														<li><a href="awards.html">awards</a></li>
 														<li><a href="blog.html">blog</a></li>
 														<li><a href="blog-details.html">blog details</a></li>
@@ -348,7 +348,7 @@
                                         </div>
                                     </div>
                                 </li>
-                                <li><a href="events.html">Events</a>
+                                <li><a href="{% url 'demoschool:demoschool' %}">Events</a>
                                 </li>
                                 <li><a href="dashboard.html">Student</a>
                                 </li>
@@ -425,7 +425,7 @@
                     <div class="carousel-caption slider-con">
                         <h2>Admission open <span>2022</span></h2>
                         <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p>
-                        <a href="#" class="bann-btn-1">Admission</a><a href="#" class="bann-btn-2">Read More</a>
+                        <a href="{% url 'demoschool:admission' %}" class="bann-btn-1">Admission</a><a href="{% url 'demoschool:admission' %}" class="bann-btn-2">Read More</a>
                     </div>
                 </div>
                 <div class="item">
@@ -458,7 +458,7 @@
                             <a href="awards.html" class="waves-effect waves-light btn-large wed-pop-ser-btn"><img src="{% static 'demoschool/images/icon/h-ic1.png' %}" alt=""> Academy</a>
                         </li>
                         <li>
-                            <a href="admission.html" class="waves-effect waves-light btn-large wed-pop-ser-btn"><img src="{% static 'demoschool/images/icon/h-ic2.png' %}" alt=""> Admission</a>
+                            <a href="{% url 'demoschool:admission' %}" class="waves-effect waves-light btn-large wed-pop-ser-btn"><img src="{% static 'demoschool/images/icon/h-ic2.png' %}" alt=""> Admission</a>
                         </li>
                         <li>
                             <a href="all-courses.html" class="waves-effect waves-light btn-large wed-pop-ser-btn"><img src="{% static 'demoschool/images/icon/h-ic4.png' %}" alt=""> Courses</a>
@@ -493,7 +493,7 @@
                     </div>
                     <div class="col-md-3 col-sm-4 col-xs-12">
                         <div class="ed-course-in">
-                            <a class="course-overlay" href="admission.html">
+                            <a class="course-overlay" href="{% url 'demoschool:admission' %}">
                                 <img src="{% static 'demoschool/images/h-adm1.jpg' %}" alt="">
                                 <span>Admission</span>
                             </a>
@@ -535,7 +535,7 @@
                         <div class="ed-course-in">
                             <a class="course-overlay" href="seminar.html">
                                 <img src="{% static 'demoschool/images/h-cam1.jpg' %}" alt="">
-                                <span>Seminar 2018</span>
+                                <span>Seminar 2022</span>
                             </a>
                         </div>
                     </div>
@@ -751,18 +751,18 @@
                     <div class="ho-event ho-event-mob-bot-sp">
                         <ul>
                             <li>
-                                <div class="ho-ev-date"><span>07</span><span>jan,2018</span>
+                                <div class="ho-ev-date"><span>07</span><span>jan,2022</span>
                                 </div>
                                 <div class="ho-ev-link">
                                     <a href="events.html">
-                                        <h4>Latinoo College Expo 2018</h4>
+                                        <h4>Latinoo College Expo 2022</h4>
                                     </a>
                                     <p>Nulla at velit convallis, venenatis lacus quis, efficitur lectus.</p>
                                     <span>9:15 am – 5:00 pm</span>
                                 </div>
                             </li>
                             <li>
-                                <div class="ho-ev-date"><span>12</span><span>jan,2018</span>
+                                <div class="ho-ev-date"><span>12</span><span>jan,2022</span>
                                 </div>
                                 <div class="ho-ev-link">
                                     <a href="events.html">
@@ -773,7 +773,7 @@
                                 </div>
                             </li>
                             <li>
-                                <div class="ho-ev-date"><span>26</span><span>jan,2018</span>
+                                <div class="ho-ev-date"><span>26</span><span>jan,2022</span>
                                 </div>
                                 <div class="ho-ev-link">
                                     <a href="events.html">
@@ -784,7 +784,7 @@
                                 </div>
                             </li>
                             <li>
-                                <div class="ho-ev-date"><span>18</span><span>jan,2018</span>
+                                <div class="ho-ev-date"><span>18</span><span>jan,2022</span>
                                 </div>
                                 <div class="ho-ev-link">
                                     <a href="events.html">
@@ -988,18 +988,18 @@
                         <div class="ho-event">
                             <ul>
                                 <li>
-                                    <div class="ho-ev-date"><span>07</span><span>jan,2018</span>
+                                    <div class="ho-ev-date"><span>07</span><span>jan,2022</span>
                                     </div>
                                     <div class="ho-ev-link">
                                         <a href="events.html">
-                                            <h4>Latinoo College Expo 2018</h4>
+                                            <h4>Latinoo College Expo 2022</h4>
                                         </a>
                                         <p>Nulla at velit convallis, venenatis lacus quis, efficitur lectus.</p>
                                         <span>9:15 am – 5:00 pm</span>
                                     </div>
                                 </li>
                                 <li>
-                                    <div class="ho-ev-date"><span>12</span><span>jan,2018</span>
+                                    <div class="ho-ev-date"><span>12</span><span>jan,2022</span>
                                     </div>
                                     <div class="ho-ev-link">
                                         <a href="events.html">
@@ -1010,7 +1010,7 @@
                                     </div>
                                 </li>
                                 <li>
-                                    <div class="ho-ev-date"><span>26</span><span>jan,2018</span>
+                                    <div class="ho-ev-date"><span>26</span><span>jan,2022</span>
                                     </div>
                                     <div class="ho-ev-link">
                                         <a href="events.html">
@@ -1021,7 +1021,7 @@
                                     </div>
                                 </li>
                                 <li>
-                                    <div class="ho-ev-date"><span>18</span><span>jan,2018</span>
+                                    <div class="ho-ev-date"><span>18</span><span>jan,2022</span>
                                     </div>
                                     <div class="ho-ev-link">
                                         <a href="events.html">
@@ -1054,7 +1054,7 @@
                             <p>Make inquiry about our admission</p>
                         </div>
                         <div class="col-md-3 bb-link">
-                            <a href="course-details.html">Admission</a>
+                            <a href="{% url 'demoschool:admission' %}">Admission</a>
                         </div>
                     </div>
                 </div>
@@ -1106,7 +1106,7 @@
                     <ul>
                         <li><a href="#">24x7 Live help</a>
                         </li>
-                        <li><a href="#">Contact us</a>
+                        <li><a href="{% url 'demoschool:contact_us' %}>Contact us</a>
                         </li>
                         <li><a href="#">Feedback</a>
                         </li>

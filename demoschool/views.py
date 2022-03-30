@@ -18,6 +18,9 @@ def contact_us(request):
 def about_us(request):
     return render(request, 'demoschool/about_us.html')
 
+def admission(request):
+    return render(request, 'demoschool/admission.html')
+
 
 def test(request):
     return render(request, 'demoschool/test.html')
