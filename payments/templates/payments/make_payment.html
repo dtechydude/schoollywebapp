@@ -1,43 +1,45 @@
-{% extends 'users/user_dashboard.html'%}
-{% load crispy_forms_tags %}
-
+{% extends 'users/user_dashboard.html'%} 
 
 {% block content %}
 <div class="col-lg-6">
 <div class="card mb-4">
     <div class="card-header">
-        {% if messages %}
-        {% for message in messages %}
-        <div class ="alert alert-{{ message.tags }}">{{ message }}</div>
-        {% endfor%}
-        {% endif%}
-        Register New Staff / Student
+        Make New Payment
     </div>
-    <div class="card-body">      
-{% if user.profile.user_type == 'parent' or user.is_superuser %}
-<form action="" method="post">
-    {% csrf_token %}
-    {{ form|crispy }}
-    <input type='submit', value='Submit'>
-    {% else %}
-    <h4>You are not permitted to view this page</h4>
-    {% endif %} 
-</form>
-</div>
-</div>
-</div>
+    <div class="card-body">   
+       
+    {% if user.is_superuser or user.profile.user_type == 'student' %}
+    <a style="text-decoration:none" href="#">
+        <div class="col-lg-6 mb-4">
+            <div class="card bg-success text-white shadow">
+                <div class="card-body">
+                    Make Payment
+                    <div class="text-white-90 small">Click here to pay online</div>
+                </div>
+            </div></a>
+        
 
-
-<div class="col-lg-6">
-
+      {% else %}
+    <h1> Oops! You do not have permission to view this resource</h1>
     
+    {% endif %} 
+      
+</div>
+
+</div>
+
+
+
+</div>
+</div>
+<div class="col-lg-6">
 
     <!-- Dropdown Card Example -->
     <div class="card shadow mb-4">
         <!-- Card Header - Dropdown -->
         <div
             class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">Read before registering New Student/Staff</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Payment Instructions</h6>
             <div class="dropdown no-arrow">
                 <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -55,24 +57,26 @@
         </div>
         <!-- Card Body -->
         <div class="card-body">
-            You must use this form to register new student or staff. After registration, you
-            The update is done through the superuser dashboard. 
-          
+           
+            <p> You can make your payment through any of the following methods <br />
+            - Bank Tranfer<br />
+        - Direct Bank Deposit<br />
+    - Online Payment</p>
+    <b>Account Details:</b> 0000000000- GTB - Fizcos Academy
         </div>
     </div>
+                    
+                </div>
+            </div>
+        </div>
+</div> 
 
-
-
-      
 </div>
-
-
-</div>
-</div>
-
-
-
 
 
 
 {% endblock content %}
+
+
+
+

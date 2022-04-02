@@ -37,3 +37,34 @@ def paymentlist(request):
 
     }
     return render (request, 'payments/payment_list.html', context )
+
+
+
+@login_required
+def view_self_payments(request):
+    mypayment = PaymentDetail.objects.filter(user=request.user)
+    context = {
+        'mypayment':mypayment
+    }
+    
+    return render(request, 'payments/view_self_payment.html', context)
+
+# FUNCTION FOR DOWNLOADING FILE
+def download(request,path):
+    file_path=os.path.join(settings.MEDIA_ROOT,path)
+    if os.path.exists(file_path):
+        with open(file_path, 'rb')as fh:
+            response=HttpResponse(fh.read(),content_type="application/file")
+            response['Content-Disposition']='inline;filename='+os.path.basename(file_path)
+            return response
+
+    raise Http404
+
+
+
+
+def make_payment(request):
+    return render(request, 'payments/make_payment.html')
+
+
+

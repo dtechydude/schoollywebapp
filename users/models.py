@@ -9,15 +9,17 @@ class Profile(models.Model):
     middle_name = models.CharField(max_length=20, blank=True)
     address = models.CharField(max_length=20, blank=True, null=True)
 
+    select = 'Select'
     lagos = 'Lagos'
     ogun = 'Ogun'
     
-    gender_type = [
+    state_origin = [
+        ('Select', select),
         ('Lagos', lagos),
         ('Ogun', ogun),
     ]
 
-    state = models.CharField(max_length=20, blank=True, null=True)
+    state = models.CharField(max_length=10, choices=state_origin, default=select)
 
     male = 'male'
     female = 'female'

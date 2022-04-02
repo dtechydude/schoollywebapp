@@ -9,9 +9,9 @@
     <div class="card-body">   
 
         {% if user.is_superuser or user.profile.user_type == 'parent' %}
-
-        <table class = "table">
-            <thead class="thead-dark">
+        <div class="table-responsive-sm">
+        <table class = "table" >
+            <thead class="thead-light">
             <tr>
               <th>Username</th>
               <th>First Name</th>
@@ -34,6 +34,7 @@
         </tbody>
             {% endfor %}
             </table>
+        </div>
             <a href="{% url 'students:all-students' %}">view pdf</a>
         
     

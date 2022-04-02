@@ -92,12 +92,12 @@
                         data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header">Other Links</h6>
-                            <a class="collapse-item" href="{% url 'home' %}">School Home Page</a> 
-                            <a class="collapse-item active" href="{% url 'users-dashboard' %}">My Personal Details</a>                           
-                            <a class="collapse-item active" href="{% url 'my-result' %}">Check My Results</a>
-                            <a class="collapse-item active" href="#">Make Payments</a>
-                            <a class="collapse-item active" href="#">View Payment History</a>
-                            <a class="collapse-item active" href="#">Event Gallery</a>
+                            <a class="collapse-item" href="{% url 'demoschool:demoschool' %}">School Home Page</a> 
+                            <a class="collapse-item" href="{% url 'users-dashboard' %}">My Personal Details</a>                           
+                            <a class="collapse-item" href="{% url 'my-result' %}">Check My Results</a>
+                            <a class="collapse-item" href="{% url 'make_payment' %}">Make Payments</a>
+                            <a class="collapse-item" href="{% url 'my_payments' %}">View Payment History</a>
+                            <a class="collapse-item" href="#">Notifications</a>
                         {% endif %}
                     </div>
                 </div>
@@ -151,14 +151,14 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{% url 'demoschool:contact_us' %}">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Contact Support</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{% url 'demoschool:demoschool' %}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Student Center</span></a>
             </li>
@@ -674,6 +674,9 @@
                                                                   
                                                                 </div>
                                                             </div></a>
+
+                                                      
+
                                             {% endif %}
                                         </div>
                                     </div> 

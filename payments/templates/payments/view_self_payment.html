@@ -1,0 +1,57 @@
+{% extends 'users/user_dashboard.html'%} 
+
+{% block content %}
+<div class="col-lg-8">
+<div class="card mb-4">
+    <div class="card-header">
+        My Payment History
+    </div>
+    <div class="card-body">   
+       
+    {% if user.is_superuser or user.profile.user_type == 'student' %}
+    <table class = "table">
+        <thead class="thead-dark">
+        <tr>
+          <th>Payment Name</th>
+          <th>Amount Paid</th>
+          <th>Payment Method</th>
+          <th>Date</th>
+         
+        </tr>
+    </thead>
+    {% if mypayment %}
+    
+        {% for p in mypayment %}
+        <tbody>
+        <tr>
+          <th> {{ p.payment_name}}</th>
+          <th> {{ p.amount_paid}}</th>
+          <th> {{ p.payment_method}}</th>
+          <th> {{ p.payment_date}}</th>                  
+        </tr> 
+    </tbody>
+    {% endfor %}
+    {% else %}
+    <h4>You haven't made any payment yet!</h4>
+    {% endif %}
+    
+        </table>
+  
+   
+        
+
+      {% else %}
+    <h1> Oops! You do not have permission to view this resource</h1>
+    
+    {% endif %} 
+      
+</div>
+</div>
+</div>
+</div>
+</div> 
+{% endblock content %}
+
+
+
+
