@@ -11,6 +11,12 @@ from xhtml2pdf import pisa
 from django.views.generic import ListView
 from students.models import StudentDetail, StudentProfile
 from students.forms import StudentUpdateForm, StudentProfileForm
+import io
+from reportlab.pdfgen import canvas
+from reportlab.lib.units import inch
+from reportlab.lib.pagesizes import letter
+from django.http import FileResponse
+import csv
 
 
 
@@ -112,15 +118,6 @@ def render_pdf_view(request):
     return response
 
 
-
-
-
-
-
-
-
-
-
 def studentpage(request):
 
     return render(request, 'students/student_page.html', {})
@@ -184,3 +181,67 @@ def studentlist(request):
 
 
 
+# Generate a PDF staff list
+def mystudent_pdf(request):
+    # create Bytestream buffer
+    buf = io.BytesIO()
+    #create a canvas
+    c = canvas.Canvas(buf, pagesize=letter, bottomup=0)
+    # create a text object
+    textob = c.beginText()
+    textob.setTextOrigin(inch, inch)
+    textob.setFont("Helvetica", 12)
+    # Add some lines of text
+    # lines = [
+    #     "This is line 1",
+    #     "This is line 2",
+    #     "This is line31",
+    #     "This is line 4",
+    # ]
+    # Designate the model
+    student = StudentDetail.objects.all()
+
+    # Create a blank list
+        
+    lines = [" Student List Report"]
+
+    for students in student:
+        lines.append(""),
+        lines.append("Username: " + students.user.username),
+        lines.append("Current Class: " + str(students.current_class)),
+        lines.append("Class Teacher: " + str(students.class_teacher.user.username)), 
+        lines.append("Student Type: " + students.student_type),
+        lines.append("-------------------------------------"),
+
+
+    # loop
+    for line in lines:
+        textob.textLine(line)
+    #fininsh up
+    c.drawText(textob)
+    c.showPage()
+    c.save()
+    buf.seek(0)
+    # Return something
+    return FileResponse(buf, as_attachment=False, filename='students.pdf')
+
+
+# Generate a CSV staff list
+def mystudent_csv(request):
+    response = HttpResponse(content_type ='text/csv')
+    response['Content-Disposition'] = 'attachment; filename=student.csv'
+    
+# Create a csv writer
+    writer = csv.writer(response)
+
+    student = StudentDetail.objects.all()
+    
+    # Add column headings to the csv files
+    writer.writerow(['Student Name', 'Class Teacher', 'Current Class', 'Student Type'])
+
+
+    # Loop thru and output
+    for students in student:
+        writer.writerow([students.user.username, students.current_class, students.class_teacher, students.student_type])
+        
+    return response

@@ -46,6 +46,7 @@ ALLOWED_HOSTS = ['127.0.0.1', 'schoollyapp.herokuapp.com']
 # Application definition
 
 INSTALLED_APPS = [
+    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -63,9 +64,17 @@ INSTALLED_APPS = [
     'demoschool.apps.DemoschoolConfig',
     'crispy_forms',
     'storages',
-    # 'embed_video',
-    #'bootstrap_datepicker_plus',
+    # 'ckeditor',
+    
+    
+    # 'ckeditor_uploader',  #for ckeditor image upload
+    'embed_video',
+    # 'bootstrap_datepicker_plus',
+    
+    
 ]
+ 
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -201,3 +210,19 @@ AWS_S3_ADDRESSING_STYLE = 'virtual'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 django_heroku.settings(locals())
+
+
+
+# CKEDITOR_CONFIGS = {
+#     'default': {
+#         'toolbar': 'Custom',
+#         'width': '500px',
+#         'height': '10%',
+#         'toolbar_Custom': [
+#             ['Bold', 'Italic', 'Underline'],
+#             ['NumberedList', 'BulletedList'],
+
+#         ],
+#     }
+#  }
+# CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"

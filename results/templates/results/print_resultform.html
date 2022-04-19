@@ -16,7 +16,7 @@
     </div>
     <div class="card-body">      
 {% if user.profile.user_type == 'parent' or user.is_superuser %}
-<form action="" method="post">
+<form action="" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ print_form|crispy }}
   

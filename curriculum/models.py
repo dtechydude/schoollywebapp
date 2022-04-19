@@ -2,6 +2,9 @@ from enum import unique
 from django.db import models
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
+# from ckeditor.fields import RichTextField
+# from ckeditor_uploader.fields import RichTextUploadingField
+
 
 import os
 from embed_video.fields import EmbedVideoField
@@ -69,11 +72,12 @@ class Lesson(models.Model):
     name = models.CharField(max_length=250)
     position = models.PositiveSmallIntegerField(verbose_name="Chapter no.")
     slug = models.SlugField(null=True, blank=True)
-    video = models.FileField(upload_to=save_lesson_files, verbose_name="video", blank=True, null=True)
+    # video = models.FileField(upload_to=save_lesson_files, verbose_name="video", blank=True, null=True)
+    video = EmbedVideoField(blank=True)
     # video_url = EmbedVideoField(null=True,blank=True)
-    ppt = models.FileField(upload_to=save_lesson_files, verbose_name="Presentation", blank=True)
-    Notes = models.FileField(upload_to=save_lesson_files, verbose_name="Notes", blank=True)
-    comment = models.CharField(max_length=2300, default="add comments")
+    ppt = models.FileField(upload_to='save_lesson_files', verbose_name="Presentation", blank=True)
+    Notes = models.FileField(upload_to='save_lesson_files', verbose_name="Notes", blank=True)
+    comment = models.CharField(max_length=250)
 
     class Meta:
         ordering = ['position']

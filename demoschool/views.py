@@ -24,3 +24,13 @@ def admission(request):
 
 def test(request):
     return render(request, 'demoschool/test.html')
+
+def admin(request):
+    return render(request, 'demoschool/admin-login.html')
+
+def infoblog(request):
+    return render(request, 'demoschool/infoblog.html')
+
+def academics(request):
+    return render(request, 'demoschool/academics.html')
+

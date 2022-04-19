@@ -1,14 +1,53 @@
+{% extends 'demoschool/index.html'%}
+{% load embed_video_tags %}
+
+{% load static %}
 
 
-{% block content %}
-<h3>Create New Lesson</h3> 
-<form method="post">
-    {% if user.is_authenticated %}
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" name="" value="Submit">
-    {% endif %}
-</form>
+{% block section%}
+<section class="pop-cour">
+   
+    <div class="container com-sp pad-bot-70">
+        <div class="row justify-content-center">
+      
+        </div>
+		
+        <div class="row justify-content-center">
+
+            <div class="col-md-6">
+              
+               
+    
+                <!--Admin view the lesson, enter classroom-->
+                <div>
+                  <!--LESSON LIST-->
+                  <div class="row justify-content-center">
+                    {% comment %} <div class="pg-eve-desc pg-blog-desc"> {% endcomment %}
+                    <h3>Create New Lesson</h3>
+                    <p>Use the form below to create new lesson for the e-learning platform</p> 
+                      
+                  <div class="home-top-cour">
+                    
+                       <div class="col-md-12 home-top-cour-desc">                            
+            
+                        <form method="post" enctype="multipart/form-data">
+                         
+                            {% csrf_token %}
 
 
-{% endblock %}
+                            {{ form.as_p }}
+                            <input type="submit" name="" value="Submit">
+                           
+                        </form>   
+                                        
+                          
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    
+</section>
+
+
+{% endblock section %}

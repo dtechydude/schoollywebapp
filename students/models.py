@@ -58,7 +58,7 @@ class StudentDetail(models.Model):
 
 #this function returns the profile name in the admin panel profile table
     def __str__ (self):
-        return f'{self.user.username} StudentAcademicInfo'
+        return f'{self.user.username} Profile'
 
 
 

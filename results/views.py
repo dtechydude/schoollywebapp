@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from results.forms import PrintResultForm, ResultUploadForm
 from django.contrib import messages
 from results.models import PrintResult, Result
@@ -28,20 +28,23 @@ def printresult(request):
 @login_required
 def printresultform(request):
     if request.method == 'POST':
-        print_form = PrintResult(request.POST)
-                
+        print_form = PrintResultForm(request.POST, request.FILES)
+                        
         if print_form.is_valid():
              print_form.save()
-             messages.success(request, f'The Result has been uploaded successfully')
-             return HttpResponseRedirect (request, 'students/studentpage')
+             messages.success(request, f'Your upload is successful, enter another or refresh the page')
+             
+             return HttpResponseRedirect(reverse("print-resultform"))
+             
+
         
     else:
         print_form = PrintResultForm()
     
-        file = PrintResult.objects.all()
+        # file = PrintResult.objects.all()
         # 'print_form': print_form
    
-    return render(request, 'results/print_resultform.html', {'print_form': print_form, 'file':file })
+    return render(request, 'results/print_resultform.html', {'print_form': print_form})
 
 
 
@@ -51,7 +54,7 @@ def printresultform(request):
 def uploadresult(request):
     if request.method == 'POST':
         upload_form = ResultUploadForm(request.POST)
-                
+                      
         if upload_form.is_valid():
              upload_form.save()
              messages.success(request, f'The Result has been uploaded successfully')
@@ -59,8 +62,11 @@ def uploadresult(request):
         
     else:
         upload_form = ResultUploadForm()
+    context ={
+        'payment_form' : upload_form
+    }
 
-    return render(request, 'results/result_entry_form.html', {'upload_form': upload_form})
+    return render(request, 'results/result_entry_form.html', context)
 
 # FUNCTION FOR DOWNLOADING FILE
 def download(request,path):

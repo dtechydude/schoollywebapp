@@ -1,7 +1,7 @@
 {% extends 'users/user_dashboard.html'%} 
 
 {% block content %}
-<div class="col-lg-8">
+<div class="col-lg-12">
 <div class="card mb-4">
     <div class="card-header">
         Examination Results
@@ -28,8 +28,8 @@
           <th> {{ res.user.profile.code }}</th>
           <th> {{ res.user.result.exam }}</th>
           <th> {{ res.user.result.session}}</th>
-          <th><a href="{{ res.file.url }}" download = "{{ res.file.url }}" > Download</a></th>
-          <th><a href="{{ user.result.file.url }}"> View PDF</a> {{ result.user.result.file }}</th>
+          {% comment %} <th><a href="{{ res.file.url }}" download = "{{ res.file.url }}" > Download</a></th>
+          <th><a href="{{ user.result.file.url }}"> View PDF</a> {{ result.user.result.file }}</th> {% endcomment %}
         </tr> 
     </tbody>
         {% endfor %}

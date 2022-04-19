@@ -1,7 +1,7 @@
 {% extends 'users/user_dashboard.html'%} 
 
 {% block content %}
-<div class="col-lg-8">
+<div class="col-lg-12">
 <div class="card mb-4">
     <div class="card-header">
         Payment Record List
@@ -10,8 +10,12 @@
 
     {% if user.is_superuser or user.profile.user_type == 'parent' %}
 
+    <div style="margin-bottom:10px">
+    <button class="btn btn-outline-info" > <a href="{% url 'payments:payment-pdf' %}">PDF Format</a></button>
+    <button class="btn btn-outline-info" > <a href="{% url 'payments:payment-csv' %}">CSV Format</a></button>
+    </div>
 
-    <a href="{% url 'staff:staff-pdf' %}">PDF Format</a> - - <a href="{% url 'staff:staff-csv' %}">CSV Format</a>
+    
     <table class = "table">
         <thead class="thead-dark">
         <tr>

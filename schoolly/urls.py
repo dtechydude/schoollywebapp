@@ -28,7 +28,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # path('', include('users.urls')),
     path('curriculum/', include('curriculum.urls')),
-    path('', include('pages.urls')),
+    path('pages/', include('pages.urls')),
     path('payments/', include('payments.urls')),
     path('users/', include('users.urls')),
     path('results/', include('results.urls')),
@@ -36,11 +36,17 @@ urlpatterns = [
     path('staff/', include('staff.urls')),
     # path('demopage/', include('demopage.urls')),
     path('attendance/', include('attendance.urls')),
+    path('', include('demoschool.urls')),
     path('demoschool/', include('demoschool.urls')),
+
+    # path('ckeditor', include('ckeditor_uploader.urls')),    #for ckeditor image upload
+
     
 
 #PATH FOR DOWNLOAD URL
    url(r'^download/(?P<path>.*)$',serve,{'document_root':settings.MEDIA_ROOT}),
+
+  
 
 
     

@@ -15,6 +15,9 @@ urlpatterns = [
     path('', StudentListView.as_view(), name="all-students"),    
     path('pdf/<pk>/', user_views.student_render_pdf_view, name="student-pdf-view"),
     path('test-view/', user_views.render_pdf_view, name="test-view"),
+
+    path('student-pdf', user_views.mystudent_pdf, name="student-pdf"),
+    path('student-csv', user_views.mystudent_csv, name="student-csv"),
     
  
 

@@ -1,7 +1,7 @@
 {% extends 'users/user_dashboard.html'%}
 
 {% block content %}
-<div class="col-lg-8">
+<div class="col-lg-10">
 <div class="card mb-4">
     <div class="card-header">
         Student List
@@ -9,6 +9,10 @@
     <div class="card-body">   
 
         {% if user.is_superuser or user.profile.user_type == 'parent' %}
+        <div style="margin-bottom:10px">
+            <button class="btn btn-outline-info" > <a href="{% url 'students:student-pdf' %}">PDF Format</a></button>
+            <button class="btn btn-outline-info" > <a href="{% url 'students:student-csv' %}">CSV Format</a></button>
+                </div>
         <div class="table-responsive-sm">
         <table class = "table" >
             <thead class="thead-light">
@@ -17,7 +21,9 @@
               <th>First Name</th>
               <th>Last Name</th>
               <th>Current Class</th>
-              <th>Action</th>
+              <th>F.Teacher</th>
+              <th>Stud. Type</th>
+              <th>Contact</th>
              
             </tr>
         </thead>
@@ -28,14 +34,16 @@
               <th> {{ s.user.first_name}}</th>
               <th> {{ s.user.last_name}}</th>
               <th> {{ s.user.current_class}}</th>
-              <th> <a href="{% url 'students:all-students' %}">pdf</a></th>
+              <th> {{ s.user.class_teacher}}</th>
+              <th> {{ s.user.student_type}}</th>
+              <th> {{ s.user.parent_phone}}</th>
               
             </tr> 
         </tbody>
             {% endfor %}
             </table>
         </div>
-            <a href="{% url 'students:all-students' %}">view pdf</a>
+        
         
     
     {% comment %} {% endfor %} {% endcomment %}

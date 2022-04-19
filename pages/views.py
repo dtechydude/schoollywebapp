@@ -5,7 +5,7 @@ from django.contrib import messages
 # Create your views here.
 
 def homepage(request):
-    return render(request, 'pages/index.html')
+    return render(request, 'demoschool/index.html')
 
 
 

@@ -2,7 +2,7 @@
  {% extends 'users/user_dashboard.html'%} 
 
 {% block content %}
-<div class="col-lg-8">
+<div class="col-lg-10">
 <div class="card mb-4">
     <div class="card-header">
         Staff List
@@ -10,24 +10,31 @@
     <div class="card-body">   
 
     {% if user.is_superuser or user.profile.user_type == 'parent' %}
-
-
-    <a href="{% url 'staff:staff-pdf' %}">PDF Format</a> - - <a href="{% url 'staff:staff-csv' %}">CSV Format</a>
+        <div style="margin-bottom:10px">
+    <button class="btn btn-outline-info" > <a href="{% url 'staff:staff-pdf' %}">PDF Format</a></button>
+    <button class="btn btn-outline-info" > <a href="{% url 'staff:staff-csv' %}">CSV Format</a></button>
+        </div>
     <div class="table-responsive-sm">
     <table class = "table">
         <thead class="thead-light">
         <tr>
           <th>Username</th>
-          <th>Full Name</th>
-          <th>Qualification</th>
+          <th>Surname</th>
+          <th>First Name</th>
+          <th>Phone</th>
+          <th>Date Empl.</th>
+          <th>Category</th>
         </tr>
     </thead>
         {% for n in stafflist %}
         <tbody>
         <tr>
           <th> {{ n.user.username}}</th>
-          <th> {{ n.user.first_name}}  {{ n.user.last_name}} </th>
-        <th> {{ n.user.qualification}}</th>
+          <th> {{ n.user.last_name}}</th>
+          <th> {{ n.user.first_name}} </th>
+         <th>{{ n.user.phone}}</th>
+         <th> {{ n.user.date_employed}}</th>
+        <th> {{ n.user.staff_type}}</th>
         </tr> 
     </tbody>
         {% endfor %}
