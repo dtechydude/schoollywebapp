@@ -37,7 +37,7 @@ urlpatterns = [
     # path('demopage/', include('demopage.urls')),
     path('attendance/', include('attendance.urls')),
     path('', include('demoschool.urls')),
-    path('demoschool/', include('demoschool.urls')),
+    # path('demoschool/', include('demoschool.urls')),
 
     # path('ckeditor', include('ckeditor_uploader.urls')),    #for ckeditor image upload
 

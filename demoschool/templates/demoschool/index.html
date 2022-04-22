@@ -54,8 +54,20 @@
                                 <li><a href="{% url 'demoschool:admission' %}">Admission</a></li>
                                 <li><a href="{% url 'curriculum:standard_list' %}">E-Learning</a></li>
                                 <li><a href="course-details.html">Gallery</a></li>
-                                <li><a href="#">Time-Table</a></li>                                
-                                <li><a href="{% url 'demoschool:demoschool' %}">Portal-Login</a></li>
+                                <li><a href="#">Time-Table</a></li>  
+                                
+                                {% if user.is_authenticated %}
+                                <li><a href="{% url 'curriculum:standard_list' %}">All Courses</a></li>
+                         
+                                <li><a class="nav-link scrollto" href="{% url 'user_logout' %}">Logout</a></li>
+                                <li><a href="{% url 'users-dashboard' %}">Dashboard</a></li>
+                            
+                                          
+                                {% else %}
+                                <li><a href="{% url 'demoschool:school_gallery' %}">Gallery</a>
+                                </li>
+                                 <li><a href="{% url 'login' %}">Portal-Login</a></li>
+                                {% endif%}
 
                                 <li><a href="{% url 'demoschool:contact_us' %}">Contact us</a></li>
                             </ul>
@@ -319,7 +331,7 @@
                             
                                           
                                 {% else %}
-                                <li><a href="{% url 'demoschool:demoschool' %}">Events</a>
+                                <li><a href="{% url 'demoschool:school_gallery' %}">Gallery</a>
                                 </li>
                                  <li><a href="{% url 'login' %}">Portal-Login</a></li>
                                 {% endif%}
@@ -399,7 +411,7 @@
                 <div class="item">
                     <img src="{% static 'demoschool/images/slider/3.jpg' %}" alt="">
                     <div class="carousel-caption slider-con">
-                        <h2>Schoolly <span>System</span></h2>
+                        <h2>Daniels Model <span>Academy</span></h2>
                         <p>D.M.A is a fully inclusive school that promotes the well-being of every student through high-quality teaching.</p>
                         <a href="{% url 'curriculum:standard_list' %}" class="bann-btn-1">All Courses</a><a href="#" class="bann-btn-2">Read More</a>
                     </div>
@@ -505,7 +517,7 @@
                         <!--POPULAR COURSES-->
                         <div class="home-top-cour">
                             <!--POPULAR COURSES IMAGE-->
-                            <div class="col-md-3"> <img src="{% static 'demoschool/images/course/sm-1.jpg' %}" alt=""> </div>
+                            {% comment %} <div class="col-md-3"> <img src="{% static 'demoschool/images/course/sm-1.jpg' %}" alt=""> </div> {% endcomment %}
                             <!--POPULAR COURSES: CONTENT-->
                             <div class="col-md-9 home-top-cour-desc">
                                 <a href="{% url 'demoschool:infoblog' %}">
@@ -523,7 +535,7 @@
                         <!--POPULAR COURSES-->
                         <div class="home-top-cour">
                             <!--POPULAR COURSES IMAGE-->
-                            <div class="col-md-3"> <img src="{% static 'demoschool/images/course/sm-2.jpg' %}" alt=""> </div>
+                            {% comment %} <div class="col-md-3"> <img src="{% static 'demoschool/images/course/sm-2.jpg' %}" alt=""> </div> {% endcomment %}
                             <!--POPULAR COURSES: CONTENT-->
                             <div class="col-md-9 home-top-cour-desc">
                                 <a href="{% url 'demoschool:infoblog' %}">
@@ -544,7 +556,7 @@
                         <!--POPULAR COURSES-->
                         <div class="home-top-cour">
                             <!--POPULAR COURSES IMAGE-->
-                            <div class="col-md-3"> <img src="{% static 'demoschool/images/course/sm-4.jpg' %}" alt=""> </div>
+                            {% comment %} <div class="col-md-3"> <img src="{% static 'demoschool/images/course/sm-4.jpg' %}" alt=""> </div> {% endcomment %}
                             <!--POPULAR COURSES: CONTENT-->
                             <div class="col-md-9 home-top-cour-desc">
                                 <a href="{% url 'demoschool:infoblog' %}">
@@ -566,7 +578,7 @@
                         <!--POPULAR COURSES-->
                         <div class="home-top-cour">
                             <!--POPULAR COURSES IMAGE-->
-                            <div class="col-md-3"> <img src="{% static 'demoschool/images/course/sm-5.jpg' %}" alt=""> </div>
+                            {% comment %} <div class="col-md-3"> <img src="{% static 'demoschool/images/course/sm-5.jpg' %}" alt=""> </div> {% endcomment %}
                             <!--POPULAR COURSES: CONTENT-->
                             <div class="col-md-9 home-top-cour-desc">
                                 <a href="{% url 'demoschool:infoblog' %}">
@@ -584,7 +596,7 @@
                         <!--POPULAR COURSES-->
                         <div class="home-top-cour">
                             <!--POPULAR COURSES IMAGE-->
-                            <div class="col-md-3"> <img src="{% static 'demoschool/images/course/sm-6.jpg' %}" alt=""> </div>
+                            {% comment %} <div class="col-md-3"> <img src="{% static 'demoschool/images/course/sm-6.jpg' %}" alt=""> </div> {% endcomment %}
                             <!--POPULAR COURSES: CONTENT-->
                             <div class="col-md-9 home-top-cour-desc">
                                 <a href="{% url 'demoschool:infoblog' %}">
@@ -602,7 +614,7 @@
                         <!--POPULAR COURSES-->
                         <div class="home-top-cour">
                             <!--POPULAR COURSES IMAGE-->
-                            <div class="col-md-3"> <img src="{% static 'demoschool/images/course/sm-7.jpg' %}" alt=""> </div>
+                            {% comment %} <div class="col-md-3"> <img src="{% static 'demoschool/images/course/sm-7.jpg' %}" alt=""> </div> {% endcomment %}
                             <!--POPULAR COURSES: CONTENT-->
                             <div class="col-md-9 home-top-cour-desc">
                                 <a href="{% url 'demoschool:infoblog' %}">
@@ -964,7 +976,7 @@
                 <div class="col-md-4 foot-tc-mar-t-o">
                     <h4>Explore DMA</h4>
                     <ul>
-                        <li><a href="course-details.html">E-Learning</a></li>
+                        <li><a href="{% url 'curriculum:standard_list' %}">E-Learning</a></li>
                         <li><a href="course-details.html">School Blog</a></li>
                         <li><a href="course-details.html">Students Center</a></li>
                         <li><a href="course-details.html">Tech Club</a></li>

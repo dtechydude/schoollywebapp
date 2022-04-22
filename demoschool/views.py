@@ -34,3 +34,7 @@ def infoblog(request):
 def academics(request):
     return render(request, 'demoschool/academics.html')
 
+def school_gallery(request):
+    return render(request, 'demoschool/school_gallery.html')
+
+

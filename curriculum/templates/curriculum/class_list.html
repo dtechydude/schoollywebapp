@@ -9,8 +9,10 @@
             <div class="con-title">
                 <h3>E- Learning<span> - Platform</span></h3>
                 <h2>All <span>Classes</span></h2>
-                
-                <p>Use the links below to explore courses in each class.</p>
+
+                {% if user.is_authenticated %}
+                 <p>Use the links below to explore courses in each class.</p>
+                             
             </div>
         </div>
 
@@ -42,7 +44,8 @@
                                     <li><a href="course-details.html"><i class="fa fa-share-alt" aria-hidden="true"></i> 570</a> </li>
                                 </ul>
                            
-							
+                               
+                 
                    
                         </div>
                     </div>
@@ -51,6 +54,9 @@
         </div>
    
 	{% endfor %}
+    {% else %}
+    <p>You must be a registered student to access this area.</p>
+     {% endif%}
 </section>
 	
 
