@@ -33,14 +33,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = '5m$phry6ri40l7uog=k#(t3pd(c&_b+0na5b@g22#warguei3-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
+DEBUG = True
 
 
-ALLOWED_HOSTS = ['127.0.0.1', 'schoollyapp.herokuapp.com']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -65,6 +65,10 @@ INSTALLED_APPS = [
     'crispy_forms',
     'storages',
     # 'ckeditor',
+    'quizes',
+    'quiz_results',
+    'quiz_questions',
+    'portal',
     
     
     # 'ckeditor_uploader',  #for ckeditor image upload

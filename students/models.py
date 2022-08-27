@@ -1,4 +1,5 @@
 from django.db import models
+from django.shortcuts import render
 from django.db import models
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
@@ -59,6 +60,12 @@ class StudentDetail(models.Model):
 #this function returns the profile name in the admin panel profile table
     def __str__ (self):
         return f'{self.user.username} Profile'
+
+    
+    def num_student(request):
+        num_student = StudentDetail.objects.filter(current_class='Jss1').count()
+        return render(request, 'users/user_dashboard.html', {'num_student': num_student})
+
 
 
 

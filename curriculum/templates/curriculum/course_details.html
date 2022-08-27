@@ -131,9 +131,7 @@
                                 <h4>Lesson Details:</h4>
                                <p><b>Teacher's Highlights:</b></p> 
                                 <p>{{ lessons.comment}}</p>
-                                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going
-                                    to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making
-                                <p> It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                                
                             </div>
                             {% if user.is_authenticated and user.profile.user_type == 'teacher' or user.is_superuser %}
 
@@ -150,94 +148,48 @@
                             </div>
                                 {% endif %}
         
-
-
-
-
-                            <div class="cor-p5">
-                                <h3>Course Syllabus</h3>
-                                <ul class="nav nav-tabs">
-                                    <li class="active"><a data-toggle="tab" href="#home">
-									<img src="images/icon/cor4.png" alt=""> <span>Requirements</span></a>
-                                    </li>
-                                    <li><a data-toggle="tab" href="#menu1"><img src="images/icon/cor3.png" alt=""><span>Fees</span></a></li>
-                                    <li><a data-toggle="tab" href="#menu2"><img src="images/icon/cor1.png" alt=""><span>Student Profile</span></a></li>
-                                    <li><a data-toggle="tab" href="#menu2"><img src="images/icon/cor5.png" alt=""><span>How to Apply</span></a></li>
-                                </ul>
-
-                                <div class="tab-content">
-                                    <div id="home" class="tab-pane fade in active">
-                                        <h4>Home</h4>
-                                        <p>This lesson area information.</p>
-                                        <p>Get the best out of the online class.</p>
-                                    </div>
-                                    <div id="menu1" class="tab-pane fade">
-                                        <h4>School Fees information</h4>
-                                        <p>Some content in school fees.</p>
-                                    </div>
-                                    <div id="menu2" class="tab-pane fade">
-                                        <h4>My Profile</h4>
-                                        <p>Some content in my online class profile.</p>
-                                    </div>
-                                </div>
-                            </div>
+                               
 
                                
-                        
-                            <div class="cor-p6">
-                                <h3>Student Reviews</h3>
-                                <div class="cor-p6-revi">
-                                    <div class="cor-p6-revi-left">
-                                        <img src="images/4.jpg" alt="">
-                                    </div>
-                                    <div class="cor-p6-revi-right">
-                                        <h4>Rachel Britain</h4>
-                                        <span>Date: 12may, 2017</span>
-                                        <p>Mauris elementum et libero ac pharetra. Proin tristique dapibus tellus, lacinia blandit mi tincidunt at. Vivamus vitae interdum felis. Pellentesque congue mollis erat in imperdiet.</p>
-                                    </div>
-                                </div>
-                            
-                                <div class="cor-p6-revi">
-                                    <div class="cor-p6-revi-left">
-                                        <img src="images/4.jpg" alt="">
-                                    </div>
-                                    <div class="cor-p6-revi-right">
-                                        <h4>Rachel Godwin</h4>
-                                        <span>Date: 12may, 2022</span>
-                                        <p>My review goes here</p>
-                                    </div>
-                                </div>
                             </div>
                             <div class="cor-p6">
-                                <h3>Write Reviews</h3>
+                                <h3>Comment Area</h3>
                                 <div class="cor-p7-revi">
-                                    <form class="col s12">
-                                        <div class="row">
-                                            <div class="input-field col s6">
-                                                <input type="text" class="validate">
-                                                <label>Name</label>
-                                            </div>
-                                            <div class="input-field col s6">
-                                                <input type="text" class="validate">
-                                                <label>Email id</label>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="input-field col s12">
-                                                <textarea class="materialize-textarea"></textarea>
-                                                <label>Message</label>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="input-field col s12">
-                                                <input type="submit" value="Submit" class="waves-effect waves-light btn-book">
-                                            </div>
-                                        </div>
-                                    </form>
+                                    
+                                    <h4>Post your comment or question below:</h4>
+        <form method="post">
+            <div class="form-group">
+                {% csrf_token %}
+                {{form.as_p}}
+                <input type="submit" name="form" value="Add Comment" class="btn btn-primary btn-sm">
+            </div>
+        </form>
+
+{% for comment in lessons.comments.all %}
+        <h4>{{comment.author}}<small><i>Posted on {{comment.date_added}}</i></small></h4>
+        <p>{{comment.body}}</p>
+            {% for reply in comment.replies.all %}
+            <h5>{{reply.author}}<small><i>Posted on {{reply.date_added}}</i></small></h5>
+            <p>{{reply.reply_body}}</p>
+            
+            {% endfor %}
+            <!-- form to post reply -->
+            <form method="post">
+               
+                <input type="hidden", name="comment.id" value="{{comment.id}}">
+                <input type="hidden", name="comment.comm_name" value="{{comment.comm_name}}">
+                {% csrf_token %}
+                {{form2.as_p}}
+                <input type="submit" name="form2" value="Add Reply" class="btn btn-warning btn-sm">
+
+            </form>
+
+    {% endfor %}
                                 </div>
                             </div>
                         </div>
                     </div>
+                    
                     <div class="col-md-3">
                         <div class="cor-side-com">
                             <div class="ho-ev-latest ho-ev-latest-bg-3">

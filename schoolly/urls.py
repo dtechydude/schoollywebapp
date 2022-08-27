@@ -31,12 +31,15 @@ urlpatterns = [
     path('pages/', include('pages.urls')),
     path('payments/', include('payments.urls')),
     path('users/', include('users.urls')),
+    
     path('results/', include('results.urls')),
     path('students/', include('students.urls', namespace='students')),
     path('staff/', include('staff.urls')),
     # path('demopage/', include('demopage.urls')),
     path('attendance/', include('attendance.urls')),
     path('', include('demoschool.urls')),
+    path('portal/', include('portal.urls')),
+    path('quizes/', include('quizes.urls', namespace = 'quizes')),
     # path('demoschool/', include('demoschool.urls')),
 
     # path('ckeditor', include('ckeditor_uploader.urls')),    #for ckeditor image upload

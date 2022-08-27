@@ -151,7 +151,7 @@ def studentlist(request):
         'studentlist' : studentlist
 
     }
-    return render (request, 'students/student_list.html', context)
+    return render (request, 'portal/student_list.html', context)
 
 
 
@@ -245,3 +245,5 @@ def mystudent_csv(request):
         writer.writerow([students.user.username, students.current_class, students.class_teacher, students.student_type])
         
     return response
+
+
