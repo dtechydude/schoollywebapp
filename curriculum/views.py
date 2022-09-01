@@ -31,7 +31,7 @@ class LessonListView(DetailView):
 class LessonDetailView(DetailView, FormView):
     context_object_name = 'lessons'
     model = Lesson
-    template_name = 'curriculum/course_details.html'
+    template_name = 'portal/lesson-detail.html'
     # for replies to lessons
     form_class = CommentForm
     second_form_class = ReplyForm

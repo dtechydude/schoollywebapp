@@ -30,7 +30,7 @@
             {% for s in studentlist %}
             <tbody>
             <tr>
-              <th> {{ s.user.username}}</th>
+              <th><a href="{% url 'students-detail' s.id %}"> {{ s.user.username}}</a></th>
               <th> {{ s.user.first_name}}</th>
               <th> {{ s.user.last_name}}</th>
               <th> {{ s.user.studentdetail.current_class}}</th>

@@ -8,6 +8,7 @@
 			<div class="container-fluid">
 				<div class="d-flex justify-content-between align-items-center flex-wrap">
 					<div class="card-action coin-tabs mb-2">
+						
 						<ul class="nav nav-tabs" role="tablist">
 							<li class="nav-item">
 								<a class="nav-link active" data-bs-toggle="tab" href="#AllGuest">All Student</a>
@@ -42,6 +43,9 @@
 					</div>
 				</div>
 				<div class="row mt-4">
+					<button class="btn btn-outline-info" > <a href="{% url 'students:student-pdf' %}">PDF Format</a></button>
+					<button class="btn btn-outline-info" > <a href="{% url 'students:student-csv' %}">CSV Format</a></button>
+
 					<div class="col-xl-12">
 						<div class="card">
 							<div class="card-body p-0">
@@ -78,7 +82,7 @@
 															<div class="concierge-bx d-flex align-items-center">
 																<img class="me-3 rounded" src="images/avatar/1.jpg" alt="">
 																<div>
-																	<h5 class="fs-16 mb-0 text-nowrap"><a class="text-black" href="">{{ student.user.username}}</a></h5>
+																	<h5 class="fs-16 mb-0 text-nowrap"><a class="text-black" href="{% url 'students:students-detail' student.user.pk %}">{{ student.user.username}}</a></h5>
 																	<span class="text-primary fs-14">{{ student.user.first_name}}-{{ student.user.last_name}}</span>
 																</div>
 															</div>
@@ -114,7 +118,7 @@
 															</td>
 														<td>
 															<div class="request">
-																<a href="javascript:void(0);" class="btn btn-md text-primary">Detail</a>
+																<a href="{% url 'students:students-detail' student.user.pk %}" class="btn btn-md text-primary">Detail</a>
 															</div>
 														</td>
 														

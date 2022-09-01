@@ -4,17 +4,17 @@
         <title>PDF Main</title>
     </head>
     <body>
-        oopppooppp<br />
+        
         {% for student in object_list %}
-        {{ student }}
+        <a href="{% url 'students:students-detail' student.user.pk %}"> {{ student.user.username}}</a><br>
+        {{ student.user.studentdetail.current_class }}<br />
+        {{ student.user.studentdetail.class_teacher }}<br />
         <a href="{% url 'students:student-pdf-view' student.pk % }"> <button class="btn btn-prmary"> pdf </button></a><br />
-
- 
-        {{ student.class_on_admission }}<br />
+        <hr>
 
 
         {% endfor %}
-        <a href="{% url 'students:student-pdf-view' pdf.pk=1 % }"> <button class="btn btn-prmary"> pdf </button></a>
+       
       
     </body>
     </html>

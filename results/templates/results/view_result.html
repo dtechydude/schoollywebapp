@@ -1,53 +1,88 @@
-{% extends 'users/user_dashboard.html'%} 
+{% extends 'portal/portal-home.html'%} 
+{% load static %}
+{% block title %}<time>Student Results</time>{% endblock title%}
 
-{% block content %}
-<div class="col-lg-12">
-<div class="card mb-4">
-    <div class="card-header">
-        Examination Results
-    </div>
-    <div class="card-body">   
+{% block content_body %}
 
-    {% if user.is_superuser or user.profile.user_type == 'parent' %}
+<div class="content-body">
+    <div class="container-fluid">
+        
+        <div class="row page-titles">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active"><a href="#">RESULTS</a></li>
+                <li class="breadcrumb-item"><a href="#">Datatable</a></li>
+            </ol>
+        </div>
+        <!-- row -->
 
+        
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
 
-
-    <table class = "table">
-        <thead class="thead-dark">
-        <tr>
-          <th>Student Code</th>
-          <th>Exam Name</th>
-          <th>Exam Session</th>
-          <th>Download</th>
-          <th>View Result</th>
-        </tr>
-    </thead>
-        {% for res in result %}
-        <tbody>
-        <tr>
-          <th> {{ res.user.profile.code }}</th>
-          <th> {{ res.user.result.exam }}</th>
-          <th> {{ res.user.result.session}}</th>
-          {% comment %} <th><a href="{{ res.file.url }}" download = "{{ res.file.url }}" > Download</a></th>
-          <th><a href="{{ user.result.file.url }}"> View PDF</a> {{ result.user.result.file }}</th> {% endcomment %}
-        </tr> 
-    </tbody>
-        {% endfor %}
-        </table>
-
-
-    {% else %}
-    <h1> Oops! You do not have permission to view this resource</h1>
-    
-    {% endif %} 
-      
-</div>
-</div>
-</div>
-</div>
-</div> 
-{% endblock content %}
-
-
-
-
+                        <h4 class="card-title">{{ user.first_name}} {{ user.last_name}}</h4>
+                    </div>
+                    {% if user.is_superuser or user.profile.user_type == 'parent' %}
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            
+                            <table id="example" class="display" style="min-width: 845px">
+                        
+                                <thead>
+                                    
+                                    <tr>
+                                        <th>Exam</th>
+                                        <th>Year</th>
+                                        <th>Session</th>
+                                        <th>Parent_Phone</th>
+                                        <th>Action</th>
+                                        <th>Comment</th>
+                                        
+                                    </tr>
+                                </thead>
+                                {% for res in result %}
+                                <tbody>
+                                                                    
+                                    <tr>
+                                      
+                                        <td> {{ res.student.student_code }}</td>
+                                        <td> {{ res.exam.name }}</td>
+                                        <td> {{ res.session }}</td>
+                                        <td> {{ result.student.user.studentdetail.parent_phone}}</td>
+                                        <td><a href="{{ res.file.url }}" download = "{{ res.file.url }}" > Download</a></td>
+                                        <td><a href="{{ user.result.file.url }}"> View PDF</a> {{ result.user.result.file }}</td>
+                                        
+                                      </tr> 
+                                     
+                                      {% endfor %}
+                            
+                                  
+                                </tbody>
+                                
+                                
+                            </table>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Datatable</h4>
+                                
+                            {% else %}
+                            <h1> Oops! You do not have permission to view this resource</h1>
+                            
+                            {% endif %} 
+                        </div>
+                    </div>
+                </div>
+            </div>
+           </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endblock content_body %}

@@ -74,6 +74,7 @@ class Lesson(models.Model):
     slug = models.SlugField(null=True, blank=True)
     # video = models.FileField(upload_to=save_lesson_files, verbose_name="video", blank=True, null=True)
     # video = EmbedVideoField(blank=True)
+    video = models.CharField(max_length=500, blank=True)
     # video_url = EmbedVideoField(null=True,blank=True)
     ppt = models.FileField(upload_to='save_lesson_files', verbose_name="Presentation", blank=True)
     Notes = models.FileField(upload_to='save_lesson_files', verbose_name="Notes", blank=True)

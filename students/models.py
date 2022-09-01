@@ -4,7 +4,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
 from curriculum.models import Standard
-
+from django.urls import reverse
 from staff.models import StaffProfile
 
 
@@ -30,6 +30,7 @@ class StudentProfile(models.Model):
 
 class StudentDetail(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    student_code = models.CharField(max_length=20, blank=True)  
     current_class = models.ForeignKey(Standard, on_delete=models.CASCADE, default='jss1')
     class_teacher = models.ForeignKey(StaffProfile, on_delete=models.CASCADE)
 
@@ -46,25 +47,45 @@ class StudentDetail(models.Model):
 
     dob = models.DateField(blank=True, null=True)
     # class_on_admission = models.ForeignKey(Standard, on_delete=models.CASCADE)
-    date_admitted = models.DateField(null=True) 
+    date_admitted = models.DateField(null=True)
+    class_on_admission = models.CharField(max_length=50, blank=True, null=True, default=None) 
+    # parent details here..
     parent_name = models.CharField(max_length=150, blank=True)  
     parent_address = models.TextField(max_length=150, blank=True)  
-    parent_phone = models.CharField(max_length=15, blank=True, null=True) 
-    relationship = models.CharField(max_length=30, blank=True)
+    parent_phone = models.CharField(max_length=15, blank=True, null=True)
+    parent_email = models.CharField(max_length=15, blank=True, null=True)
 
+    father = 'father'
+    mother = 'mother'
+    sister = 'sister'
+    brother = 'brother'
+    other = 'other'
+
+    relationship = [
+        (father, 'father'),
+        (mother, 'mother'),
+        (sister, 'sister'),
+        (brother, 'brother'),
+        (other, 'other'),  
+
+    ]
+
+    relationship = models.CharField(max_length=15, choices=relationship, default=mother)
+    
     # objects = models.Manager()
-  
-
-
 
 #this function returns the profile name in the admin panel profile table
     def __str__ (self):
         return f'{self.user.username} Profile'
 
+
+    def get_absolute_url(self):
+        return reverse('students-detail', kwargs={'pk':self.pk})
+
     
-    def num_student(request):
-        num_student = StudentDetail.objects.filter(current_class='Jss1').count()
-        return render(request, 'users/user_dashboard.html', {'num_student': num_student})
+    # def num_student(request):
+    #     num_student = StudentDetail.objects.filter(current_class='Jss1').count()
+    #     return render(request, 'users/user_dashboard.html', {'num_student': num_student})
 
 
 

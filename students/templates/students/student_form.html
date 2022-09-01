@@ -1,0 +1,13 @@
+{% if user.is_authenticated and user.is_superuser %}
+<form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+    Add New Student <a href="{% url 'register' %}" >+</a><br>
+    {{form.as_p}}
+    <input type="submit" name="submit">
+
+</form>
+{% else %}
+<div>
+    <h1>Permission Denied!</h1>
+</div>
+{% endif %}

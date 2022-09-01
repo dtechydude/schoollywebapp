@@ -8,7 +8,9 @@ from django.urls import reverse_lazy, reverse
 from results.forms import PrintResultForm, ResultUploadForm
 from django.contrib import messages
 from results.models import PrintResult, Result
+from students.models import StudentDetail
 import os
+
 
 # Create your views here.
 
@@ -83,12 +85,15 @@ def download(request,path):
 
 @login_required
 def view_self_result(request):
-    myresult = PrintResult.objects.filter(user=request.user)
+    
+    myresult = PrintResult.objects.filter(student_id=StudentDetail.objects.get(user_id=request.user))
     context = {
         'myresult':myresult
+        
     }
     
     return render(request, 'results/view_self_result.html', context)
+    
 
 # FUNCTION FOR DOWNLOADING FILE
 def download(request,path):

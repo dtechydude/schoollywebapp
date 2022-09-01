@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from students.models import StudentDetail
 
 # Create your views here.
 #
@@ -10,7 +11,12 @@ def portal_home(request):
 
 @login_required
 def student_list(request):
-    return render(request, 'portal/student_list.html')
+    studentlist = StudentDetail.objects.all()
+    context = {
+        'studentlist' : studentlist
+
+    }
+    return render (request, 'portal/student_list.html', context)
 
 
 @login_required

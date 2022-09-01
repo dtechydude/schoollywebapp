@@ -74,6 +74,7 @@ INSTALLED_APPS = [
     # 'ckeditor_uploader',  #for ckeditor image upload
     'embed_video',
     # 'bootstrap_datepicker_plus',
+    'rest_framework',
     
     
 ]

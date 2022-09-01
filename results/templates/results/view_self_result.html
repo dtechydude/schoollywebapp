@@ -1,52 +1,69 @@
-{% extends 'users/user_dashboard.html'%} 
+{% extends 'portal/portal-home.html'%} 
+{% block title %}<time>Student Results</time>{% endblock title%}
 
-{% block content %}
-<div class="col-lg-8">
-<div class="card mb-4">
-    <div class="card-header">
-        My Examination Results
-    </div>
-    <div class="card-body">   
+{% block content_body %}
 
-    {% if user.is_superuser or user.profile.user_type == 'student' %}
-    <div class="table-responsive-sm">
-    <table class = "table">
-        <thead class="thead-light">
-        <tr>
-          <th>Exam Name</th>
-          <th>Year</th>
-          <th>Session</th>
-          <th>Action</th>
-          <th>Action</th>
-        </tr>
-    </thead>
-        {% for result in myresult %}
-        <tbody>
-        <tr>
-          <th> {{ result.exam}}</th>
-          <th> {{ result.exam_year}}</th>
-          <th> {{ result.session}}</th>
-                  
-          <th><a href="{{ result.file.url }}" download = "{{ result.file.url }}"> <button type="button" class="btn btn-info">Download</button></a> </th>
-        </tr> 
-    </tbody>
-        {% endfor %}
-        </table>
-    </div>
+<div class="content-body">
+    <div class="container-fluid">
+        
+        <div class="row page-titles">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active"><a href="#">RESULTS</a></li>
+                <li class="breadcrumb-item"><a href="#">Datatable</a></li>
+            </ol>
+        </div>
+        <!-- row -->
 
 
-    {% else %}
-    <h1> Oops! You do not have permission to view this resource</h1>
-    
-    {% endif %} 
-      
-</div>
-</div>
-</div>
-</div>
-</div> 
-{% endblock content %}
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">{{ user.first_name}} {{ user.last_name}}</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="example" class="display" style="min-width: 845px">
+                                <thead>
+                                    <tr>
+                                        <th>Exam</th>
+                                        <th>Year</th>
+                                        <th>Session</th>
+                                        <th>Parent_Phone</th>
+                                        <th>Action</th>
+                                        <th>Comment</th>
+                                    </tr>
+                                </thead>
+                                {% if user.is_superuser or user.profile.user_type == 'student' %}
+                                <tbody>
+                                    {% for result in myresult %}
+                                    <tr>
+                                        <td> {{ result.exam }}</td>
+                                        <td> {{ result.session }}</td>
+                                        <td> {{ result.exam_year}}</td>
+                                        <td> {{ result.student.user.studentdetail.parent_phone}}</td>
+                                                
+                                        <td><a href="{{ result.file.url }}" download = "{{ result.file.url }}"> <button type="button" class="btn btn-info">Download</button></a> </td>
+                                        
+                                      </tr> 
+                                  {% endfor %}
+                            
+                                   
+                                </tbody>
 
-
-
-
+                                
+                            </table>
+                            {% else %}
+                            <h1> Oops! You do not have permission to view this resource</h1>
+                            
+                            {% endif %} 
+                        </div>
+                    </div>
+                </div>
+            </div>
+           </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endblock content_body %}

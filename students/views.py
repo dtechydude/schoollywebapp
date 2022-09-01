@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, render, redirect
-from staff.models import StaffAcademicInfo, StaffProfile
-# from students.models import Mystudents, StudentDetails, StudentProfile
+from django.contrib.auth.models import User
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from django.contrib import messages
@@ -8,7 +8,7 @@ from django.contrib import messages
 from django.http import HttpResponse
 from django.template.loader import get_template
 from xhtml2pdf import pisa
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from students.models import StudentDetail, StudentProfile
 from students.forms import StudentUpdateForm, StudentProfileForm
 import io
@@ -17,6 +17,11 @@ from reportlab.lib.units import inch
 from reportlab.lib.pagesizes import letter
 from django.http import FileResponse
 import csv
+# for my rest_framework
+from .serializers import StudentDetailSerializer
+from rest_framework import status
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 
 
@@ -61,10 +66,43 @@ def studentlist(request):
 
 
 
-
 class StudentListView(ListView):
     model = StudentDetail
-    template_name = 'students/main.html'
+    template_name = 'students/student_list.html'
+
+
+
+class StudentDetailView(DetailView):  
+    model = User
+    template_name = 'students/student_detail_view.html'
+    # queryset = User.objects.all()
+    def get_object(self):
+        id_ = self.kwargs.get("id")
+        return get_object_or_404(User, id=id_)
+
+
+
+class StudentCreateView(LoginRequiredMixin, CreateView):
+    model = StudentDetail
+    template_name = 'students/student_form.html'
+    fields = '__all__'
+
+
+
+class StudentUpdateView(LoginRequiredMixin, UpdateView):
+    model = StudentDetail
+    # template_name = 'students/student_form.html'
+    fields = '__all__'
+    def get_object(self):
+        id_ = self.kwargs.get("id")
+        return get_object_or_404(StudentDetail, id=id_)
+    
+    
+    
+
+
+
+
 
 def student_render_pdf_view(request, *args, **kwargs):    
 
@@ -155,28 +193,6 @@ def studentlist(request):
 
 
 
-# @login_required
-# def studentupdateprofile(request):
-#     if request.method == 'POST':
-        
-#         aca_form = StudentUpdateForm(request.POST)
-#         if std_form.is_valid():
-           
-#             std_form.save()
-#             messages.success(request, f'Your account has been updated successfully')
-#             return redirect('profile')
-#     else:
-      
-#         std_form = StudentUpdateForm
-
-#     context = {
-        
-#         'std_form': aca_form,
-#     }
-
-#     return render(request, 'students/student_update_form.html', context)
-
-
 
 
 
@@ -247,3 +263,12 @@ def mystudent_csv(request):
     return response
 
 
+# for rest framework
+class MyStudentList(APIView):
+    def get(self, request):
+        students1 = StudentDetail.objects.all()
+        serializer = StudentDetailSerializer(students1, many=True)
+        return Response(serializer.data)
+
+    def post(self):
+        pass
