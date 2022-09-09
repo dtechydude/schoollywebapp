@@ -25,8 +25,6 @@ def printresult(request):
 
 
 
-
-
 @login_required
 def printresultform(request):
     if request.method == 'POST':
@@ -46,7 +44,7 @@ def printresultform(request):
         # file = PrintResult.objects.all()
         # 'print_form': print_form
    
-    return render(request, 'results/print_resultform.html', {'print_form': print_form})
+    return render(request, 'results/upload_result.html', {'print_form': print_form})
 
 
 
@@ -65,10 +63,10 @@ def uploadresult(request):
     else:
         upload_form = ResultUploadForm()
     context ={
-        'payment_form' : upload_form
+        'upload_form' : upload_form
     }
 
-    return render(request, 'results/result_entry_form.html', context)
+    return render(request, 'results/result_entry_form1.html', context)
 
 # FUNCTION FOR DOWNLOADING FILE
 def download(request,path):
@@ -84,16 +82,21 @@ def download(request,path):
 
 
 @login_required
-def view_self_result(request):
+def view_self_result(request, **kwargs):
+# this issue was solved by me.
+    try:     
+        myresult = PrintResult.objects.filter(student_id=StudentDetail.objects.get(user_id=request.user))
     
-    myresult = PrintResult.objects.filter(student_id=StudentDetail.objects.get(user_id=request.user))
-    context = {
-        'myresult':myresult
+        context = {
+            'myresult':myresult
+            
+        }    
+    
+        return render(request, 'results/view_self_result.html', context)
+
+    except StudentDetail.DoesNotExist:
+        return HttpResponse('You are not a student')
         
-    }
-    
-    return render(request, 'results/view_self_result.html', context)
-    
 
 # FUNCTION FOR DOWNLOADING FILE
 def download(request,path):

@@ -36,9 +36,20 @@ class Department(models.Model):
 
 class StaffProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    marital_status = models.BooleanField(blank=True, null=True)
+    
+    married = 'married'
+    single = 'single'
+    select = 'select'
+
+    marital_status = [
+        (married, 'married'),
+        (single, 'single'),
+        (select, 'select'),
+    ]
+
+    marital_status = models.CharField(max_length=15, choices=marital_status, default=select)
     phone = models.CharField(max_length=11, null=True)
-    staff_type = models.OneToOneField(StaffCategory, on_delete=models.CASCADE, blank=True, null=True)
+    cat_name = models.OneToOneField(StaffCategory, on_delete=models.CASCADE, blank=True, null=True)
     department = models.ForeignKey(Department, on_delete=models.CASCADE, blank=True, null=True)
     next_of_kin = models.CharField(max_length=150, blank=True)  
     next_of_kin_address = models.CharField(max_length=150, blank=True)  
@@ -54,20 +65,35 @@ class StaffProfile(models.Model):
 
 class StaffAcademicInfo(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    staff_cat = models.ForeignKey(StaffCategory, on_delete=models.CASCADE, blank=True, null=True)
+    department = models.ForeignKey(Department, on_delete=models.CASCADE, blank=True, null=True)
+    date_employed = models.DateField()
+    
     qualification = models.CharField(max_length=150, blank=True)  
-    year = models.CharField(max_length=150, blank=True)   
+    year = models.DateField()   
     institution = models.CharField(max_length=150, blank=True)
     professional_body = models.CharField(max_length=150, blank=True)  
-    academic = models.CharField(max_length=150, blank=True)  
-    marital_status = models.BooleanField(blank=True, null=True)
-    phone = models.CharField(max_length=11, null=True)
-    staff_type = models.OneToOneField(StaffCategory, on_delete=models.CASCADE, blank=True, null=True)
-    department = models.ForeignKey(Department, on_delete=models.CASCADE, blank=True, null=True)
-    next_of_kin = models.CharField(max_length=150, blank=True)  
+
+    married = 'married'
+    single = 'single'
+    select = 'select'
+
+    marital_status = [
+        (married, 'married'),
+        (single, 'single'),
+        (select, 'select'),
+    ]
+    
+    marital_status = models.CharField(max_length=15, choices=marital_status, default=select)  
+    phone = models.CharField(max_length=11, null=True)  
+
+    guarantor_name = models.CharField(max_length=150, blank=True) 
+    guarantor_phone = models.CharField(max_length=150, blank=True) 
+    guarantor_email = models.CharField(max_length=150, blank=True)
+
+    next_of_kin_name = models.CharField(max_length=150, blank=True)  
     next_of_kin_address = models.CharField(max_length=150, blank=True)  
     next_of_kin_phone = models.CharField(max_length=150, blank=True) 
-    date_employed = models.CharField(max_length=150, blank=True, default="000000")
-
 
 
 #this function returns the profile name in the admin panel profile table

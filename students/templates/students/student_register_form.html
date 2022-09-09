@@ -1,0 +1,77 @@
+
+ {% extends 'portal/portal-home.html' %}
+ {% load crispy_forms_tags %}
+ {% load static %}
+ 
+ {% block title %}<title>Register Staff Students </title>{% endblock title %}
+
+ {% block content_body %}
+
+<div class="content-body">
+    <div class="container-fluid">
+        <div class="row page-titles">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active"><a href="javascript:void(0)">Register New Students</a></li>
+                <li class="breadcrumb-item"><a href="#">Now</a></li>
+            </ol>
+        </div>
+        <div class="row">
+            <div class="col-xl-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">Instruction</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">This is a wider card with supporting text and below as a natural lead-in to the additional content. This content is a little <br> bit longer. Some quick example text to build the bulk
+                        </p>
+                    </div>
+                    <div class="card-footer d-sm-flex justify-content-between align-items-center">
+                        <div class="card-footer-link mb-4 mb-sm-0">
+                           
+                        </div>
+
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">New Student Registration</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            <form method="POST" enctype="multipart/form-data" >
+                                {% csrf_token %}
+                            
+                            {{ su_form|crispy }}</p>
+                    </div>
+                    <div class="card-footer d-sm-flex justify-content-between align-items-center">
+
+                        <button type="submit" value="submit" class="btn btn-primary">Register Student</button>
+                    
+                    </div>
+                </form>
+                </div>
+            </div>
+       
+          
+            </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+{% endblock content_body %}
+
+
+{% block scripts %}
+<script src="{% static 'portal/vendor/global/global.min.js' %}"></script>
+<script src="{% static 'portal/vendor/jquery-nice-select/js/jquery.nice-select.min.js' %}"></script>
+<script src="{% static 'portal/js/custom.min.js' %}"></script>
+<script src="{% static 'portal/js/dlabnav-init.js' %}"></script>
+<script src="{% static 'portal/js/demo.js' %}"></script>
+<script src="{% static 'portal/js/styleSwitcher.js' %}"></script>
+{% endblock scripts %}
+

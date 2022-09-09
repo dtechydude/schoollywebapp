@@ -40,7 +40,7 @@ SECRET_KEY = '5m$phry6ri40l7uog=k#(t3pd(c&_b+0na5b@g22#warguei3-'
 DEBUG = True
 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -57,11 +57,11 @@ INSTALLED_APPS = [
     'staff.apps.StaffConfig',
     'students.apps.StudentsConfig',
     'curriculum.apps.CurriculumConfig',
-    'payments.apps.PaymentsConfig',
     'pages.apps.PagesConfig',
     'results.apps.ResultsConfig',
     'attendance.apps.AttendanceConfig',
     'demoschool.apps.DemoschoolConfig',
+    'payment.apps.PaymentConfig',
     'crispy_forms',
     'storages',
     # 'ckeditor',
@@ -69,6 +69,7 @@ INSTALLED_APPS = [
     'quiz_results',
     'quiz_questions',
     'portal',
+    
     
     
     # 'ckeditor_uploader',  #for ckeditor image upload
@@ -180,15 +181,25 @@ LOGIN_REDIRECT_URL = 'home'
 LOGIN_URL = 'login'
 
 
-
+# Testing Email Setting
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-#hiding the email user and password in environment variables
-EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
-#not advisable to put your raw user and password
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = '1025'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD =''
+EMAIL_USE_TSL = False
+# EMAIL_USE_SSL = False
+
+
+# # Gmail Email settings
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# #hiding the email user and password in environment variables
+# EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+# EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+# #not advisable to put your raw user and password
 
 #AWS ACCESS
 # AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')

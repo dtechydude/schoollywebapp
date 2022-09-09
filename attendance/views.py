@@ -17,8 +17,8 @@ def student_attendance(request):
         if attd_form.is_valid():
             attd_form.save()
             
-            messages.success(request, f'Your account has been updated successfully')
-            return redirect('profile')
+            messages.success(request, f'Attendance taken. exit or enter another')
+            return redirect('attendance:attendance_form')
     else:
          attd_form = StudentAttendanceForm()
     
@@ -30,4 +30,11 @@ def student_attendance(request):
    
     }
 
-    return render(request, 'attendance/attendance_form.html', context)
+    return render(request, 'attendance/take-attendance.html', context)
+
+@login_required
+def attendance_view(request):
+    context = {
+        'attendance' :Attendance.objects.all()
+    }
+    return render(request, 'attendance/attendance_view.html', context)

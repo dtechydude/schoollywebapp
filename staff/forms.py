@@ -5,7 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from .models import StaffAcademicInfo, StaffProfile
 
 
-class StaffUpdateForm(forms.ModelForm):
+class StaffRegisterForm(forms.ModelForm):
 
     class Meta:
         model = StaffAcademicInfo

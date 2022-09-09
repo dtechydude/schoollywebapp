@@ -1,7 +1,71 @@
 
-{% extends 'demoschool/index.html'%}
+{% extends 'portal/portal-home.html'%}
 {% load static %}
+{% block title %}<title>Schoolly - Class Subjects List </title>{% endblock title %}
 
+{% block content_body %}
+<div class="content-body">
+    <div class="container-fluid">
+        <div class="row page-titles">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active"><a href=""><span style="font-size: 35px;">{{standards.name}}</span></a></li>
+                
+                
+            </ol>
+        </div>
+        <!-- row -->
+        <div class="row">
+            <div class="col-xl-4 col-xxl-6 col-lg-6">
+                <div class="card">
+                    <div class="card-header border-0 pb-0">
+                        <h4 class="card-title">Subjects List</h4>
+                    </div>
+                    <div class="card-body">
+                        <div id="DZ_W_TimeLine" class="widget-timeline dlab-scroll height370">
+                            <ul class="timeline">
+                                {% for subject in standards.subjects.all %}
+                                <li>
+                                    <div class="timeline-badge primary"></div>
+                                    <a class="timeline-panel text-muted" href="{% url 'curriculum:lesson_list' slug=subject.slug standard=standards.slug %}">
+                                        
+                                        <h6 class="mb-0">{{ subject.name }} <strong class="text-primary">#</strong>.</h6>
+                                        <p><b>Description: </b>{{subject.description|truncatechars:20 }}<br /></p>
+                                    </a>
+                                </li>
+                                
+                               
+                               {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">Class Instruction</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">This is a wider card with supporting text and below as a natural lead-in to the additional content. This content is a little <br> bit longer. Some quick example text to build the bulk</p>
+                    </div>
+                    <div class="card-footer d-sm-flex justify-content-between align-items-center">
+                        <div class="card-footer-link mb-4 mb-sm-0">
+                            <p class="card-text text-dark d-inline">Last updated 3 mins ago</p>
+                        </div>
+
+                        <a href="javascript:void(0);" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content_body %}
 {% block section%}
 <section class="pop-cour">
     <div class="container com-sp pad-bot-70">
@@ -55,7 +119,4 @@
    
 	{% endfor %}
 </section>
-	
-
-
-{% endblock section %}
+	{% endblock section %}

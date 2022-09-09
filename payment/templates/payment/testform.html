@@ -1,0 +1,7 @@
+<form action="" method="post">
+    {% csrf_token %}
+    {{ payment_form.as_p }}
+
+    <div class="form-group">
+        <button class="btn btn-outline-info" type="submit">Submit</button>
+   

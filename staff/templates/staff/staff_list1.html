@@ -1,0 +1,60 @@
+
+ {% extends 'users/user_dashboard.html'%} 
+
+{% block content %}
+<div class="col-lg-10">
+<div class="card mb-4">
+    <div class="card-header">
+        Staff List
+    </div>
+    <div class="card-body">   
+
+    {% if user.is_superuser or user.profile.user_type == 'parent' %}
+        <div style="margin-bottom:10px">
+    <button class="btn btn-outline-info" > <a href="{% url 'staff:staff-pdf' %}">PDF Format</a></button>
+    <button class="btn btn-outline-info" > <a href="{% url 'staff:staff-csv' %}">CSV Format</a></button>
+        </div>
+    <div class="table-responsive-sm">
+    <table class = "table">
+        <thead class="thead-light">
+        <tr>
+          <th>Username</th>
+          <th>Surname</th>
+          <th>Date Employed</th>
+          <th>Phone</th>
+          <th>Department</th>
+          <th>Staff Type</th>
+        </tr>
+    </thead>
+        {% for n in stafflist %}
+        <tbody>
+        <tr>
+          <th> {{ n.user.username}}</th>
+          <th> {{ n.user.last_name}}</th>
+          <th> {{ n.user.staffacademicinfo.date_employed}} </th>
+         <th>{{ n.user.staffacademicinfo.phone}}</th>
+         <th> {{ n.user.staffacademicinfo.department}}</th>
+        <th> {{ n.user.staffacademicinfo.marital_status}}</th>
+        </tr> 
+    </tbody>
+        {% endfor %}
+        </table>
+    </div>
+
+
+    {% else %}
+    <h1> Oops! You do not have permission to view this resource</h1>
+    
+    {% endif %} 
+    
+      
+</div>
+</div>
+</div>
+</div>
+</div> 
+{% endblock content %}
+
+
+
+

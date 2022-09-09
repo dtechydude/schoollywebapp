@@ -345,10 +345,10 @@
 							</li>
 							<li class="nav-item dropdown header-profile">
 								<a class="nav-link" href="javascript:void(0);" role="button" data-bs-toggle="dropdown">
-									<img src="{% static 'portal/images/profile/pic1.jpg' %}" width="20" alt=""/>
+									<img src="{{user.profile.image.url}}" width="20" alt=""/>
 								</a>
 								<div class="dropdown-menu dropdown-menu-end">
-									<a href="#" class="dropdown-item ai-icon">
+									<a href="{% url 'profile' %}" class="dropdown-item ai-icon">
 										<svg id="icon-user2" xmlns="http://www.w3.org/2000/svg" class="text-primary" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
 										<span class="ms-2">Profile </span>
 									</a>
@@ -389,6 +389,7 @@
 							{% if user.is_authenticated and user.profile.user_type == 'student' %}
 							<li><a href="{% url 'my-result' %}">Check Result</a></li>
 							<li><a href="#">Make Payment</a></li>
+							<li><a href="#">My Receipts</a></li>
 							<li><a href="#">Time Table</a></li>
 							
 							{% else %}
@@ -396,9 +397,11 @@
 							<li><a href="{% url 'register' %}">Register Student</a></li>
 							<li><a href="{% url 'print-result' %}">View Results</a></li>
 							<li><a href="{% url 'print-resultform' %}">Upload Student Result</a></li>
-							<li><a href="{% url 'payments:payment' %}">Record New Payment</a></li>
-							<li><a href="{% url 'payments:payment_record' %}">View All Payments</a></li>
-							<li><a href="{% url 'upload-result' %}">Register Subjects</a></li>	
+							<li><a href="{% url 'upload-result' %}">Enter Results</a></li>	
+							<li><a href="{% url 'payment:payment_form' %}">Record New Payment</a></li>
+							<li><a href="{% url 'payment:payment_record' %}">View All Payments</a></li>
+							<li><a href="{% url 'attendance:attendance_form' %}">Take Attendance</a></li>
+							<li><a href="{% url 'attendance:attendance_view' %}">View Attendance</a></li>
 							
 						</ul>
 
@@ -410,25 +413,9 @@
 						<ul aria-expanded="false">
 							<li><a href="{% url 'staff:staff_list' %}">Staff List</a></li>
 							<li><a href="#">Staff Details</a></li>
-							<li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Email</a>
-								<ul aria-expanded="false">
-									<li><a href="#">Compose</a></li>
-									<li><a href="#">Inbox</a></li>
-									<li><a href="#">Read</a></li>
-								</ul>
-							</li>
+							<li><a href="{% url 'register' %}">Register Staff</a></li>
 							<li><a href="./app-calender.html">Calendar</a></li>
-							<li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Shop</a>
-								<ul aria-expanded="false">
-									<li><a href="./ecom-product-grid.html">Product Grid</a></li>
-									<li><a href="./ecom-product-list.html">Product List</a></li>
-									<li><a href="./ecom-product-detail.html">Product Details</a></li>
-									<li><a href="./ecom-product-order.html">Order</a></li>
-									<li><a href="./ecom-checkout.html">Checkout</a></li>
-									<li><a href="./ecom-invoice.html">Invoice</a></li>
-									<li><a href="./ecom-customers.html">Customers</a></li>
-								</ul>
-							</li>
+						
 							{% endif %}
 						</ul>
 						
@@ -438,10 +425,13 @@
 							<span class="nav-text">E-Learning</span>
 						</a>
 						<ul aria-expanded="false">
-							<li><a href="#">Take a Class</a></li>
+							<li><a href="{% url 'curriculum:standard_list' %}">Take a Class</a></li>
 							<li><a href="#">Take a Test</a></li>
 							<li><a href="#">Exam</a></li>
 							<li><a href="#">Take a Quiz</a></li>
+							{% if user.is_authenticated and user.is_superuser %}
+							<li><a href="#">Upload Lesson</a></li>
+							{% endif %}
 							<li><a href="#">Others</a></li>
 							
 						</ul>
@@ -452,9 +442,9 @@
 						</a>
 						<ul aria-expanded="false">
 							<li><a href="#">My Profile</a></li>
-							<li><a href="#">Update Profile</a></li>
-							<li><a href="#">Reset Password</a></li>
-							<li><a href="#">Logout</a></li>
+							<li><a href="{% url 'profile' %}">Update Profile</a></li>
+							<li><a href="{% url 'password_reset' %}">Reset Password</a></li>
+							<li><a href="{% url 'user_logout' %}">Logout</a></li>
 						
 
 						</ul>
@@ -498,7 +488,7 @@
 				</ul>
 				<div class="dropdown header-profile2 ">
 					<div class="header-info2 text-center">
-						<img src="{% static 'portal/images/profile/pic1.jpg' %}" alt=""/>
+						<img src="{{user.profile.image.url}}" alt=""/>
 						<div class="sidebar-info">
 							<div>
 								<h5 class="font-w500 mb-0">{{ user.username }}</h5>
@@ -561,7 +551,7 @@
 													</span>
 													<div class="ms-4">
 														<h4 class="mb-0 font-w600">{{ user.profile.code }}</h4>
-														<p class="mb-0 text-nowrap ">Student Code</p>
+														<p class="mb-0 text-nowrap ">Profile Code</p>
 													</div>
 												</div>
 											</div>
@@ -577,13 +567,43 @@
 														</svg>
 													</span>
 													<div class="ms-4">
-														<h4 class="mb-0 font-w600">{{ user.studentdetail.current_class }}</h4>
-														<p class="mb-0">Current Class</p>
+														{% if user.is_authenticated and user.is_superuser %}
+														<h4 class="mb-0 font-w600">{{ student_num }}</h4>
+														<p class="mb-0">Total Students</p>
 													</div>
 												</div>
 											</div>
 										</div>
 									</div>
+									<div class="col-xl-3 col-sm-6">
+										<div class="card booking">
+											<div class="card-body">
+												<div class="booking-status d-flex align-items-center">
+													<span>
+														<svg id="_009-log-out" data-name="009-log-out" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+														  <path  data-name="Path 1957" d="M151.435,178.842v2.8a5.6,5.6,0,0,1-5.6,5.6h-14a5.6,5.6,0,0,1-5.6-5.6v-16.8a5.6,5.6,0,0,1,5.6-5.6h14a5.6,5.6,0,0,1,5.6,5.6v2.8a1.4,1.4,0,0,1-2.8,0v-2.8a2.8,2.8,0,0,0-2.8-2.8h-14a2.8,2.8,0,0,0-2.8,2.8v16.8a2.8,2.8,0,0,0,2.8,2.8h14a2.8,2.8,0,0,0,2.8-2.8v-2.8a1.4,1.4,0,0,1,2.8,0Zm-10.62-7,1.81-1.809a1.4,1.4,0,1,0-1.98-1.981l-4.2,4.2a1.4,1.4,0,0,0,0,1.981l4.2,4.2a1.4,1.4,0,1,0,1.98-1.981l-1.81-1.81h12.02a1.4,1.4,0,1,0,0-2.8Z" transform="translate(-126.235 -159.242)" fill="var(--primary)" fill-rule="evenodd"/>
+														</svg>
+
+													</span>
+													<div class="ms-4">
+														<h4 class="mb-0 font-w600">{{ num_inclass }}</h4>
+														<p class="mb-0">Total Jss1</p>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+							</div>
+							{% else %}
+							<h4 class="mb-0 font-w600">{{ user.studentdetail.current_class }}</h4>
+												<p class="mb-0">Current Class</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
 									<div class="col-xl-3 col-sm-6">
 										<div class="card booking">
 											<div class="card-body">
@@ -605,7 +625,10 @@
 								</div>
 								
 							</div>
-							
+							{% endif %}
+
+
+							 
 							{% if user.is_authenticated and user.profile.user_type == 'student' %}
 							  <!-- row -->
 							  <div class="row">
@@ -617,7 +640,7 @@
 											</div>
 											<div class="profile-info">
 												<div class="profile-photo">
-													<img src="{% static 'portal/images/profile/profile.png' %}" class="img-fluid rounded-circle" alt="">
+													<img src="{{user.profile.image.url}}" class="img-fluid rounded-circle" alt="">
 												</div>
 												<div class="profile-details">
 													<div class="profile-name px-3 pt-2">
@@ -797,6 +820,20 @@
 																		<h5 class="f-w-500">Parent's Address <span class="pull-end">:</span></h5>
 																	</div>
 																	<div class="col-sm-9 col-7"><span>{{ user.studentdetail.parent_address}}</span>
+																	</div>
+																</div>
+																<div class="row mb-2">
+																	<div class="col-sm-3 col-5">
+																		<h5 class="f-w-500">Year Experience <span class="pull-end">:</span></h5>
+																	</div>
+																	<div class="col-sm-9 col-7"><span>07 Year Experiences</span>
+																	</div>
+																</div>
+																<div class="row mb-2">
+																	<div class="col-sm-3 col-5">
+																		<h5 class="f-w-500">Year Experience <span class="pull-end">:</span></h5>
+																	</div>
+																	<div class="col-sm-9 col-7"><span>07 Year Experiences</span>
 																	</div>
 																</div>
 																<div class="row mb-2">
@@ -1197,6 +1234,7 @@
 		Scripts
 	***********************************-->
 	<!-- Required vendors -->
+	{% block scripts %}
 	<script src="{% static 'portal/vendor/global/global.min.js' %}"></script>
 
 	<script src="{% static 'portal/vendor/jquery-nice-select/js/jquery.nice-select.min.js' %}"></script>
@@ -1278,6 +1316,7 @@
 			$(".booking-calender .fa.fa-clock-o").addClass('fa-clock');
 		});
 	</script>
+	{% endblock scripts %}
 
 </body>
 </html>

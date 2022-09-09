@@ -6,9 +6,9 @@ from django.contrib.auth import views as auth_views
 app_name = 'staff'
 
 urlpatterns = [
-    path('staff-page/', user_views.staffupdateprofile, name="staff_profile"),
+    path('staffform/', user_views.staffupdateprofile, name="staff_form"),
     # path('staff-academic/', user_views.staffacademic, name="staff-academic"),
-    path('staff-list/', user_views.stafflist, name="staff_list"),
+    path('stafflist/', user_views.stafflist, name="staff_list"),
     path('staff-pdf', user_views.staff_pdf, name="staff-pdf"),
     path('staff-csv', user_views.staff_csv, name="staff-csv"),
 

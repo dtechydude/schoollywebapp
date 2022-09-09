@@ -21,7 +21,7 @@
                 <div class="card">
                     <div class="card-header">
 
-                        <h4 class="card-title">{{ user.first_name}} {{ user.last_name}}</h4>
+                        <h4 class="card-title">Student Result Management</h4>
                     </div>
                     {% if user.is_superuser or user.profile.user_type == 'parent' %}
                     <div class="card-body">
@@ -32,12 +32,12 @@
                                 <thead>
                                     
                                     <tr>
+                                        <th>Student-Code</th>
+                                        <th>Student Name</th>
                                         <th>Exam</th>
-                                        <th>Year</th>
                                         <th>Session</th>
-                                        <th>Parent_Phone</th>
                                         <th>Action</th>
-                                        <th>Comment</th>
+                                        
                                         
                                     </tr>
                                 </thead>
@@ -47,19 +47,21 @@
                                     <tr>
                                       
                                         <td> {{ res.student.student_code }}</td>
+                                        <td> {{ res.student.user.first_name}} {{ res.student.user.last_name}}</td>
                                         <td> {{ res.exam.name }}</td>
                                         <td> {{ res.session }}</td>
-                                        <td> {{ result.student.user.studentdetail.parent_phone}}</td>
+                                      {% if res.file%}
                                         <td><a href="{{ res.file.url }}" download = "{{ res.file.url }}" > Download</a></td>
-                                        <td><a href="{{ user.result.file.url }}"> View PDF</a> {{ result.user.result.file }}</td>
-                                        
+                                       
                                       </tr> 
                                      
+                                      {% endif%}
+                                      
                                       {% endfor %}
                             
                                   
                                 </tbody>
-                                
+                             
                                 
                             </table>
                             

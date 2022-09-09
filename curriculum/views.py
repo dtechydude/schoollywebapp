@@ -10,7 +10,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 
-class StandardListView(ListView):
+class StandardListView(LoginRequiredMixin, ListView):
     context_object_name = 'standards'
     model = Standard
     # template_name = 'curriculum/class_list.html'

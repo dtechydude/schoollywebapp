@@ -34,7 +34,6 @@ class Profile(models.Model):
     code = models.CharField(max_length=6, blank=True)
     phone = models.CharField(max_length=11, blank=True)
     updated = models.DateTimeField(auto_now=True)
-    dob = models.DateField(null=True)
     created = models.DateTimeField(auto_now_add=True)
 
     # image = models.ImageField(upload_to=path_and_rename, verbose_name="Profile Picture", blank=True )

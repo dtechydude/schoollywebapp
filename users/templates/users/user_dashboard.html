@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Daniel's Model Academy - Dashboard</title>
+    <title>Schoolly</title>
 
     <!-- Custom fonts for this template-->
     <link href="{% static 'users/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
@@ -84,8 +84,8 @@
                         <a class="collapse-item" href="{% url 'upload-result' %}">Enter Subject Result</a>
                         
                         <a class="collapse-item" href="{% url 'print-result' %}">View Exam Records</a>
-                        <a class="collapse-item" href="{% url 'payments:payment' %}">Record New Payments</a>
-                        <a class="collapse-item" href="{% url 'payments:payment_record' %}">View All Payments</a>
+                        <a class="collapse-item" href="{% url 'payment:payment_form' %}">Record New Payments</a>
+                        <a class="collapse-item" href="{% url 'payment:payment_record' %}">View All Payments</a>
                         {% else %}
                         <span>Quick Links</span>
                     </a>
@@ -657,7 +657,7 @@
                                                           
                                                         </div>
                                                     </div></a>
-                                                </div><a style="text-decoration:none" href="{% url 'attendance_form' %}">
+                                                </div><a style="text-decoration:none" href="{% url 'attendance:attendance_form' %}">
                                                     <div class="col-lg-6 mb-4">
                                                         <div class="card bg-success text-white shadow">
                                                             <div class="card-body">

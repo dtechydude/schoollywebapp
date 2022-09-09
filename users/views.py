@@ -15,11 +15,11 @@ def register(request):
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
-            messages.success(request, f'New user account has been created. You can register another user.')
-            return redirect('register')
+            messages.success(request, f'New user account has been created' )
+            return redirect('student_staff')
     else:
         form = UserRegisterForm()
-    return render(request, 'users/register.html', {'form': form})
+    return render(request, 'users/register2.html', {'form': form})
 
 
 @login_required
@@ -41,7 +41,7 @@ def profile(request):
         'p_form': p_form,
     }
 
-    return render(request, 'users/profile.html', context)
+    return render(request, 'users/profile1.html', context)
 
 
 def user_login(request):
@@ -61,7 +61,7 @@ def user_login(request):
         else:
             return HttpResponse("Please use correct id and password")
     else:
-        return render(request, 'users/login.html')
+        return render(request, 'users/login1.html')
 
 @login_required
 def user_logout(request):
@@ -72,6 +72,12 @@ def user_logout(request):
 @login_required
 def users_home(request):
     return render(request, 'users/user_dashboard.html')
+
+
+
+@login_required
+def student_staff(request):
+    return render(request, 'users/student_staff_register.html')
 
 
 

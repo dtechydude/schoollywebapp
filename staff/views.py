@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib import messages
-from staff.forms import StaffUpdateForm
+from staff.forms import StaffRegisterForm
 from staff.models import StaffAcademicInfo, StaffProfile
 from users.models import Profile
 from django.http import HttpResponse
@@ -23,22 +23,22 @@ import csv
 def staffupdateprofile(request):
     if request.method == 'POST':
         
-        aca_form = StaffUpdateForm(request.POST)
+        aca_form = StaffRegisterForm(request.POST)
         if aca_form.is_valid():
            
             aca_form.save()
-            messages.success(request, f'Your account has been updated successfully')
+            messages.success(request, f'New Staff Registered successfully')
             return redirect('profile')
     else:
       
-        aca_form = StaffUpdateForm
+        aca_form = StaffRegisterForm
 
     context = {
         
         'aca_form': aca_form,
     }
 
-    return render(request, 'staff/staff_profile.html', context)
+    return render(request, 'staff/staff_register_form.html', context)
 
 
 @login_required

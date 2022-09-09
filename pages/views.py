@@ -14,22 +14,22 @@ def contact(request):
     if request.method == 'POST':
         message_name = request.POST['name']
         message_email = request.POST['email']
-        message_subject = request.POST['subject']
+        # message_subject = request.POST['subject']
         message = request.POST['message']
-        messages.success(request, f'New user account has been created. You can register another user.')
+        # messages.success(request, f'New user account has been created. You can register another user.')
 
 
         send_mail(
             message_name, #subject
             message, #message
             message_email, #from email
-            ['support@gmail.com'] #to email
+            ['contact@fizcos.com'] #to email
             ,
             )
    
-        return render(request, 'pages/contact.html', {'message_name': message_name})
+        return render(request, 'pages/schoolly-home.html', {'message_name': message_name})
     else:
-        return render(request, 'pages/contact.html', {'title': 'Contact Us'})
+        return render(request, 'pages/schoolly-home.html', {})
 
 
 def affiliate(request):
@@ -76,3 +76,6 @@ def demo(request):
         return render(request, 'pages/demo.html', {'title': 'Demo'})
 
 
+
+def schoolly_home(request):
+    return render(request, 'pages/schoolly-home.html')

@@ -7,7 +7,14 @@ from students.models import StudentDetail
 
 @login_required
 def portal_home(request):
-    return render(request, 'portal/portal-home.html')
+    student_num = StudentDetail.objects.count()
+    num_inclass = StudentDetail.objects.filter(current_class__name='Jss1').count()
+    
+    context = {
+        'student_num': student_num,
+        'num_inclass': num_inclass
+    }
+    return render(request, 'portal/portal-home.html', context)
 
 @login_required
 def student_list(request):

@@ -30,26 +30,26 @@ from rest_framework.views import APIView
 def studentupdateform(request):
     if request.method == 'POST':
         su_form = StudentUpdateForm(request.POST)
-        sa_form = StudentProfileForm(request.POST)
+        #
       
-        if su_form.is_valid and sa_form.is_valid():
+        if su_form.is_valid():    #and sa_form.is_valid():
             su_form.save()
-            sa_form.save()
+         #
             
             messages.success(request, f'Your account has been updated successfully')
             return redirect('profile')
     else:
          su_form = StudentUpdateForm()
-         sa_form = StudentDetail()
+        #
        
             
     context = {
         'su_form': su_form,
-        'sa_form': sa_form,
+        #
    
     }
 
-    return render(request, 'students/student_update_form.html', context)
+    return render(request, 'students/student_register_form.html', context)
 
 
 
@@ -66,7 +66,7 @@ def studentlist(request):
 
 
 
-class StudentListView(ListView):
+class StudentListView(LoginRequiredMixin, ListView):
     model = StudentDetail
     template_name = 'students/student_list.html'
 
@@ -74,7 +74,7 @@ class StudentListView(ListView):
 
 class StudentDetailView(DetailView):  
     model = User
-    template_name = 'students/student_detail_view.html'
+    template_name = 'portal/student_detail.html'
     # queryset = User.objects.all()
     def get_object(self):
         id_ = self.kwargs.get("id")
