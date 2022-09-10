@@ -1,52 +1,54 @@
-{% extends 'demoschool/index.html'%}
-{% load embed_video_tags %}
-
+{% extends 'portal/portal-home.html'%}
+{% load crispy_forms_tags %}
 {% load static %}
+{% block title %}<title>Schoolly - Lesson Update </title>{% endblock title %}
 
-
-{% block section%}
-<section class="pop-cour">
-   
-    <div class="container com-sp pad-bot-70">
-        <div class="row justify-content-center">
-      
+{% block content_body %}
+<div class="content-body">
+    <div class="container-fluid">
+        <div class="row page-titles">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active"><a href=""><span style="font-size: 35px;"><h3>Update Lesson</h3></span></a></li>
+                
+                
+            </ol>
         </div>
-		
-        <div class="row justify-content-center">
-
-            <div class="col-md-6">
-            
-                  <div class="row justify-content-center">
-                  
-                    <h3>Update Lesson</h3>
-                   <p>Use the form below to update your lesson</p> 
-                      
-                  <div class="home-top-cour">
-                    
-                       <div class="col-md-12 home-top-cour-desc">                            
-            
-                        <form method="post" enctype="multipart/form-data">
-                            {% if user.is_authenticated%}
-                            {% csrf_token %}
-                            {{ form.as_p }}
-                            <p>
-                            <input type="submit" name="" value="Submit">
-                            <a href="{% url 'curriculum:lesson_detail' standard=lessons.standard.slug subject=lessons.subject.slug slug=lessons.slug % }" class="btn btn-danger btn-block"> Cancel Update</a>
+        <!-- row -->
+        <div class="row">
+            <div class="col-xl-4 col-xxl-6 col-lg-6">
+                <div class="card">
+                    <div class="card-header border-0 pb-0">
+                        <h4 class="card-title">Lesson Update Form</h4>
+                    </div>
+                    <div>
+                        {% if messages %}
+                        {% for message in messages %}
+                        <div class ="alert alert-{{ message.tags }}">{{ message }}</div>
+                        {% endfor%}
+                        {% endif%}
+                    </div>
+                    <div class="card-body">
+                        <div id="DZ_W_TimeLine" class="widget-timeline dlab-scroll height670">
+                            {% if user.is_authenticated %}
+                           <form method="post" enctype="multipart/form-data">
+                            {% csrf_token%}
+                            {{ form|crispy}}
                             
-                            </span>{% endif %}
+                            <button type="submit" name="submit" class="btn btn-success btn-block mt-3 mb-3" >Update Lesson</button>
+                            <a href="{% url 'curriculum:lesson_detail standard=lessons.standard.slug subject=lessons.subject.slug slug=lessons.slug' % }" class="btn btn-danger btn-block"> Cancel Update</a>
+
+                            {% endif %}
                         </form>
-                                        
-                          
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-    
-  
-
-
-</section>
-
-
-{% endblock section %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content_body %}

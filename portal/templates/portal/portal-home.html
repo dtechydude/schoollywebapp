@@ -388,9 +388,10 @@
 						<ul aria-expanded="false">
 							{% if user.is_authenticated and user.profile.user_type == 'student' %}
 							<li><a href="{% url 'my-result' %}">Check Result</a></li>
-							<li><a href="#">Make Payment</a></li>
+							<li><a href="#">Online Pay</a></li>
+							<li><a href="{% url 'payment:payment_form' %}">Upload Payment</a></li>
 							<li><a href="#">My Receipts</a></li>
-							<li><a href="#">Time Table</a></li>
+							<li><a href="#">School Calendar</a></li>
 							
 							{% else %}
 							<li><a href="{% url 'students:student-list' %}">Student List</a></li>
@@ -414,7 +415,7 @@
 							<li><a href="{% url 'staff:staff_list' %}">Staff List</a></li>
 							<li><a href="#">Staff Details</a></li>
 							<li><a href="{% url 'register' %}">Register Staff</a></li>
-							<li><a href="./app-calender.html">Calendar</a></li>
+							<li><a href="#">Upload School Calendar</a></li>
 						
 							{% endif %}
 						</ul>
@@ -441,7 +442,6 @@
 							<span class="nav-text">My Account</span>
 						</a>
 						<ul aria-expanded="false">
-							<li><a href="#">My Profile</a></li>
 							<li><a href="{% url 'profile' %}">Update Profile</a></li>
 							<li><a href="{% url 'password_reset' %}">Reset Password</a></li>
 							<li><a href="{% url 'user_logout' %}">Logout</a></li>
@@ -478,9 +478,9 @@
 							<span class="nav-text">School Pages</span>
 						</a>
 						<ul aria-expanded="false">
+							<li><a href="#">Home Page</a></li>
 							<li><a href="#">About Us</a></li>
-							<li><a href="#">Gallery</a></li>
-							
+							<li><a href="#">Gallery</a></li>		
 							<li><a href="#">InfoBlog</a></li>
 							<li><a href="#">Student Center</a></li>
 						</ul>
@@ -492,7 +492,7 @@
 						<div class="sidebar-info">
 							<div>
 								<h5 class="font-w500 mb-0">{{ user.username }}</h5>
-								<span class="fs-12">{{ user.studentdetail.class_teacher }}</span>
+								<span class="fs-12">UserName</span>
 							</div>	
 						</div>
 						<div>

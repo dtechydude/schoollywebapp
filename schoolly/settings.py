@@ -69,6 +69,7 @@ INSTALLED_APPS = [
     'quiz_results',
     'quiz_questions',
     'portal',
+    'blog',
     
     
     

@@ -7,7 +7,7 @@ from django.template.defaultfilters import slugify
 
 
 import os
-# from embed_video.fields import EmbedVideoField
+from embed_video.fields import EmbedVideoField
 
 from django.urls import reverse
 
@@ -73,8 +73,8 @@ class Lesson(models.Model):
     position = models.PositiveSmallIntegerField(verbose_name="Chapter no.")
     slug = models.SlugField(null=True, blank=True)
     # video = models.FileField(upload_to=save_lesson_files, verbose_name="video", blank=True, null=True)
-    # video = EmbedVideoField(blank=True)
-    video = models.CharField(max_length=500, blank=True)
+    video = EmbedVideoField(blank=True, null=True)
+    # video = models.CharField(max_length=500, blank=True)
     # video_url = EmbedVideoField(null=True,blank=True)
     ppt = models.FileField(upload_to='save_lesson_files', verbose_name="Presentation", blank=True)
     Notes = models.FileField(upload_to='save_lesson_files', verbose_name="Notes", blank=True)

@@ -29,6 +29,7 @@
 								{% if user.is_authenticated and user.profile.user_type == 'teacher' or user.is_superuser %}
 								
 								<!-- <a href="email-compose.html" class="btn btn-primary btn-block">Compose</a> -->
+								<p>Use the buttons below to create or update lessons</p>
 								<p><a href="{% url 'curriculum:lesson_update' standard=lessons.standard.slug subject=lessons.subject.slug slug=lessons.slug %}" class="btn btn-info">Update Lesson</a><br></p>
 								<p><a href="{% url 'curriculum:lesson_delete' standard=lessons.standard.slug subject=lessons.subject.slug slug=lessons.slug %}" class="btn btn-secondary">Delete Lesson</a></p>
 								{% else %}
@@ -38,91 +39,17 @@
 							
 							</div>
 
-                                
-
-
-
-
-
-							<div class="mail-list rounded mt-4">
-								<a href="email-inbox.html" class="list-group-item active"><i
-										class="fa fa-inbox font-18 align-middle me-2"></i> Inbox <span
-										class="badge badge-primary badge-sm float-end">198</span> </a>
-								<a href="javascript:void()" class="list-group-item"><i
-										class="fa fa-paper-plane font-18 align-middle me-2"></i>Sent</a> <a href="javascript:void()" class="list-group-item"><i
-										class="fa fa-star font-18 align-middle me-2"></i>Important <span
-										class="badge badge-danger badge-sm text-white float-end">47</span>
-								</a>
-								<a href="javascript:void()" class="list-group-item"><i
-										class="mdi mdi-file-document-box font-18 align-middle me-2"></i>Draft</a><a href="javascript:void()" class="list-group-item"><i
-										class="fa fa-trash font-18 align-middle me-2"></i>Trash</a>
-							</div>
-							<div class="mail-list rounded overflow-hidden mt-4">
-								<div class="intro-title d-flex my-0 justify-content-between">
-									<h5>Categories</h5>
-									<i class="fa fa-chevron-down" aria-hidden="true"></i>
-								</div>
-								<a href="email-inbox.html" class="list-group-item"><span class="icon-warning"><i
-											class="fa fa-circle" aria-hidden="true"></i></span>
-									Work </a>
-								<a href="email-inbox.html" class="list-group-item"><span class="icon-primary"><i
-											class="fa fa-circle" aria-hidden="true"></i></span>
-									Private </a>
-								<a href="email-inbox.html" class="list-group-item"><span class="icon-success"><i
-											class="fa fa-circle" aria-hidden="true"></i></span>
-									Support </a>
-								<a href="email-inbox.html" class="list-group-item"><span class="icon-dpink"><i
-											class="fa fa-circle" aria-hidden="true"></i></span>
-									Social </a>
-							</div>
 						</div>
 						<div class="email-right-box ms-0 ms-sm-4 ms-sm-0">
 							<div class="row">
-								<div class="col-12">
-									<div class="right-box-padding">
-										<div class="toolbar mb-4" role="toolbar">
-											<div class="btn-group mb-1">
-												<button type="button" class="btn btn-primary light px-3"><i class="fa fa-archive"></i></button>
-												<button type="button" class="btn btn-primary light px-3"><i class="fa fa-exclamation-circle"></i></button>
-												<button type="button" class="btn btn-primary light px-3"><i class="fa fa-trash"></i></button>
-											</div>
-											<div class="btn-group mb-1">
-												<button type="button" class="btn btn-primary light dropdown-toggle px-3" data-bs-toggle="dropdown">
-													<i class="fa fa-folder"></i> <b class="caret m-l-5"></b>
-												</button>
-												<div class="dropdown-menu"> 
-													<a class="dropdown-item" href="javascript: void(0);">Social</a> 
-													<a class="dropdown-item" href="javascript: void(0);">Promotions</a> 
-													<a class="dropdown-item" href="javascript: void(0);">Updates</a>
-													<a class="dropdown-item" href="javascript: void(0);">Forums</a>
-												</div>
-											</div>
-											<div class="btn-group mb-1">
-												<button type="button" class="btn btn-primary light dropdown-toggle px-3" data-bs-toggle="dropdown">
-													<i class="fa fa-tag"></i> <b class="caret m-l-5"></b>
-												</button>
-												<div class="dropdown-menu"> 
-													<a class="dropdown-item" href="javascript: void(0);">Updates</a> 
-													<a class="dropdown-item" href="javascript: void(0);">Social</a> 
-													<a class="dropdown-item" href="javascript: void(0);">Promotions</a>
-													<a class="dropdown-item" href="javascript: void(0);">Forums</a>
-												</div>
-											</div>
-											<div class="btn-group mb-1">
-												<button type="button" class="btn btn-primary light dropdown-toggle v" data-bs-toggle="dropdown">More <span class="caret m-l-5"></span>
-												</button>
-												<div class="dropdown-menu"> <a class="dropdown-item" href="javascript: void(0);">Mark as Unread</a> <a class="dropdown-item" href="javascript: void(0);">Add to Tasks</a>
-													<a class="dropdown-item" href="javascript: void(0);">Add Star</a> <a class="dropdown-item" href="javascript: void(0);">Mute</a>
-												</div>
-											</div>
-										</div>
+						
 										<div class="read-content">
 											<div class="media pt-3 d-sm-flex d-block justify-content-between">
 												<div class="clearfix mb-3 d-flex">
-													<img class="me-3 rounded" width="70" height="70" alt="image" src="{% static 'portal/images/avatar/1.jpg' %}">
 													<div class="media-body me-2">
-														<h5 class="text-primary mb-0 mt-1"><b> Created by: {{ lessons.created_by}}</h5>
-														<p class="mb-0">Created on {{ lessons.created_at }}</p>
+														<h5 class="text-primary mb-0 mt-1"><span style="color:black">Created by: </span> {{ lessons.created_by}}</h5>
+														<h5 class="text-primary mb-0 mt-1"><span style="color:black">Created on: </span> {{ lessons.created_at}}</h5>
+														
 													</div>
 												</div>
 												<div class="clearfix mb-3">
@@ -134,27 +61,24 @@
 											<hr>
 											<div class="media mb-2 mt-3">
 												
-												<div class="media-body"><span class="pull-end">07:23 AM</span>
-													{% if lessons.ppt %}
-													<h5 class="my-1 text-primary"><a href="{{ lessons.ppt.url }}" download="{{ lessons.ppt.url }}"><b>Download Lesson Note (PDF): </b> </a> </h5>
-													{% else %}
-													<h5>Opps! No current file to download</h5>
-													{% endif %}
+												<div class="media-body">
+													<h2 class="mb-4">Lesson Details:</h2>
+													
+													{% if lessons.video %}
 													<p class="read-content-email">
 														Watch Lesson video here..</p>
 												</div>
 											</div>
 											<div>
-												<iframe width="420" height="345" 
+												<iframe width="620" height="345" 
 												src="{{ lessons.video}}" allowfullscreen>                          
 												
 												</iframe>                     
 											   
 											</div>
+											{% endif %}
 											<div class="read-content-body">
-
-												<h2 class="mb-4">Lesson Details:,</h2>
-												<p class="mb-2"><strong>Teacher's Highlights:,</strong><br><i>A collection of textile samples lay spread out on the table</i> </p>
+												<p class="mb-2"><strong>Teacher's Highlights:</strong><br><i>Teacher's explanations</i> </p>
 												<p class="mb-2">{{ lessons.comment }}
 												</p>
 												
@@ -162,17 +86,16 @@
 											</div>
 											<div class="read-content-attachment">
 												<h6><i class="fa fa-download mb-2"></i> Attachments
-													<span>(3)</span></h6>
+													<span>(2)</span></h6>
 												<div class="row attachment">
 													<div class="col-auto">
-														<a href="javascript:void()" class="text-muted">My-Photo.png</a>
+														{% if lessons.ppt %}
+														<a href="{{ lessons.ppt.url }}"  download="{{ lessons.ppt.url }}" class="text-muted">Download Lesson</a>
 													</div>
 													<div class="col-auto">
-														<a href="javascript:void()" class="text-muted">My-File.docx</a>
+														<a href="{{ lessons.ppt.url }}" class="text-muted">Read Lesson</a>
 													</div>
-													<div class="col-auto">
-														<a href="javascript:void()" class="text-muted">My-Resume.pdf</a>
-													</div>
+													{% endif %}
 												</div>
 											</div>
 											<hr>
@@ -217,16 +140,12 @@
 												
 												{% endfor %}
 
-
-
-
-
+								</div>
+								</div>
+								
 							</div>
 						</div>
-					</div>
-	
-
-    
-</div>
+					</div>  
+				</div>
 
 {% endblock content_body %}

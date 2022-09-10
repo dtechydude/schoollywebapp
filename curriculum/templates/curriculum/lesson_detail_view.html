@@ -5,12 +5,12 @@
 
 
 <p>{% if user.is_authenticated %}</p>
-    <h4>Lesson Detail Page</h4
+    <h4>Lesson Detail Page</h4>
     Class:{{ lessons.standard }} - <br /> 
     Subject: {{ lessons.subject }} - <br />
     <b> Title:  {{ lessons.name }}</b><br />
     <b>Created on {{ lessons.created_at }} by: {{ lessons.created_by}}</b></p><br />
-<p> <b>Download Lesson Note: </b>{{ lessons.Notes }} <br /><br /><b>Teacher's Highlights:</b><br /> {{ lessons.comment}}</p><br />
+<p> <b>Download Lesson Note: </b>{{ lessons.Notes }} <br /><br /><b>Teacher's Highlights:</b><br /> {{ lessons.comment}}<br />{{ lessons video.url }}</p><br />
 {% else %}
 <h3>You must be registered </h3>
 {% endif %}

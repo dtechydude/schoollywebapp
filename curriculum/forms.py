@@ -9,7 +9,7 @@ class LessonForm(forms.ModelForm):
     class Meta:
         
         model = Lesson
-        fields = ('lesson_id', 'name', 'position', 'ppt', 'Notes', 'comment')
+        fields = ('lesson_id', 'name', 'position', 'ppt', 'video', 'comment')
 
 
 class CommentForm(forms.ModelForm):
