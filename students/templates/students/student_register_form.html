@@ -3,7 +3,7 @@
  {% load crispy_forms_tags %}
  {% load static %}
  
- {% block title %}<title>Register Staff Students </title>{% endblock title %}
+ {% block title %}Student Register {% endblock title %}
 
  {% block content_body %}
 
@@ -12,7 +12,7 @@
         <div class="row page-titles">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item active"><a href="javascript:void(0)">Register New Students</a></li>
-                <li class="breadcrumb-item"><a href="#">Now</a></li>
+                <li class="breadcrumb-item"><a href="#">Read the instruction below</a></li>
             </ol>
         </div>
         <div class="row">
@@ -22,7 +22,9 @@
                         <h5 class="card-title">Instruction</h5>
                     </div>
                     <div class="card-body">
-                        <p class="card-text">This is a wider card with supporting text and below as a natural lead-in to the additional content. This content is a little <br> bit longer. Some quick example text to build the bulk
+                        <p class="card-text"> - The form on this page provides inputs for updating registered user to student status<br>
+                            - To register a new student, you must first <a href="{% url 'register'%}"><b><span style="color:black">register</span></b></a> the student as a user<br>
+                           -  Complete the form on this page if you have already registered the student as a new user
                         </p>
                     </div>
                     <div class="card-footer d-sm-flex justify-content-between align-items-center">
@@ -44,7 +46,7 @@
                             <form method="POST" enctype="multipart/form-data" >
                                 {% csrf_token %}
                             
-                            {{ su_form|crispy }}</p>
+                            {{ form|crispy }}</p>
                     </div>
                     <div class="card-footer d-sm-flex justify-content-between align-items-center">
 

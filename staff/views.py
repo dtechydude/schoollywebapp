@@ -1,12 +1,13 @@
 from multiprocessing import context
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.contrib import messages
 from staff.forms import StaffRegisterForm
-from staff.models import StaffAcademicInfo, StaffProfile
+from staff.models import StaffProfile
 from users.models import Profile
 from django.http import HttpResponse
+from django.views.generic import DetailView
 #for pdf
 from django.http import FileResponse
 import io
@@ -28,7 +29,7 @@ def staffupdateprofile(request):
            
             aca_form.save()
             messages.success(request, f'New Staff Registered successfully')
-            return redirect('profile')
+            return redirect('staff:staff_detail')
     else:
       
         aca_form = StaffRegisterForm
@@ -44,7 +45,7 @@ def staffupdateprofile(request):
 @login_required
 def stafflist(request):
     context = {
-        'stafflist' : StaffAcademicInfo.objects.all()
+        'stafflist' : StaffProfile.objects.all()
 
     }
     return render (request, 'staff/staff_list.html', context)
@@ -69,7 +70,7 @@ def staff_pdf(request):
     #     "This is line 4",
     # ]
     # Designate the model
-    staff = StaffAcademicInfo.objects.all()
+    staff = StaffProfile.objects.all()
 
     # Create a blank list
         
@@ -106,7 +107,7 @@ def staff_csv(request):
 # Create a csv writer
     writer = csv.writer(response)
 
-    staff = StaffAcademicInfo.objects.all()
+    staff = StaffProfile.objects.all()
     
     # Add column headings to the csv files
     writer.writerow(['Staff Name', 'Year', 'Phone', 'Institution'])
@@ -119,7 +120,14 @@ def staff_csv(request):
     return response
 
 
+class StaffDetailView(DetailView):
+    template_name = 'staff/staff_details.html'
+    # queryset = StaffProfile.objects.all()
 
+    def get_object(self):
+        id_ = self.kwargs.get("id")
+        return get_object_or_404(StaffProfile, id=id_)
+   
 
 
 

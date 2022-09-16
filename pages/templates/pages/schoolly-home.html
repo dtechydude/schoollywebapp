@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Schoolly - School Management System</title>
+  {% block title %}<title>Schoolly - School Management System</title>{% endblock title%}
   <meta  name="description" content="A school management system that provides an
   all-in-one digital solution for schools. From a simple student's result module to a swift e-learning system,
   bundled with tools and features that capture and track all aspects of school business and academic activities">
@@ -52,6 +52,7 @@
 <body>
 
   <!-- ======= Header ======= -->
+ 
   <header id="header" class="header fixed-top" data-scrollto-offset="0">
     <div class="container-fluid d-flex align-items-center justify-content-between">
 
@@ -61,7 +62,7 @@
         <!-- <h1>HeroBiz<span>.</span></h1> -->
        
       </a>
-
+      {% block navbar %}
       <nav id="navbar" class="navbar">
         <ul>
 
@@ -70,7 +71,8 @@
           <li><a class="nav-link scrollto" href="index.html#services">Features</a></li>
           <li><a class="nav-link scrollto" href="index.html#pricing">Pricing</a></li>
           <li><a class="nav-link scrollto" href="index.html#faq">Faq</a></li>
-          <!-- <li><a href="blog.html">Blog</a></li> -->
+          <li><a href="{% url 'blog:blog_home' %}">Blog</a></li>
+          <li><a href="{% url 'login' %}">Login</a></li>
          
           </li>
           
@@ -82,7 +84,10 @@
       <a class="btn-getstarted scrollto" href="index.html#contact">Book a Demo</a>
 
     </div>
+    {% endblock navbar %}
   </header><!-- End Header -->
+  
+  {% block slide %}
 
   <section id="hero-fullscreen" class="hero-fullscreen d-flex align-items-center">
     <div class="container d-flex flex-column align-items-center position-relative" data-aos="zoom-out">
@@ -95,6 +100,8 @@
     </div>
    
   </section>
+  {% endblock slide %}
+  {% block content_body %}
 
   <main id="main">
 
@@ -788,6 +795,7 @@
     </section><!-- End Contact Section -->
 
   </main><!-- End #main -->
+  {% endblock content_body %}
 
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
@@ -860,11 +868,11 @@
         </div>
 
         <div class="social-links order-first order-lg-last mb-3 mb-lg-0">
-          <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-          <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-          <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-          <a href="#" class="google-plus"><i class="bi bi-skype"></i></a>
-          <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+          <a href="https://www.twitter.com/schoollyapp" class="twitter"><i class="bi bi-twitter"></i></a>
+          <a href="https://www.facebook.com/schoollyapp" class="facebook"><i class="bi bi-facebook"></i></a>
+          <a href="https://www.instagram.com/schoollyapp" class="instagram"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="google-plus"><i class="bi bi-whatsapp"></i></a>
+          
         </div>
 
       </div>

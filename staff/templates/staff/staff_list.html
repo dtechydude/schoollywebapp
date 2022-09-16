@@ -88,37 +88,37 @@
 															</div>
 														</td>
 														<td class="text-nowrap">
-															<span>{{ staff.user.staffacademicinfo.staff_cat}}</span>
+															<span>{{ staff.user.staffprofile.staff_cat}}</span>
 														</td>
 														<td>
 															<div>
-																<h5 class="text-nowrap">{{ staff.user.staffacademicinfo.department}}</h5>
+																<h5 class="text-nowrap">{{ staff.user.staffprofile.department}}</h5>
 																
 															</div>
 														</td>
 														<td>
 															<div>
-																<h5 class="text-nowrap">{{ staff.user.staffacademicinfo.phone }}</h5>
+																<h5 class="text-nowrap">{{ staff.user.staffprofile.phone }}</h5>
 																<span></span>
 															</div>
 														</td>
 														<td>
 														<div>
-															<h5 class="text-nowrap">{{ staff.user.staffacademicinfo.marital_status }}</h5>
+															<h5 class="text-nowrap">{{ staff.user.staffprofile.marital_status }}</h5>
 															<span></span>
 														</div>
 														
 														</td>
 														<td>
 															<div>
-																<h5 class="text-nowrap">{{ staff.user.staffacademicinfo.guarantor_phone }}</h5>
+																<h5 class="text-nowrap">{{ staff.user.staffprofile.guarantor_phone }}</h5>
 																<span></span>
 															</div>
 															
 															</td>
 														<td>
 															<div class="request">
-																<a href="" class="btn btn-md text-primary">Detail</a>
+																<a href="{% url 'staff:staff_detail' user.id %}" class="btn btn-md text-primary">Detail</a>
 															</div>
 														</td>
 														

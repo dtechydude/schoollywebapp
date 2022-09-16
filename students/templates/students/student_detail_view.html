@@ -1,16 +1,13 @@
-
 {% extends 'portal/portal-home.html'%}
 {% load static %}
 
 {% block title %}<title>Student Detail </title>{% endblock title%}
 
-
-
-
 {% block content_body %}
- <!-- row -->
- <div class="content-body">
- <div class="row">
+<div class="content-body">
+
+
+<div class="row">
     <div class="col-lg-12">
         <div class="profile card card-body px-3 pt-3 pb-0">
             <div class="profile-head">
@@ -19,26 +16,18 @@
                 </div>
                 <div class="profile-info">
                     <div class="profile-photo">
-                        <img src="{% static 'portal/images/profile/profile.png' %}" class="img-fluid rounded-circle" alt="">
+                        <img src="{{user.profile.image.url}}" class="img-fluid rounded-circle" alt="">
                     </div>
                     <div class="profile-details">
                         <div class="profile-name px-3 pt-2">
-                            <h4 class="text-primary mb-0">{{ object.username}}</h4>
-                            <p>UX / UI Designer</p>
+                            <h4 class="text-primary mb-0">{{ studentdetail.user.first_name}}-{{studentdetail.user.last_name}}</h4>
+                            <p>Full Name</p>
                         </div>
                         <div class="profile-email px-2 pt-2">
-                            <h4 class="text-muted mb-0">{{ object.studentdetail.class_teacher}}</h4>
-                            <p>Email</p>
+                            <h4 class="text-muted mb-0">{{ studentdetail.parent_phone }}</h4>
+                            <p>Parent Phone</p>
                         </div>
-                        <div class="dropdown ms-auto">
-                            <a href="#" class="btn btn-primary light sharp" data-bs-toggle="dropdown" aria-expanded="true"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"></rect><circle fill="#000000" cx="5" cy="12" r="2"></circle><circle fill="#000000" cx="12" cy="12" r="2"></circle><circle fill="#000000" cx="19" cy="12" r="2"></circle></g></svg></a>
-                            <ul class="dropdown-menu dropdown-menu-end">
-                                <li class="dropdown-item"><i class="fa fa-user-circle text-primary me-2"></i> View profile</li>
-                                <li class="dropdown-item"><i class="fa fa-users text-primary me-2"></i> Add to btn-close friends</li>
-                                <li class="dropdown-item"><i class="fa fa-plus text-primary me-2"></i> Add to group</li>
-                                <li class="dropdown-item"><i class="fa fa-ban text-primary me-2"></i> Block</li>
-                            </ul>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -55,19 +44,28 @@
                             <div class="text-center">
                                 <div class="row">
                                     <div class="col">
-                                        <h3 class="m-b-0">150</h3><span>Follower</span>
+                                        <h3 class="m-b-0">#</h3><span>Test</span>
                                     </div>
                                     <div class="col">
-                                        <h3 class="m-b-0">140</h3><span>Place Stay</span>
+                                        <h3 class="m-b-0">#</h3><span>Exam</span>
                                     </div>
                                     <div class="col">
-                                        <h3 class="m-b-0">45</h3><span>Reviews</span>
+                                        <h3 class="m-b-0">#</h3><span>Quiz</span>
                                     </div>
                                 </div>
+                                
                                 <div class="mt-4">
-                                    <a href="javascript:void(0);" class="btn btn-primary mb-1 me-1">Follow</a> 
-                                    <a href="javascript:void(0);" class="btn btn-primary mb-1" data-bs-toggle="modal" data-bs-target="#sendMessageModal">Send Message</a>
-                                </div>
+                                    {% if user.is_superuser %}
+                                    <a href="{% url  'students:students-update' studentdetail.id %}" class="btn btn-primary mb-1 me-1">Update Student</a> 
+                                    <a href="{% url  'students:students-delete' studentdetail.id %}" class="btn btn-primary mb-1">Delete Student</a>
+                                
+                              {% else %}
+                                <a href="javascript:void(0);" class="btn btn-primary mb-1 me-1">E-learning Center</a> 
+                                <a href="javascript:void(0);" class="btn btn-primary mb-1" data-bs-toggle="modal" data-bs-target="#sendMessageModal">Send Message</a>
+                                {% endif %}    
+                            </div>
+                               
+                              
                             </div>
                             <!-- Modal -->
                             <div class="modal fade" id="sendMessageModal">
@@ -117,7 +115,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="profile-blog">
-                            <h5 class="text-primary d-inline">Today Highlights</h5>
+                            <h5 class="text-primary d-inline">General Information</h5>
                             <img src="images/profile/1.jpg" alt="" class="img-fluid mt-4 mb-4 w-100">
                             <h4><a href="post-details.html" class="text-black">Darwin Creative Agency Theme</a></h4>
                             <p class="mb-0">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
@@ -126,26 +124,21 @@
                 </div>
             </div>
             <div class="col-xl-12">
-                <div class="card">
-                    <div class="card-body">
-                        
-                    </div>
-                </div>
+                
             </div>
             <div class="col-xl-12">
                 <div class="card">
                     <div class="card-body">
                         <div class="profile-news">
-                            <h5 class="text-primary d-inline">Our Latest News</h5>
+                            <h5 class="text-primary d-inline">School Latest News</h5>
                             <div class="media pt-3 pb-3">
-                                <img src="images/profile/5.jpg" alt="image" class="me-3 rounded" width="75">
+                                <img src="{{user.profile.image.url}}" alt="image" class="me-3 rounded" width="75">
                                 <div class="media-body">
                                     <h5 class="m-b-5"><a href="post-details.html" class="text-black">Collection of textile samples</a></h5>
                                     <p class="mb-0">I shared this on my fb wall a few months back, and I thought.</p>
                                 </div>
                             </div>
-                    
-                            
+               
                         </div>
                     </div>
                 </div>
@@ -162,26 +155,35 @@
                             </li> -->
                             <li class="nav-item"><a href="#about-me" data-bs-toggle="tab" class="nav-link active show">About Me</a>
                             </li>
-                            <li class="nav-item"><a href="#profile-settings" data-bs-toggle="tab" class="nav-link">Setting</a>
-                            </li>
+                            
                         </ul>
                         <div class="tab-content">
                             
                             
-                                <div class="profile-lang  mb-5">
-                                    <h4 class="text-primary mb-2">Language</h4>
-                                    <a href="javascript:void(0);" class="text-muted pe-3 f-s-16"><i class="flag-icon flag-icon-us"></i> English</a> 
-                                    <a href="javascript:void(0);" class="text-muted pe-3 f-s-16"><i class="flag-icon flag-icon-fr"></i> French</a>
-                                    <a href="javascript:void(0);" class="text-muted pe-3 f-s-16"><i class="flag-icon flag-icon-bd"></i> Bangla</a>
-                                </div>
-                                <div class="profile-personal-info">
+                                    <div class="profile-personal-info">
                                     <h4 class="text-primary mb-4">Personal Information</h4>
                                     <div class="row mb-2">
                                         <div class="col-sm-3 col-5">
-                                            <h5 class="f-w-500">Name <span class="pull-end">:</span>
+                                            <h5 class="f-w-500">Full Name <span class="pull-end">:</span>
                                             </h5>
                                         </div>
-                                        <div class="col-sm-9 col-7"><span>Mitchell C.Shay</span>
+                                        <div class="col-sm-9 col-7"><span>{{ studentdetail.user.first_name}} {{ studentdetail.user.profile.middle_name}} {{ studentdetail.user.last_name}} </span>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col-sm-3 col-5">
+                                            <h5 class="f-w-500">Student Code <span class="pull-end">:</span>
+                                            </h5>
+                                        </div>
+                                        <div class="col-sm-9 col-7"><span>{{ studentdetail.student_code }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col-sm-3 col-5">
+                                            <h5 class="f-w-500">Student Type <span class="pull-end">:</span>
+                                            </h5>
+                                        </div>
+                                        <div class="col-sm-9 col-7"><span>{{ studentdetail.student_type }}</span>
                                         </div>
                                     </div>
                                     <div class="row mb-2">
@@ -189,37 +191,69 @@
                                             <h5 class="f-w-500">Email <span class="pull-end">:</span>
                                             </h5>
                                         </div>
-                                        <div class="col-sm-9 col-7"><span>example@examplel.com</span>
+                                        <div class="col-sm-9 col-7"><span>{{ studentdetail.user.email }}</span>
                                         </div>
                                     </div>
                                     <div class="row mb-2">
                                         <div class="col-sm-3 col-5">
-                                            <h5 class="f-w-500">Availability <span class="pull-end">:</span></h5>
+                                            <h5 class="f-w-500">Admission Date <span class="pull-end">:</span></h5>
                                         </div>
-                                        <div class="col-sm-9 col-7"><span>Full Time (Free Lancer)</span>
+                                        <div class="col-sm-9 col-7"><span>{{studentdetail.date_admitted }}</span>
                                         </div>
                                     </div>
                                     <div class="row mb-2">
                                         <div class="col-sm-3 col-5">
-                                            <h5 class="f-w-500">Age <span class="pull-end">:</span>
+                                            <h5 class="f-w-500">Date of Birth <span class="pull-end">:</span>
                                             </h5>
                                         </div>
-                                        <div class="col-sm-9 col-7"><span>27</span>
+                                        <div class="col-sm-9 col-7"><span>{{ studentdetail.dob }}</span>
                                         </div>
                                     </div>
                                     <div class="row mb-2">
                                         <div class="col-sm-3 col-5">
-                                            <h5 class="f-w-500">Location <span class="pull-end">:</span></h5>
+                                            <h5 class="f-w-500">Current Class <span class="pull-end">:</span>
+                                            </h5>
                                         </div>
-                                        <div class="col-sm-9 col-7"><span>Rosemont Avenue Melbourne,
-                                                Florida</span>
+                                        <div class="col-sm-9 col-7"><span>{{ studentdetail.current_class }}</span>
                                         </div>
                                     </div>
                                     <div class="row mb-2">
                                         <div class="col-sm-3 col-5">
-                                            <h5 class="f-w-500">Year Experience <span class="pull-end">:</span></h5>
+                                            <h5 class="f-w-500">Form Teacher <span class="pull-end">:</span>
+                                            </h5>
                                         </div>
-                                        <div class="col-sm-9 col-7"><span>07 Year Experiences</span>
+                                        <div class="col-sm-9 col-7"><span>{{ studentdetail.class_teacher }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col-sm-3 col-5">
+                                            <h5 class="f-w-500">Parent Name <span class="pull-end">:</span>
+                                            </h5>
+                                        </div>
+                                        <div class="col-sm-9 col-7"><span>{{ studentdetail.parent_name }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col-sm-3 col-5">
+                                            <h5 class="f-w-500">Parent's Address <span class="pull-end">:</span></h5>
+                                        </div>
+                                        <div class="col-sm-9 col-7"><span>{{ studentdetail.parent_address}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col-sm-3 col-5">
+                                            <h5 class="f-w-500">Parent's Email <span class="pull-end">:</span>
+                                            </h5>
+                                        </div>
+                                        <div class="col-sm-9 col-7"><span>{{ studentdetail.parent_email }}</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-2">
+                                        <div class="col-sm-3 col-5">
+                                            <h5 class="f-w-500">Special Case <span class="pull-end">:</span></h5>
+                                        </div>
+                                        <div class="col-sm-9 col-7"><span>None</span>
                                         </div>
                                     </div>
                                 </div>
@@ -227,28 +261,19 @@
                             <!-- <div id="profile-settings" class="tab-pane fade"> -->
                                 <div class="pt-3">
                                     <div class="settings-form">
-                                        <h4 class="text-primary">Account Setting</h4>
+                                        <h4 class="text-primary"><a href="{% url 'students:students-detail' studentdetail.pk %}">Account Setting </a></h4>
                                         
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <!-- Modal -->
+                            </div>
                     
+                    <!-- Modal -->
+                </div>
             </div>
-        </div>
-    </div>
-</div>
-</div>
-</div>
+            </div>
+                    
 
-                        
-    
-{{ object.user}}<br />
-{{ object.studentdetail.current_class}}<br />
-{{ object.studentdetail.class_teacher}}<br />
-{{ object.username}}<br />
 
-{{ student.user }}
+
 {% endblock content_body %}

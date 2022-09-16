@@ -18,4 +18,4 @@ class Admission(models.Model):
 
 
     def __str__ (self):
-        return f'{self.user.username} Admission Application'
+        return f'{self.first_name} Admission Application'

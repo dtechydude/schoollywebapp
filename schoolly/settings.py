@@ -70,6 +70,8 @@ INSTALLED_APPS = [
     'quiz_questions',
     'portal',
     'blog',
+    'notification',
+    'django_filters',
     
     
     
@@ -182,25 +184,34 @@ LOGIN_REDIRECT_URL = 'home'
 LOGIN_URL = 'login'
 
 
-# Testing Email Setting
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'localhost'
-EMAIL_PORT = '1025'
-EMAIL_HOST_USER = ''
-EMAIL_HOST_PASSWORD =''
-EMAIL_USE_TSL = False
-# EMAIL_USE_SSL = False
+# # Testing Email Setting
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_HOST = 'localhost'
+# EMAIL_PORT = '1025'
+# EMAIL_HOST_USER = ''
+# EMAIL_HOST_PASSWORD =''
+# EMAIL_USE_TSL = False
+# # EMAIL_USE_SSL = False
 
 
 # # Gmail Email settings
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 # #hiding the email user and password in environment variables
 # EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 # EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
-# #not advisable to put your raw user and password
+#not advisable to put your raw user and password
+# EMAIL_HOST_USER = 'contact'
+# EMAIL_HOST_PASSWORD = 'olugbenga123'
+
+EMAIL_HOST_USER='contact@fizcos.com'
+EMAIL_HOST_PASSWORD='Christ4ALL1971'
+EMAIL_HOST='mail.fizcos.com'
+
+
+
 
 #AWS ACCESS
 # AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')

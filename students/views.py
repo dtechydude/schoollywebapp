@@ -9,8 +9,8 @@ from django.http import HttpResponse
 from django.template.loader import get_template
 from xhtml2pdf import pisa
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from students.models import StudentDetail, StudentProfile
-from students.forms import StudentUpdateForm, StudentProfileForm
+from students.models import StudentDetail
+from students.forms import StudentUpdateForm
 import io
 from reportlab.pdfgen import canvas
 from reportlab.lib.units import inch
@@ -22,7 +22,8 @@ from .serializers import StudentDetailSerializer
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-
+from .filters import StudentFilter
+from django_filters.views import FilterView
 
 
 # @login_required
@@ -52,55 +53,79 @@ def studentupdateform(request):
     return render(request, 'students/student_register_form.html', context)
 
 
-
-
 @login_required
 def studentlist(request):
     studentlist = StudentDetail.objects.all()
+    studentdetail_filter = StudentFilter(request.GET, queryset=studentlist) 
+    studentlist = studentdetail_filter.qs
+
     context = {
-        'studentlist' : studentlist
+        'studentlist' : studentlist,
+        'studentdetail_filter': studentdetail_filter,
+       
 
     }
     return render (request, 'students/student_list.html', context)
 
 
 
-
 class StudentListView(LoginRequiredMixin, ListView):
+    context_object_name = 'students'
     model = StudentDetail
+    queryset = StudentDetail.objects.all()
     template_name = 'students/student_list.html'
-
+    paginate_by = 2
+    filterset_class = StudentFilter
+    
 
 
 class StudentDetailView(DetailView):  
-    model = User
-    template_name = 'portal/student_detail.html'
+    model = StudentDetail
+    template_name = 'students/student_detail_view.html'
     # queryset = User.objects.all()
     def get_object(self):
         id_ = self.kwargs.get("id")
-        return get_object_or_404(User, id=id_)
+        return get_object_or_404(StudentDetail, id=id_)
 
 
-
+# I am using function base view as above instead of this
 class StudentCreateView(LoginRequiredMixin, CreateView):
-    model = StudentDetail
-    template_name = 'students/student_form.html'
-    fields = '__all__'
+    form_class = StudentUpdateForm
+    template_name = 'students/student_register_form.html'
+    # queryset= StudentDetail.objects.all()
+
+    # success_url = '/'
+    def form_valid(self, form):
+        return super().form_valid(form)
 
 
 
 class StudentUpdateView(LoginRequiredMixin, UpdateView):
-    model = StudentDetail
-    # template_name = 'students/student_form.html'
-    fields = '__all__'
+    form_class = StudentUpdateForm
+    template_name = 'students/student_form.html'
+    # queryset = StudentDetail.objects.all()
+
+
     def get_object(self):
         id_ = self.kwargs.get("id")
         return get_object_or_404(StudentDetail, id=id_)
-    
-    
-    
 
+    def form_valid(self, form):
+        print(form.cleaned_data)
+        return super().form_valid(form)
 
+class StudentDeleteView(LoginRequiredMixin, DeleteView):
+    template_name = 'students/student_delete.html'
+    success_url = '/'
+    
+    def get_object(self):
+        id_ = self.kwargs.get("id")
+        return get_object_or_404(StudentDetail, id=id_)
+    # queryset = StudentDetail.objects.all()
+
+    
+    
+    
 
 
 
@@ -182,19 +207,6 @@ def studentpage(request):
 #    }
 #     return render (request, 'students/student_list.html', context)
 
-@login_required
-def studentlist(request):
-    studentlist = StudentDetail.objects.all()
-    context = {
-        'studentlist' : studentlist
-
-    }
-    return render (request, 'portal/student_list.html', context)
-
-
-
-
-
 
 
 # Generate a PDF staff list
@@ -272,3 +284,26 @@ class MyStudentList(APIView):
 
     def post(self):
         pass
+
+
+
+
+def studentupdate(request):
+    if request.method == 'POST':
+        student_form = StudentUpdateForm(request.POST)
+       
+        if student_form.is_valid():
+            student_form.save()
+            messages.success(request, f'Your profile has been updated successfully')
+            return redirect('profile')
+    else:
+        student_form = StudentUpdateForm()
+       
+
+    context = {
+        'student_form': student_form,
+
+    }
+
+    return render(request, 'users/student_update_form.html', context)
+

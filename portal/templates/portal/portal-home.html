@@ -18,7 +18,7 @@
 	{% block title %}<title>Schoolly Admin </title>{% endblock title %}
 	
 	<!-- FAVICONS ICON -->
-	<link rel="shortcut icon" type="image/png" href="{% static 'portal/images/' %}" />
+	<link rel="shortcut icon" type="image/png" href="{% static 'portal/images/logo.png' %}" />
 	<link href="{% static 'portal/vendor/jquery-nice-select/css/nice-select.css' %}" rel="stylesheet">
 	<link href="{% static 'portal/vendor/owl-carousel/owl.carousel.css' %}" rel="stylesheet">
 	<link href="{% static 'portal/vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css' %}" rel="stylesheet">
@@ -133,7 +133,7 @@
 							<div class="card-body msg_card_body dlab-scroll" id="DLAB_W_Contacts_Body3">
 								<div class="d-flex justify-content-start mb-4">
 									<div class="img_cont_msg">
-										<img src="images/avatar/1.jpg" class="rounded-circle user_img_msg" alt=""/>
+										<img src="" class="rounded-circle user_img_msg" alt=""/>
 									</div>
 									<div class="msg_cotainer">
 										Hi, how are you samim?
@@ -300,7 +300,7 @@
 													</div>
 													<div class="media-body">
 														<h6 class="mb-1">Dr sultads Send you Photo</h6>
-														<small class="d-block">29 July 2020 - 02:26 PM</small>
+														<small class="d-block">29 July 2022 - 02:26 PM</small>
 													</div>
 												</div>
 											</li>
@@ -395,7 +395,8 @@
 							
 							{% else %}
 							<li><a href="{% url 'students:student-list' %}">Student List</a></li>
-							<li><a href="{% url 'register' %}">Register Student</a></li>
+							<li><a href="{% url 'register' %}">Register New User</a></li>
+							<li><a href="{% url 'students:students-create' %}">Register Student</a></li>
 							<li><a href="{% url 'print-result' %}">View Results</a></li>
 							<li><a href="{% url 'print-resultform' %}">Upload Student Result</a></li>
 							<li><a href="{% url 'upload-result' %}">Enter Results</a></li>	
@@ -414,7 +415,8 @@
 						<ul aria-expanded="false">
 							<li><a href="{% url 'staff:staff_list' %}">Staff List</a></li>
 							<li><a href="#">Staff Details</a></li>
-							<li><a href="{% url 'register' %}">Register Staff</a></li>
+							<li><a href="{% url 'register' %}">Register New User</a></li>
+							<li><a href="">Register New Staff</a></li>
 							<li><a href="#">Upload School Calendar</a></li>
 						
 							{% endif %}
@@ -429,7 +431,7 @@
 							<li><a href="{% url 'curriculum:standard_list' %}">Take a Class</a></li>
 							<li><a href="#">Take a Test</a></li>
 							<li><a href="#">Exam</a></li>
-							<li><a href="#">Take a Quiz</a></li>
+							<li><a href="{% url 'quizes:main-view' %}">Take a Quiz</a></li>
 							{% if user.is_authenticated and user.is_superuser %}
 							<li><a href="#">Upload Lesson</a></li>
 							{% endif %}
@@ -456,7 +458,7 @@
 						<ul aria-expanded="false">
 							<li><a href="#">Take Exam</a></li>
 							<li><a href="#">Take a Test</a></li>
-							<li><a href="#">Take a Quiz</a></li>
+							<li><a href="{% url 'quizes:main-view' %}">Take a Quiz</a></li>
 						
 						</ul>
 					</li>
@@ -586,8 +588,8 @@
 
 													</span>
 													<div class="ms-4">
-														<h4 class="mb-0 font-w600">{{ num_inclass }}</h4>
-														<p class="mb-0">Total Jss1</p>
+														<h4 class="mb-0 font-w600">{{ staff_num }}</h4>
+														<p class="mb-0">Total Staff</p>
 													</div>
 												</div>
 											</div>
@@ -919,7 +921,7 @@
 									<div class="col-xl-6">
 										<div class="card">
 											<div class="card-header border-0 pb-0">
-												<h4 class="fs-20">Recent Booking Schedule</h4>
+												<h4 class="fs-20">School Calendar</h4>
 											</div>
 											<div class="card-body pb-2 loadmore-content" id="BookingContent">
 												<div class="text-center event-calender border-bottom booking-calender">
@@ -927,13 +929,13 @@
 												</div>	
 												<div class="rooms mt-3 d-flex align-items-center justify-content-between flex-wrap">
 													<div class="d-flex align-items-center mb-3">
-														<img src="{% static 'portal/images/room/room1.jpg' %}" alt="">
+														<img src="" alt="">
 														<div class="ms-4 bed-text">
-															<h4>Queen Bed A-12324</h4>
+															<h4>School Resumption</h4>
 															<div class="users d-flex align-items-center">
-																<img src="{% static 'portal/images/users/user1.jpg' %}" alt="">
+																<img src="" alt="">
 																<div>
-																	<span class="fs-16 font-w500 me-3">James Sukardi</span>
+																	<span class="fs-16 font-w500 me-3">Admin</span>
 																	<span>12min ago</span>
 																</div>
 															</div>
@@ -943,13 +945,13 @@
 												</div>
 												<div class="rooms mt-3 d-flex align-items-center justify-content-between flex-wrap">
 													<div class="d-flex align-items-center mb-3">
-														<img src="{% static 'portal/images/room/room2.jpg' %}" alt="">
+														<img src="" alt="">
 														<div class="ms-4 bed-text">
-															<h4>Deluxe Room B-1324</h4>
+															<h4>Mid-Term Break</h4>
 															<div class="users d-flex align-items-center">
-																<img src="{% static 'portal/images/users/user2.jpg' %}" alt="">
+																<img src="" alt="">
 																<div>
-																	<span class="fs-16 font-w500 me-3">Angela Moss</span>
+																	<span class="fs-16 font-w500 me-3">Admin</span>
 																	<span>12min ago</span>
 																</div>
 															</div>
@@ -959,13 +961,13 @@
 												</div>
 												<div class="rooms mt-3 d-flex align-items-center justify-content-between flex-wrap">
 													<div class="d-flex align-items-center mb-3">
-														<img src="{% static 'portal/images/room/room3.jpg' %}" alt="">
+														<img src="" alt="">
 														<div class="ms-4 bed-text">
-															<h4>King Big C-2445</h4>
+															<h4>School Vacates</h4>
 															<div class="users d-flex align-items-center">
-																<img src="{% static 'portal/images/users/user3.jpg' %}" alt="">
+																<img src="" alt="">
 																<div >
-																	<span class="fs-16 font-w500 me-3">JGeovanny</span>
+																	<span class="fs-16 font-w500 me-3">Admin</span>
 																	<span>12min ago</span>
 																</div>
 															</div>
@@ -974,9 +976,7 @@
 													<span class="date bg-warning mb-3">3</span>
 												</div>
 											</div>
-											<div class="card-footer border-0 m-auto pt-0">
-												<a href="javascript:void(0);" class="btn  btn-link m-auto dlab-load-more fs-16 font-w500 text-secondary" id="Booking" rel="ajax/booking.html">View more</a>
-											</div>
+
 										</div>
 									</div>
 									<div class="col-xl-6">
@@ -984,7 +984,7 @@
 											<div class="col-xl-12">
 												<div class="card">
 													<div class="card-header border-0 flex-wrap">
-														<h4 class="fs-20">Reservation Stats</h4>
+														<h4 class="fs-20">School Stats</h4>
 														<div class="card-action coin-tabs">
 															<ul class="nav nav-tabs" role="tablist">
 																<li class="nav-item">
@@ -1006,14 +1006,14 @@
 																  <rect  width="13" height="13" fill="#135846"/>
 																</svg>
 
-																Check In
+																Admission
 															</span>
 															<span class="fs-16 font-w600 me-4">23,451 <small class="text-success fs-12 font-w400">+0.4%</small></span>
 															<span class="me-sm-5 ms-0 font-w500">
 																<svg class="me-1" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 13 13">
 																  <rect  width="13" height="13" fill="#E23428"/>
 																</svg>
-																Check Out
+																graduated
 															</span>
 															<span class="fs-16 font-w600">20,441</span>
 														</div>	
@@ -1035,7 +1035,7 @@
 												<div class="card bg-secondary">
 													<div class="card-body">
 														<div class="d-flex align-items-end pb-4 justify-content-between">
-															<span class="fs-14 font-w500 text-white">Available Room Today</span>
+															<span class="fs-14 font-w500 text-white">Total Active Students</span>
 															<span class="fs-20 font-w600 text-white"><span class="pe-2"></span>683</span>
 														</div>
 														<div class="progress default-progress h-auto">
@@ -1051,7 +1051,7 @@
 												<div class="card bg-secondary">
 													<div class="card-body">
 														<div class="d-flex align-items-end pb-4 justify-content-between">
-															<span class="fs-14 font-w500 text-white">Sold Out Room Today</span>
+															<span class="fs-14 font-w500 text-white">Total Active Staff</span>
 															<span class="fs-20 font-w600 text-white"><span class="pe-2"></span>156</span>
 														</div>
 														<div class="progress default-progress h-auto">
@@ -1070,30 +1070,30 @@
 															<div class="col-xl-3 col-sm-3 col-6 mb-4 col-xxl-6">
 																<div class="text-center">
 																	<h3 class="fs-28 font-w600">569</h3>
-																	<span class="fs-16">Total Concierge</span>
+																	<span class="fs-16">Graduated Student</span>
 																</div>
 															</div>
 															<div class="col-xl-3 col-sm-3 col-6 mb-4 col-xxl-6">
 																<div class="text-center">
 																	<h3 class="fs-28 font-w600">2,342</h3>
-																	<span class="fs-16">Total Customer</span>
+																	<span class="fs-16">Active Student</span>
 																</div>
 															</div>
 															<div class="col-xl-3 col-sm-3 col-6 mb-4 col-xxl-6">
 																<div class="text-center">
 																	<h3 class="fs-28 font-w600">992</h3>
-																	<span class="fs-16">Total Room</span>
+																	<span class="fs-16">Dropped Student</span>
 																</div>
 															</div>
 															<div class="col-xl-3 col-sm-3 col-6 mb-4 col-xxl-6">
 																<div class="text-center">
 																	<h3 class="fs-28 font-w600">76k</h3>
-																	<span class="fs-16 wspace-no">Total Transaction</span>
+																	<span class="fs-16 wspace-no">Suspended Student</span>
 																</div>
 															</div>
 															<div class="mb-5 mt-4 d-flex align-items-center">
 																<div>
-																	<h4><a href="javascript:void(0);" class="text-secondary">Let Travl Generate Your Annualy Report Easily</a></h4>
+																	<h4><a href="javascript:void(0);" class="text-secondary">About Our School</a></h4>
 																	<span class="fs-12">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 		incididunt ut labo
 																	</span>
 																</div>
@@ -1110,7 +1110,7 @@
 							<div class="col-xl-12">
 								<div class="card">
 									<div class="card-header border-0 pb-0">
-										<h4 class="fs-20">Latest Review by Customers</h4>
+										<h4 class="fs-20">Latest Review by Parents</h4>
 									</div>
 									<div class="card-body pt-0">
 										<div class="front-view-slider owl-carousel owl-carousel owl-loaded owl-drag owl-dot">
@@ -1121,7 +1121,7 @@
 														<div class="customer-profile d-flex ">
 														<img src="{% static 'portal/images/users/user5.jpg' %}" alt="">
 														<div class="ms-3">
-															<h5 class="mb-0"><a href="javascript:void(0);">Kusnaidi Anderson</a></h5>
+															<h5 class="mb-0"><a href="javascript:void(0);">Dr. Anderson</a></h5>
 															<span>4m ago</span>
 														</div>
 														</div>
@@ -1139,7 +1139,7 @@
 														<div class="customer-profile d-flex ">
 														<img src="{% static 'portal/images/users/user6.jpg' %}" alt="">
 														<div class="ms-3">
-															<h5 class="mb-0"><a href="javascript:void(0);">Kusnaidi Anderson</a></h5>
+															<h5 class="mb-0"><a href="javascript:void(0);">Mr. Michael</a></h5>
 															<span>4m ago</span>
 														</div>
 														</div>
@@ -1157,7 +1157,7 @@
 														<div class="customer-profile d-flex ">
 														<img src="{% static 'portal/images/users/user7.jpg' %}" alt="">
 														<div class="ms-3">
-															<h5 class="mb-0"><a href="javascript:void(0);">Kusnaidi Anderson</a></h5>
+															<h5 class="mb-0"><a href="javascript:void(0);">Mrs. Angela E</a></h5>
 															<span>4m ago</span>
 														</div>
 														</div>

@@ -10,22 +10,55 @@ from staff.models import StaffProfile
 
 # Create your models here.
 
-class StudentProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    dob = models.DateField(blank=True, null=True)
-    class_on_admission = models.ForeignKey(Standard, on_delete=models.CASCADE)
-    date_admitted = models.DateField() 
-    parent_name = models.CharField(max_length=150, blank=True)  
-    parent_address = models.TextField(max_length=150, blank=True)  
-    parent_phone = models.CharField(max_length=15, blank=True, null=True) 
-    relationship = models.CharField(max_length=30, blank=True)
-   
+# class StudentProfile(models.Model):
+#     user = models.OneToOneField(User, on_delete=models.CASCADE)
+#     dob = models.DateField(blank=True, null=True)
+#     student_code = models.CharField(max_length=20, blank=True)  
+#     current_class = models.ForeignKey(Standard, on_delete=models.CASCADE, default='jss1', related_name='mystudent', verbose_name='current_class')
+#     class_teacher = models.ForeignKey(StaffProfile, on_delete=models.CASCADE)
+
+#     day_student = 'day_student'
+#     boarder = 'boarder'
+
+#     student_types = [
+#         (day_student, 'day_student'),
+#         (boarder, 'boarder'),
+
+#     ]
+
+#     student_type = models.CharField(max_length=15, choices=student_types, default=day_student)
     
+#     class_on_admission = models.ForeignKey(Standard, on_delete=models.CASCADE, related_name='studentprofile', verbose_name='class_admitted', default=False)
+#     date_admitted = models.DateField() 
+
+#     parent_name = models.CharField(max_length=150, blank=True)  
+#     parent_address = models.TextField(max_length=150, blank=True)  
+#     parent_phone = models.CharField(max_length=15, blank=True, null=True)
+#     parent_email = models.CharField(max_length=15, blank=True, null=True)
+#     father = 'father'
+#     mother = 'mother'
+#     sister = 'sister'
+#     brother = 'brother'
+#     other = 'other'
+
+#     relationship = [
+#         (father, 'father'),
+#         (mother, 'mother'),
+#         (sister, 'sister'),
+#         (brother, 'brother'),
+#         (other, 'other'),  
+
+#     ]
+
+#     relationship = models.CharField(max_length=15, choices=relationship, default=mother) 
 
 
-#this function returns the profile name in the admin panel profile table
-    def __str__ (self):
-        return f'{self.user.username} - StudentProfile'
+# #this function returns the profile name in the admin panel profile table
+#     def __str__ (self):
+#         return f'{self.user.username} - StudentProfile'
+
+#     def get_absolute_url(self):
+#         return reverse('students:students-detail', kwargs={'pk':self.pk})
 
 
 class StudentDetail(models.Model):
@@ -73,15 +106,30 @@ class StudentDetail(models.Model):
 
     relationship = models.CharField(max_length=15, choices=relationship, default=mother)
     
+    active = 'active'
+    graduated = 'graduated'
+    dropped = 'dropped'
+    expelled = 'expelled'
+
+    student_status = [
+        (active, 'active'),
+        (graduated, 'graduated'),
+        (dropped, 'dropped'),
+        (expelled, 'expelled'),
+
+    ]
+
+    student_status = models.CharField(max_length=15, choices=student_status, default=active)
+    
     # objects = models.Manager()
 
 #this function returns the profile name in the admin panel profile table
     def __str__ (self):
-        return f'{self.user.username} Profile'
+        return f'{self.user.username} StudentProfile'
 
 
     def get_absolute_url(self):
-        return reverse('students-detail', kwargs={'pk':self.pk})
+        return reverse('students:students-detail', kwargs={'id':self.id})
 
 
 

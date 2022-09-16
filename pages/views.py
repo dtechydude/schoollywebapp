@@ -78,4 +78,23 @@ def demo(request):
 
 
 def schoolly_home(request):
-    return render(request, 'pages/schoolly-home.html')
+    if request.method == 'POST':
+        message_name = request.POST['name']
+        message_email = request.POST['email']
+        # message_subject = request.POST['subject']
+        message = request.POST['message']
+    # messages.success(request, f'New user account has been created. You can register another user.')
+
+
+        send_mail(
+            message_name, #subject
+            message, #message
+            message_email, #from email
+            ['dtechydude@gmail.com', 'contact@schoolly.ng', 'solarrel@yahoo.co.uk'] #to email
+            ,
+            )
+
+        return render(request, 'pages/schoolly-home.html', {'message_name': message_name})
+    else:
+        return render(request, 'pages/schoolly-home.html', {})
+    # return render(request, 'pages/schoolly-home.html')

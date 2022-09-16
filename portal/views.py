@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from students.models import StudentDetail
+from staff.models import StaffProfile
 
 # Create your views here.
 #
@@ -9,10 +10,12 @@ from students.models import StudentDetail
 def portal_home(request):
     student_num = StudentDetail.objects.count()
     num_inclass = StudentDetail.objects.filter(current_class__name='Jss1').count()
+    staff_num = StaffProfile.objects.count()
     
     context = {
         'student_num': student_num,
-        'num_inclass': num_inclass
+        'num_inclass': num_inclass,
+        'staff_num': staff_num,
     }
     return render(request, 'portal/portal-home.html', context)
 

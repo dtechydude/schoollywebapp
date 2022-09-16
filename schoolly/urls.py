@@ -27,6 +27,7 @@ urlpatterns = [
     path('', include('demoschool.urls')),
     path('portal/', include('portal.urls')),
     path('quizes/', include('quizes.urls', namespace = 'quizes')),
+    path('blog/', include('blog.urls', namespace = 'blog')),
     # path('demoschool/', include('demoschool.urls')),
 
     # path('ckeditor', include('ckeditor_uploader.urls')),    #for ckeditor image upload
