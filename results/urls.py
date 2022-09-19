@@ -5,7 +5,7 @@ from results import views as result_views
 from django.contrib.auth import views as auth_views
 # from . import views
 
-
+app_name = 'results'
 
 urlpatterns = [
     path('print-result/', result_views.printresult, name="print-result"),

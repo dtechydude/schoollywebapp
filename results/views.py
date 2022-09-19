@@ -34,7 +34,7 @@ def printresultform(request):
              print_form.save()
              messages.success(request, f'Your upload is successful, enter another or refresh the page')
              
-             return HttpResponseRedirect(reverse("print-resultform"))
+             return HttpResponseRedirect(reverse("results:print-resultform"))
              
 
         

@@ -19,7 +19,7 @@ urlpatterns = [
     path('payment/', include('payment.urls')),
     path('users/', include('users.urls')),
     
-    path('results/', include('results.urls')),
+    path('results/', include('results.urls', namespace='results')),
     path('students/', include('students.urls', namespace='students')),
     path('staff/', include('staff.urls')),
     # path('demopage/', include('demopage.urls')),
@@ -28,6 +28,7 @@ urlpatterns = [
     path('portal/', include('portal.urls')),
     path('quizes/', include('quizes.urls', namespace = 'quizes')),
     path('blog/', include('blog.urls', namespace = 'blog')),
+    path('notification/', include('notification.urls', namespace = 'notification')),
     # path('demoschool/', include('demoschool.urls')),
 
     # path('ckeditor', include('ckeditor_uploader.urls')),    #for ckeditor image upload

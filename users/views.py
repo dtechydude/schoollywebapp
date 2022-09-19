@@ -71,7 +71,7 @@ def user_logout(request):
 
 @login_required
 def users_home(request):
-    return render(request, 'users/user_dashboard.html')
+    return render(request, 'portal/portal-home.html')
 
 
 

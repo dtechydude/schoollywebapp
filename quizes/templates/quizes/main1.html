@@ -29,8 +29,13 @@ home
     </div>
   </div>
 </div>
+<div>
+  <img src="{% static 'portal/images/logo.png' %}">
+</div>
 
 <div class="h1">Quiz List</div>
+<p>You are logged in as: <b>{{ user }}</b></p>
+<p>Instruction: Click the Submit once you are done, do not click twice</p>
 <hr>
 {% for obj in object_list %}
     <button
