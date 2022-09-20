@@ -7,9 +7,6 @@ from django.template.defaultfilters import slugify
 import datetime
 
 
-# Create your models here.
-
-
 class StaffCategory(models.Model):
     name = models.CharField(max_length=100, unique=True)
     slug = models.SlugField(null=True, blank=True)

@@ -1,13 +1,14 @@
 from multiprocessing import context
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
 from django.contrib import messages
 from staff.forms import StaffRegisterForm
 from staff.models import StaffProfile
 from users.models import Profile
 from django.http import HttpResponse
-from django.views.generic import DetailView
+from django.views.generic import DetailView, UpdateView, DeleteView, ListView
 #for pdf
 from django.http import FileResponse
 import io
@@ -49,6 +50,15 @@ def stafflist(request):
 
     }
     return render (request, 'staff/staff_list.html', context)
+
+class StaffListView(LoginRequiredMixin, ListView):
+    context_object_name = 'stafflist'
+    model = StaffProfile
+    queryset = StaffProfile.objects.all()
+    template_name = 'staff/staff_list.html'
+    paginate_by = 10
+    # filterset_class = StaffFilter
+    
 
 
 
@@ -127,6 +137,31 @@ class StaffDetailView(DetailView):
     def get_object(self):
         id_ = self.kwargs.get("id")
         return get_object_or_404(StaffProfile, id=id_)
+
+
+class StaffUpdateView(LoginRequiredMixin, UpdateView):
+    form_class = StaffRegisterForm
+    template_name = 'staff/staff_update_form.html'
+    # queryset = StudentDetail.objects.all()
+
+
+    def get_object(self):
+        id_ = self.kwargs.get("id")
+        return get_object_or_404(StaffProfile, id=id_)
+
+    def form_valid(self, form):
+        print(form.cleaned_data)
+        return super().form_valid(form)
+
+class StaffDeleteView(LoginRequiredMixin, DeleteView):
+    template_name = 'staff/staff_delete.html'
+    success_url = '/'
+    
+    def get_object(self):
+        id_ = self.kwargs.get("id")
+        return get_object_or_404(StaffProfile, id=id_)
+    # queryset = StudentDetail.objects.all()
+
    
 
 

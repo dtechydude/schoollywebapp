@@ -319,9 +319,8 @@
 						</a>
 						<ul aria-expanded="false">
 							<li><a href="{% url 'staff:staff_list' %}">Staff List</a></li>
-							<li><a href="#">Staff Details</a></li>
 							<li><a href="{% url 'register' %}">Register New User</a></li>
-							<li><a href="">Register New Staff</a></li>
+							<li><a href="{% url 'staff:staff_form' %}">Register New Staff</a></li>
 							<li><a href="#">Upload School Calendar</a></li>
 						
 							{% endif %}
