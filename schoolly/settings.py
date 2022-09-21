@@ -25,19 +25,26 @@ environ.Env.read_env()
 #setting the environment variables END----
 
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Set the project base directory
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# # Take environment variables from .env file
+# environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+
+# # Build paths inside the project like this: BASE_DIR / 'subdir'.
+# BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '5m$phry6ri40l7uog=k#(t3pd(c&_b+0na5b@g22#warguei3-'
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env('DEBUG_VALUE')
 
 
 ALLOWED_HOSTS = ['127.0.0.1']
@@ -123,7 +130,7 @@ WSGI_APPLICATION = 'schoolly.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
@@ -203,13 +210,14 @@ EMAIL_USE_TLS = True
 # #hiding the email user and password in environment variables
 # EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 # EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+# EMAIL_HOST = os.environ.get('EMAIL_HOST')
 #not advisable to put your raw user and password
 # EMAIL_HOST_USER = 'contact'
 # EMAIL_HOST_PASSWORD = 'olugbenga123'
 
-EMAIL_HOST_USER='contact@fizcos.com'
-EMAIL_HOST_PASSWORD='Christ4ALL1971'
-EMAIL_HOST='mail.fizcos.com'
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_HOST = os.environ.get('EMAIL_HOST')
 
 
 
