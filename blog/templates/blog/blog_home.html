@@ -74,7 +74,7 @@
 
                   <div class="meta-top">
                     <ul>
-                      <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="{{ post.author.profile.image.url }}">{{ post.author }}</a></li>
+                      <li class="d-flex align-items-center"><i class="bi bi-person"></i> {{ post.author }}</li>
                       <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="#"><time datetime="2022-01-01"> {{ post.date_posted|date:"F d, Y" }}</time></a></li>
   
                     </ul>
@@ -82,7 +82,7 @@
 
                   <div class="content">
                     <p>
-                      {{ post.content }}
+                      {{ post.content|safe }}
                     </p>
                   </div>
 

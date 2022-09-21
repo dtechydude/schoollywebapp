@@ -72,6 +72,7 @@ INSTALLED_APPS = [
     'blog',
     'notification',
     'django_filters',
+    'ckeditor',
     
     
     

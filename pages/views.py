@@ -81,13 +81,14 @@ def schoolly_home(request):
     if request.method == 'POST':
         message_name = request.POST['name']
         message_email = request.POST['email']
-        # message_subject = request.POST['subject']
+        message_phone = request.POST['phone']
+        message_subject = request.POST['subject']
         message = request.POST['message']
     # messages.success(request, f'New user account has been created. You can register another user.')
-
+        message = "Your name: " +  message_name  + " Your Email: " + message_email + " Your Phone: " + message_phone + " Subject: " + message_subject + " Content: " +  message
 
         send_mail(
-            message_name, #subject
+            'Contact form detail', #subject
             message, #message
             message_email, #from email
             ['dtechydude@gmail.com', 'contact@schoolly.ng', 'solarrel@yahoo.co.uk'] #to email
