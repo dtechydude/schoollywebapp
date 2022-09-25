@@ -19,7 +19,7 @@ def register(request):
             return redirect('student_staff')
     else:
         form = UserRegisterForm()
-    return render(request, 'users/register2.html', {'form': form})
+    return render(request, 'users/register.html', {'form': form})
 
 
 @login_required
@@ -41,7 +41,7 @@ def profile(request):
         'p_form': p_form,
     }
 
-    return render(request, 'users/profile1.html', context)
+    return render(request, 'users/profile.html', context)
 
 
 def user_login(request):
@@ -61,7 +61,7 @@ def user_login(request):
         else:
             return HttpResponse("Please use correct id and password")
     else:
-        return render(request, 'users/login1.html')
+        return render(request, 'users/login.html')
 
 @login_required
 def user_logout(request):
