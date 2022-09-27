@@ -7,14 +7,7 @@
 <div class="content-body">
     <div class="container-fluid">
         
-        <div class="row page-titles">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item active"><a href="#">RESULTS</a></li>
-                <li class="breadcrumb-item"><a href="#">Datatable</a></li>
-            </ol>
-        </div>
-        <!-- row -->
-
+         <!-- row -->
         
         <div class="row">
             <div class="col-12">
@@ -32,6 +25,7 @@
                                 <thead>
                                     
                                     <tr>
+                                        <th>S/N</th>
                                         <th>Student-Code</th>
                                         <th>Student Name</th>
                                         <th>Exam</th>
@@ -46,6 +40,7 @@
                                                                     
                                     <tr>
                                       
+                                        <td> {{ res.id }}</td>
                                         <td> {{ res.student.student_code }}</td>
                                         <td> {{ res.student.user.first_name}} {{ res.student.user.last_name}}</td>
                                         <td> {{ res.exam.name }}</td>
@@ -69,10 +64,6 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Datatable</h4>
                                 
                             {% else %}
                             <h1> Oops! You do not have permission to view this resource</h1>

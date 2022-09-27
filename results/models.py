@@ -34,7 +34,7 @@ class Result(models.Model):
     file = models.FileField(upload_to='result', blank=True)
 
     def __str__ (self):
-        return f'{self.user.username} Result'
+        return f'{self.student.user.username} Result'
 
     
 

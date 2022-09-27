@@ -1,5 +1,5 @@
 {% extends 'portal/portal-home.html'%} 
-{% block title %}<time>Schoolly Payment Reports</time>{% endblock title%}
+{% block title %}<time>Student Results</time>{% endblock title%}
 
 {% block content_body %}
 
@@ -8,7 +8,7 @@
         
         <div class="row page-titles">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item active"><a href="#">PAYMENTS</a></li>
+                <li class="breadcrumb-item active"><a href="#">RESULTS</a></li>
                 <li class="breadcrumb-item"><a href="#">Datatable</a></li>
             </ol>
         </div>
@@ -23,39 +23,35 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                          {% if mypayment and paymentdetail.confirmed is True %}
                             <table class="table table-striped">
                                 <thead>
                                   <tr>
-                                    <th scope="col">Payment Id</th>
-                                    <th scope="col">Payment Type</th>
-                                    <th scope="col">Amount</th>
-                                    <th scope="col">Date</th>
-                                    <th scope="col">Payment Method</th>
-                                    <th scope="col">Bank</th>
-                                    <th scope="col">Depositor</th>
+                                    <th scope="col">Session</th>
+                                    <th scope="col">Exam</th>
+                                    <th scope="col">Standard</th>
+                                    <th scope="col">Subject</th>
+                                    <th scope="col">Scored</th>
+                                    <th scope="col">Total</th>
+                                    <th scope="col">Remarks</th>
                                   </tr>
                                 </thead>
                                 <tbody>
-                                    {% for p in mypayment %}
+                                    {% for report in myreportsheet %}
                                   <tr>
-                                    <th>{{ p.id }}</td>
-                                    <td>{{ p.payment_name }}</td>
-                                    <td>{{ p.amount_paid }}</td>
-                                    <td>{{ p.payment_date}}</td>
-                                    <td>{{ p.payment_method }}</td>
-                                    <td>{{ p.bank }}</td>
-                                    <td>{{ p.depositor }}</td>
+                                    <th>{{ report.session }}</td>
+                                    <td>{{ report.exam }}</td>
+                                    <td>{{ report.standard }}</td>
+                                    <td>{{ report.subject_name}}</td>
+                                    <td>{{ report.cand_score }}</td>
+                                    <td>{{ report.pass_mark }}</td>
+                                    <td>{{ report.remark }}</td>
                                     
                                   </tr>
                                   {% endfor %}
                                   
                                 </tbody>
-                                
                               </table>
-                              {% else %}
-                              <h1>You do not have any payment record yet!</h1>
-                              {% endif %}
+                         
                         </div>
                     </div>
                 </div>

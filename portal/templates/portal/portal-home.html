@@ -292,10 +292,11 @@
 						</a>
 						<ul aria-expanded="false">
 							{% if user.is_authenticated and user.profile.user_type == 'student' %}
-							<li><a href="{% url 'results:my-result' %}">Check Result</a></li>
+							<li><a href="{% url 'results:my-result' %}">Download Result</a></li>
+							<li><a href="{% url 'results:my-reportsheet' %}">View Result</a></li>
 							<li><a href="#">Online Pay</a></li>
 							<li><a href="{% url 'payment:payment_form' %}">Upload Payment</a></li>
-							<li><a href="#">My Receipts</a></li>
+							<li><a href="{% url 'payment:my_payments' %}">My Receipts</a></li>
 							<li><a href="{% url 'notification:calendar' %}">School Calendar</a></li>
 							
 							{% else %}

@@ -23,7 +23,7 @@ class PaymentChart(models.Model):
 class PaymentDetail(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     payment_name = models.ForeignKey(PaymentChart, on_delete=models.CASCADE)
-    amount_paid =models.CharField(max_length=150, blank=True) 
+    amount_paid =models.CharField(max_length=150, blank=False) 
     payment_date = models.DateField()  
 
     cash = 'cash'
@@ -41,7 +41,8 @@ class PaymentDetail(models.Model):
     depositor = models.CharField(max_length=150, blank=True) 
     bank_name = models.CharField(max_length=150, blank=True) 
     teller = models.CharField(max_length=150, blank=True) 
-    description = models.CharField(max_length=200, blank=True)    
+    description = models.CharField(max_length=200, blank=True)
+    confirmed = models.BooleanField(default=False)     
 
 
     def __str__ (self):

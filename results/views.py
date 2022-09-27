@@ -109,3 +109,20 @@ def download(request,path):
 
     raise Http404
 
+
+@login_required
+def view_self_reportsheet(request, **kwargs):
+# this issue was solved by me.
+    try:     
+        myreportsheet = Result.objects.filter(student_id=StudentDetail.objects.get(user_id=request.user)).order_by("-id")
+    
+        context = {
+            'myreportsheet':myreportsheet
+            
+        }    
+    
+        return render(request, 'results/my_reportsheet.html', context)
+
+    except StudentDetail.DoesNotExist:
+        return HttpResponse('You are not a student')
+        

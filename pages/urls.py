@@ -5,7 +5,7 @@ from pages import views as page_views
 
 urlpatterns = [
 
-    path('schoolly/', page_views.homepage, name='home'),
+    path('demoschool/', page_views.homepage, name='home'),
     path('', page_views.schoolly_home, name='schoolly_home'),
     path('contact/', page_views.contact, name='contact'),
     path('affiliate/', page_views.affiliate, name='affiliate'),

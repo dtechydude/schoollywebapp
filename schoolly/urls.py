@@ -14,7 +14,7 @@ from django.views.static import serve
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('curriculum/', include('curriculum.urls')),
-    path('pages/', include('pages.urls')),
+    path('', include('pages.urls')),
     path('payment/', include('payment.urls')),
     path('users/', include('users.urls')),
    
@@ -23,7 +23,7 @@ urlpatterns = [
     path('staff/', include('staff.urls')),
 
     path('attendance/', include('attendance.urls')),
-    path('', include('demoschool.urls')),
+    path('demoschool', include('demoschool.urls')),
     path('portal/', include('portal.urls')),
     path('quizes/', include('quizes.urls', namespace = 'quizes')),
     path('blog/', include('blog.urls', namespace = 'blog')),

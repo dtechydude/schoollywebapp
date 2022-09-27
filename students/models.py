@@ -72,7 +72,7 @@ class StudentDetail(models.Model):
 
 #this function returns the profile name in the admin panel profile table
     def __str__ (self):
-        return f'{self.user.username} StudentProfile'
+        return f'{self.user.username} - {self.user.last_name }  {self.user.first_name}'
 
 
     def get_absolute_url(self):
