@@ -11,16 +11,24 @@ class Profile(models.Model):
     address = models.CharField(max_length=20, blank=True, null=True)
 
     select = 'Select'
-    lagos = 'Lagos'
-    ogun = 'Ogun'
+    southwest = 'SouthWest'
+    southeast = 'SouthEast'
+    southsouth = 'SouthSouth'
+    northwest = 'NorthWest'
+    northeast = 'NorthEast'
+    northcentral = 'NorthCentral'
     
-    state_origin = [
+    region_origin = [
         ('Select', select),
-        ('Lagos', lagos),
-        ('Ogun', ogun),
+        ('SouthWest', southwest),
+        ('SouthEast', southeast),
+        ('SouthSouth', southsouth),
+        ('NorthWest', northwest),
+        ('NorthEast', northeast),
+        ('NorthCentral', northcentral),
     ]
 
-    state = models.CharField(max_length=10, choices=state_origin, default=select)
+    region_origin = models.CharField(max_length=15, choices=region_origin, default=select)
 
     male = 'male'
     female = 'female'
@@ -36,9 +44,6 @@ class Profile(models.Model):
     phone = models.CharField(max_length=11, blank=True)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
-
-    # image = models.ImageField(upload_to=path_and_rename, verbose_name="Profile Picture", blank=True )
-    # school_name = models.OneToOneField(Schools, on_delete=models.CASCADE, blank=True, null=True)
     
     teacher = 'teacher'
     student = 'student'

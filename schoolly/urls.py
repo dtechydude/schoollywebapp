@@ -13,16 +13,15 @@ from django.views.static import serve
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('', include('users.urls')),
     path('curriculum/', include('curriculum.urls')),
     path('pages/', include('pages.urls')),
     path('payment/', include('payment.urls')),
     path('users/', include('users.urls')),
-    
+   
     path('results/', include('results.urls', namespace='results')),
     path('students/', include('students.urls', namespace='students')),
     path('staff/', include('staff.urls')),
-    # path('demopage/', include('demopage.urls')),
+
     path('attendance/', include('attendance.urls')),
     path('', include('demoschool.urls')),
     path('portal/', include('portal.urls')),

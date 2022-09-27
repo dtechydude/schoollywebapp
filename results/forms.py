@@ -9,7 +9,16 @@ class ResultUploadForm(forms.ModelForm):
             model = Result
             fields = '__all__'
 
-            #widget = {'exam_date': forms.DateInput(attrs={'type': 'date'})}
+            widgets = {
+            'exam_date': forms.DateInput(
+                format=('%d/%m/%Y'),
+                attrs={'class': 'form-control', 
+                       'placeholder': 'Select a date',
+                       'type': 'date'  # <--- IF I REMOVE THIS LINE, THE INITIAL VALUE IS DISPLAYED
+                      }),
+        }
+
+           
 
 
 

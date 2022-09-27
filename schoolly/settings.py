@@ -71,7 +71,6 @@ INSTALLED_APPS = [
     'payment.apps.PaymentConfig',
     'crispy_forms',
     'storages',
-    # 'ckeditor',
     'quizes',
     'quiz_results',
     'quiz_questions',
@@ -80,9 +79,6 @@ INSTALLED_APPS = [
     'notification',
     'django_filters',
     'ckeditor',
-    
-    
-    
     # 'ckeditor_uploader',  #for ckeditor image upload
     'embed_video',
     # 'bootstrap_datepicker_plus',

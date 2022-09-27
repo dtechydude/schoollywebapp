@@ -120,12 +120,11 @@
                                             <div class="read-content-body">
                                                 <h5 class="mb-4">
                                                 {{ mails.content}}</h5>
-                                                <p class="mb-2"><strong>Pragraph,</strong> content also</p>
-                                                <p class="mb-2">paragh1.
-                                                </p>
-                                                <p class="mb-2">paragraph2</p>
-                                                <hr>
-                                                <a href="{% url 'notification:mail-self' %}">Back to my Inbox</a>
+                                
+                                               <div>
+                                                <button type="button" class="btn btn-primary" ><a href="{% url 'notification:mail-self' %}"><span style="color:white">Back to my Inbox</span></a></button>
+                                               </div>
+                                                
                                                 <hr>
                                             </div>
                                             <div class="read-content-attachment">
@@ -136,11 +135,11 @@
                                             </div>
                                             <hr>
                                             <div class="mb-3 pt-3">
-                                                <textarea name="write-email" id="write-email" cols="30" rows="5" class="form-control" placeholder="It's really an amazing.I want to know more about it..!"></textarea>
+                                                <textarea name="write-email" id="write-email" cols="30" rows="5" class="form-control" placeholder="type your reply here..."></textarea>
                                             </div>
                                         </div>
                                         <div class="text-end">
-                                            <button class="btn btn-primary " type="button">Reply</button>
+                                            <button class="btn btn-primary" type="button">Reply</button>
                                         </div>
                                     </div>
                                 </div>

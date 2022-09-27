@@ -27,15 +27,12 @@ class NotificationCreateView(CreateView):
     form_class = MailForm
     context_object_name = 'notification'
     model = Notification
-    template_name = 'notification/mail_create.html'
-    
+    template_name = 'notification/send_mail.html'
+
     def form_valid(self, form, *args, **kwargs):
-        self.object = self.get_object()
-        fm = form.save(commit=False)
-        fm.sender = self.request.user
-        fm.recipient = self.object.recipient
-        fm.save()
-        return HttpResponseRedirect(self.get_success_url())
+        form.instance.sender = self.request.user
+        return super().form_valid(form)
+
 
 
 class NotificationDeleteView(DeleteView):

@@ -14,7 +14,7 @@ class StandardListView(LoginRequiredMixin, ListView):
     context_object_name = 'standards'
     model = Standard
     # template_name = 'curriculum/class_list.html'
-    template_name = 'portal/elearning_class.html'
+    template_name = 'curriculum/elearning_class.html'
 
 class SubjectListView(DetailView):
     context_object_name = 'standards'
@@ -31,7 +31,7 @@ class LessonListView(DetailView):
 class LessonDetailView(DetailView, FormView):
     context_object_name = 'lessons'
     model = Lesson
-    template_name = 'portal/lesson-detail.html'
+    template_name = 'curriculum/lesson-detail.html'
     # for replies to lessons
     form_class = CommentForm
     second_form_class = ReplyForm

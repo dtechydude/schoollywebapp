@@ -5,7 +5,6 @@ from django.db import models
 from curriculum.models import Standard
 from students.models import StudentDetail
 
-# Create your models here.
 
 
 class Attendance(models.Model):
