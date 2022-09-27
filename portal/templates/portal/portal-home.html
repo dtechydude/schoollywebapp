@@ -53,7 +53,7 @@
 		<div class="nav-header">
 			
 				<div>
-					<img src="{% static 'portal/images/logo.png' %}">
+					<img src="{% static 'portal/images/logo2.png' %}">
 				</div>
 			<div class="nav-control">
 				<div class="hamburger">
@@ -296,7 +296,7 @@
 							<li><a href="#">Online Pay</a></li>
 							<li><a href="{% url 'payment:payment_form' %}">Upload Payment</a></li>
 							<li><a href="#">My Receipts</a></li>
-							<li><a href="#">School Calendar</a></li>
+							<li><a href="{% url 'notification:calendar' %}">School Calendar</a></li>
 							
 							{% else %}
 							<li><a href="{% url 'students:all-students' %}">Student List</a></li>
@@ -373,6 +373,7 @@
 						</a>
 						<ul aria-expanded="false">
 							<li><a href="#">Complaint</a></li>
+							<li><a href="{% url 'notification:calendar' %}">School Calendar</a></li>
 							{% if user.is_authenticated and user.is_superuser %}
 							<li><a href="{% url 'notification:new-mail' %}">Send Mail</a></li>
 							{% endif %}
@@ -556,8 +557,8 @@
 														<p>Full Name</p>
 													</div>
 													<div class="profile-email px-2 pt-2">
-														<h4 class="text-muted mb-0">{{ user.studentdetail.parent_phone}}</h4>
-														<p>Parent Phone</p>
+														<h4 class="text-muted mb-0">{{ user.studentdetail.student_code}}</h4>
+														<p>Student unique Code</p>
 													</div>
 													
 												</div>
@@ -576,18 +577,18 @@
 														<div class="text-center">
 															<div class="row">
 																<div class="col">
-																	<h3 class="m-b-0">150</h3><span>Follower</span>
+																	<h3 class="m-b-0">+234</h3><span>Country Code</span>
 																</div>
 																<div class="col">
-																	<h3 class="m-b-0">140</h3><span>Place Stay</span>
+																	<h3 class="m-b-0">001</h3><span>School Code</span>
 																</div>
 																<div class="col">
-																	<h3 class="m-b-0">45</h3><span>Reviews</span>
+																	<h3 class="m-b-0">898</h3><span>Class Code</span>
 																</div>
 															</div>
 															<div class="mt-4">
-																<a href="javascript:void(0);" class="btn btn-primary mb-1 me-1">Follow</a> 
-																<a href="javascript:void(0);" class="btn btn-primary mb-1" data-bs-toggle="modal" data-bs-target="#sendMessageModal">Send Message</a>
+																<a href="{% url 'profile' %}" class="btn btn-primary mb-1 me-1">Edit My Profile</a> 
+																<a href="javascript:void(0);" class="btn btn-primary mb-1" data-bs-toggle="modal" data-bs-target="#sendMessageModal">School Calendar</a>
 															</div>
 														</div>
 														<!-- Modal -->
@@ -595,37 +596,75 @@
 															<div class="modal-dialog modal-dialog-centered" role="document">
 																<div class="modal-content">
 																	<div class="modal-header">
-																		<h5 class="modal-title">Send Message</h5>
+																		<h5 class="modal-title">School Calendar</h5>
 																		<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 																	</div>
+																	
+																	<!--Modal body -->
 																	<div class="modal-body">
-																		<form class="comment-form">
-																			<div class="row"> 
-																				<div class="col-lg-6">
-																					<div class="mb-3">
-																						<label class="text-black font-w600 form-label">Name <span class="required">*</span></label>
-																						<input type="text" class="form-control" value="Author" name="Author" placeholder="Author">
-																					</div>
-																				</div>
-																				<div class="col-lg-6">
-																					<div class="mb-3">
-																						<label class="text-black font-w600 form-label">Email <span class="required">*</span></label>
-																						<input type="text" class="form-control" value="Email" placeholder="Email" name="Email">
-																					</div>
-																				</div>
-																				<div class="col-lg-12">
-																					<div class="mb-3">
-																						<label class="text-black font-w600 form-label">Comment</label>
-																						<textarea rows="8" class="form-control" name="comment" placeholder="Comment"></textarea>
-																					</div>
-																				</div>
-																				<div class="col-lg-12">
-																					<div class="mb-3 mb-0">
-																						<input type="submit" value="Post Comment" class="submit btn btn-primary" name="submit">
-																					</div>
-																				</div>
-																			</div>
-																		</form>
+																		
+														{% for s in events %}
+													<div class="d-flex align-items-center mb-3">
+														
+														<div class="ms-4 bed-text">
+													
+															<h4>{{ s.event_name }}</h4>
+															<div class="users d-flex align-items-center">
+																
+																<div>
+																	<span class="fs-16 font-w500 me-3"><b>Date: </b>{{ s.event_date }}</span>
+																	<span>Duration:{{ s.duration}}-day(s)</span><br>
+																	<span><b>Description:</b>{{ s.event_description}}</span>
+																	
+																</div>
+															</div>
+														</div>
+													</div>											
+																						
+													
+													{% endfor %}
+													
+													<!-- event calendar ends here-->
+													
+												  {% if events.has_other_pages %}
+													<nav>
+													<ul class="pagination justify-content-center">
+														{% if events.has_previous %}
+														<li class="page-item">
+															<a class="page-link" href="?page={{ events.previous_page_number }}" aria-label="Previous">
+															<span aria-hidden="true">&laquo;</span>
+															</a>
+														</li>
+														{% else %}
+														<li class="page-item disabled">
+															<span class="page-link" aria-hidden="true">&laquo;</span>
+														</li>
+														{% endif %}
+
+														{% for p in events.paginator.page_range %}
+														{% if events.number == p %}
+															<li class="page-item"><a class="page-link" style="color: red;" href="#">{{ p }}</a></li>
+														{% else %}
+															<li class="page-item"><a class="page-link" href="?page={{ p }}">{{ p }}</a></li>
+														{% endif %}
+														{% endfor %}
+
+														{% if events.has_next %}
+														<li class="page-item">
+															<a class="page-link" href="?page={{ events.next_page_number }}" aria-label="Next">
+															<span aria-hidden="true">&raquo;</span>
+															</a>
+														</li>
+														{% else %}
+														<li class="page-item disabled">
+															<span class="page-link" aria-hidden="true">&raquo;</span>
+														</li>
+														{% endif %}
+													</ul>
+													</nav>
+												{% endif %}
+
+
 																	</div>
 																</div>
 															</div>
@@ -639,9 +678,9 @@
 												<div class="card-body">
 													<div class="profile-blog">
 														<h5 class="text-primary d-inline">General Information</h5>
-														<img src="images/profile/1.jpg" alt="" class="img-fluid mt-4 mb-4 w-100">
-														<h4><a href="post-details.html" class="text-black">Darwin Creative Agency Theme</a></h4>
-														<p class="mb-0">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+														<img src="{% static 'portal/images/profile/1.jpg' %}" alt="" class="img-fluid mt-4 mb-4 w-100">
+														<h4 class="text-black">Using the School Portal</h4>
+														<p class="mb-0">Welcome to the schoool portal, you can explore the navigation menu to familiarize with the features. Please contact the support team for any query.</p>
 													</div>
 												</div>
 											</div>
@@ -653,12 +692,12 @@
 											<div class="card">
 												<div class="card-body">
 													<div class="profile-news">
-														<h5 class="text-primary d-inline">Our Latest News</h5>
+														<h5 class="text-primary d-inline">Our School Calendar</h5>
 														<div class="media pt-3 pb-3">
 															<img src="{% static 'portal/images/profile/5.jpg' %}" alt="image" class="me-3 rounded" width="75">
 															<div class="media-body">
-																<h5 class="m-b-5"><a href="post-details.html" class="text-black">Collection of textile samples</a></h5>
-																<p class="mb-0">I shared this on my fb wall a few months back, and I thought.</p>
+																<h5 class="m-b-5">Explore Calendar Page</h5>
+																<p class="mb-0">All School events are listed in the calendar.</p>
 															</div>
 														</div>
 												
@@ -703,9 +742,9 @@
 																</div>
 																<div class="row mb-2">
 																	<div class="col-sm-3 col-5">
-																		<h5 class="f-w-500">Admission Date <span class="pull-end">:</span></h5>
+																		<h5 class="f-w-500">Phone Number <span class="pull-end">:</span></h5>
 																	</div>
-																	<div class="col-sm-9 col-7"><span>{{user.studentdetail.date_admitted }}</span>
+																	<div class="col-sm-9 col-7"><span>{{user.profile.studentdetail.phone }}</span>
 																	</div>
 																</div>
 																<div class="row mb-2">
@@ -714,6 +753,14 @@
 																		</h5>
 																	</div>
 																	<div class="col-sm-9 col-7"><span>{{ user.studentdetail.dob }}</span>
+																	</div>
+																</div>
+																<div class="text-muted"><h5 style="color:red">Academic Information:</h5></div>
+																<div class="row mb-2">
+																	<div class="col-sm-3 col-5">
+																		<h5 class="f-w-500">Admission Date <span class="pull-end">:</span></h5>
+																	</div>
+																	<div class="col-sm-9 col-7"><span>{{user.studentdetail.date_admitted }}</span>
 																	</div>
 																</div>
 																<div class="row mb-2">
@@ -733,6 +780,7 @@
 																</div>
 															</div>
 															<div class="row mb-2">
+																<div class="text-muted"><h5 style="color:red">Parent Information:</h5></div>
 																<div class="col-sm-3 col-5">
 																	<h5 class="f-w-500">Parent Name <span class="pull-end">:</span>
 																	</h5>
@@ -749,15 +797,22 @@
 																</div>
 																<div class="row mb-2">
 																	<div class="col-sm-3 col-5">
-																		<h5 class="f-w-500">Parent Email <span class="pull-end">:</span></h5>
+																		<h5 class="f-w-500">Parent's Email <span class="pull-end">:</span></h5>
 																	</div>
 																	<div class="col-sm-9 col-7"><span>{{ user.studentdetail.parent_email}}</span>
+																	</div>
+																</div>
+																<div class="row mb-2">
+																	<div class="col-sm-3 col-5">
+																		<h5 class="f-w-500">Parent's Phone <span class="pull-end">:</span></h5>
+																	</div>
+																	<div class="col-sm-9 col-7"><span>{{ user.studentdetail.parent_phone}}</span>
 																	</div>
 																</div>
 																
 																<div class="row mb-2">
 																	<div class="col-sm-3 col-5">
-																		<h5 class="f-w-500">Special Case <span class="pull-end">:</span></h5>
+																		<h5 class="f-w-500" style="color:red;">Special Case <span class="pull-end">:</span></h5>
 																	</div>
 																	<div class="col-sm-9 col-7"><span>None</span>
 																	</div>
@@ -766,25 +821,27 @@
 														</div>
 														<!-- <div id="profile-settings" class="tab-pane fade"> -->
 
-																		<button class="btn btn-success"  ><a href="{% url 'profile' %}">Update Profile</a></button>
-																	
-																	</form>
-																</div>
-															</div>
+																		
+															
+																
+														<div align="center"><button class="btn btn-danger"  ><a href="{% url 'profile' %}"><span style="color:white;">Update My Profile</span></a></button></div>
+																
+															
+															</form>
 														</div>
 													</div>
 												</div>
-												<!-- Modal -->
-												
+											</div>
 										</div>
-									</div>
+										<!-- Modal -->
+										
 								</div>
 							</div>
 						</div>
 					</div>
-					
-													
-								
+				</div>
+					</div>
+							
 
 							{% else %}
 							<div class="col-xl-12">
@@ -800,7 +857,7 @@
 												</div>	
 												<div class="rooms mt-3 d-flex align-items-center justify-content-between flex-wrap">
 													<!-- School event calendar starts here-->
-													{% for s in queryset %}
+													{% for s in events %}
 													<div class="d-flex align-items-center mb-3">
 														
 														<div class="ms-4 bed-text">
@@ -810,41 +867,60 @@
 																
 																<div>
 																	<span class="fs-16 font-w500 me-3"><b>Date: </b>{{ s.event_date }}</span>
-																	<span>Duration:{{ s.duration}}-day(s)</span>
+																	<span>Duration:{{ s.duration}}-day(s)</span><br>
+																	<span><b>Description:</b>{{ s.event_description}}</span>
 																	
 																</div>
 															</div>
 														</div>
 													</div>
 												
-													<span class="date bg-secondary mb-3">{{ s.id }}</span>
-													<span><b>Description: </b>{{ s.event_description }}</span>
+													
+													
 													
 													{% endfor %}
+													
 													<!-- event calendar ends here-->
-													{% if is_paginated %}
+													
+												  {% if events.has_other_pages %}
+													<nav>
+													<ul class="pagination justify-content-center">
+														{% if events.has_previous %}
+														<li class="page-item">
+															<a class="page-link" href="?page={{ events.previous_page_number }}" aria-label="Previous">
+															<span aria-hidden="true">&laquo;</span>
+															</a>
+														</li>
+														{% else %}
+														<li class="page-item disabled">
+															<span class="page-link" aria-hidden="true">&laquo;</span>
+														</li>
+														{% endif %}
 
-													{% if page_obj.has_previous%}
-													  <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
-													  <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
-													  {% endif %}
-													  {% for num in page_obj.paginator.page_range %}
-													   
-													  {% if page_obj.number == num %}
-														<a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
-														{% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-														<a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+														{% for p in events.paginator.page_range %}
+														{% if events.number == p %}
+															<li class="page-item"><a class="page-link" style="color: red;" href="#">{{ p }}</a></li>
+														{% else %}
+															<li class="page-item"><a class="page-link" href="?page={{ p }}">{{ p }}</a></li>
 														{% endif %}
-														
 														{% endfor %}
-													   
-														{% if page_obj.has_next %}
-														<a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number}}">Next</a>
-														<a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+
+														{% if events.has_next %}
+														<li class="page-item">
+															<a class="page-link" href="?page={{ events.next_page_number }}" aria-label="Next">
+															<span aria-hidden="true">&raquo;</span>
+															</a>
+														</li>
+														{% else %}
+														<li class="page-item disabled">
+															<span class="page-link" aria-hidden="true">&raquo;</span>
+														</li>
 														{% endif %}
-									  
-												  {% endif %}
-	
+													</ul>
+													</nav>
+												{% endif %}
+												
+													
 													
 
 												</div>
@@ -1069,6 +1145,7 @@
 			</div>
 		</div>
 		
+		
 		{% endblock content_body %}
 		<!--**********************************
 			Content body end
@@ -1081,9 +1158,10 @@
 		***********************************-->
 		<div class="footer">
 			<div class="copyright">
-				<p>Copyright © Designed &amp; Developed by <a href="https://fizcos.com/" target="_blank">Fizcos Infotech</a> 2022</p>
+				<p>Copyright © Developed by <a href="https://fizcos.com/" target="_blank">Fizcos Infotech</a> 2022</p>
 			</div>
 		</div>
+		
 		<!--**********************************
 			Footer end
 		***********************************-->

@@ -8,6 +8,8 @@ from notification.models import Notification
 from .forms import MailForm
 from django.contrib.auth.models import User
 import os
+from portal.models import SchoolCalendar
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 
@@ -69,6 +71,22 @@ def download(request,path):
     raise Http404
 
 
+@login_required
+def school_calendar(request):
 
-
-
+    queryset = SchoolCalendar.objects.all().order_by("-id")
+    page = request.GET.get('page', 1)
+    paginator = Paginator(queryset, 4)
+    try:
+        events = paginator.page(page)
+    except PageNotAnInteger:
+        events = paginator.page(1)
+    except EmptyPage:
+        events = paginator.page(paginator.num_pages)
+    
+    context = {
+       
+        'queryset': queryset,
+        'events':events,
+    }
+    return render(request, 'notification/school_calendar.html', context)

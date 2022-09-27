@@ -4,16 +4,9 @@ from students.models import StudentDetail
 from staff.models import StaffProfile
 from django.views.generic import  ListView
 from .models import SchoolCalendar
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
-#
-class CalendarListView(ListView):
-    model = SchoolCalendar
-    template_name = 'portal/portal-home.html'
-    context_object_name = 'calendar'
-    ordering = ['-date_posted']
-    paginate_by = 4
-
 
 @login_required
 def portal_home(request):
@@ -25,7 +18,17 @@ def portal_home(request):
     suspended = StudentDetail.objects.filter(student_status='suspended').count()
     active = StudentDetail.objects.filter(student_status='active').count()
     staff_num = StaffProfile.objects.count()
-    queryset = SchoolCalendar.objects.all()
+    
+    # Build a paginator with function based view
+    queryset = SchoolCalendar.objects.all().order_by("-id")
+    page = request.GET.get('page', 1)
+    paginator = Paginator(queryset, 4)
+    try:
+        events = paginator.page(page)
+    except PageNotAnInteger:
+        events = paginator.page(1)
+    except EmptyPage:
+        events = paginator.page(paginator.num_pages)
     
     context = {
         'student_num': student_num,
@@ -37,6 +40,7 @@ def portal_home(request):
         'suspended': suspended,
         'active': active,
         'queryset': queryset,
+        'events':events,
     }
     return render(request, 'portal/portal-home.html', context)
 

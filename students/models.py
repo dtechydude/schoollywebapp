@@ -12,7 +12,7 @@ from staff.models import StaffProfile
 
 class StudentDetail(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    student_code = models.CharField(max_length=20, blank=True)  
+    student_code = models.CharField(max_length=20, blank=True, default='None')  
     current_class = models.ForeignKey(Standard, on_delete=models.CASCADE, default='jss1')
     class_teacher = models.ForeignKey(StaffProfile, on_delete=models.CASCADE)
 

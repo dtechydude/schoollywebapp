@@ -11,18 +11,11 @@
             <div class="container-fluid">
 				<div class="row page-titles">
 					<ol class="breadcrumb">
-						<li class="breadcrumb-item active"><a href="javascript:void(0)">User Account</a></li>
-						<li class="breadcrumb-item"><a href="javascript:void(0)">Management</a></li>
+						<li class="breadcrumb-item active"><a href="javascript:void(0)">School Calendar</a></li>
+						<li class="breadcrumb-item"><a href="javascript:void(0)">School Info</a></li>
 					</ol>
                 </div>
-                <div>
-                    {% if messages %}
-                    {% for message in messages %}
-                    <div class ="alert alert-{{ message.tags }}">{{ message }}</div>
-                    {% endfor%}
-                    {% endif%}
-                </div>
-				
+               
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="card">
@@ -89,19 +82,73 @@
                                     </div>
                                     
                                     <div class="col-lg-8 order-lg-1">
-                                        <h4 class="mb-3">Update My Profile</h4>
-                                        <span>(You can update any of the information in thisform)</span>
+                                        <h4 class="mb-3" style="color:red;">View School Event Calendar</h4>
+                                        <hr>
                                         
-                                            <form method="POST" enctype="multipart/form-data" class="needs-validation">
-                                                {% csrf_token %}
-                                            <div class="row">
-                                                {{ u_form|crispy }}
-                                                {{ p_form|crispy }}
-                                                <div class="text-center mt-4">
-                                                    <button type="submit" value="submit" class="btn btn-primary btn-block">Update Profile</button>
+                                        {% for s in events %}
+                                        <div class="d-flex align-items-center mb-3">
+                                            
+                                            <div class="ms-4 bed-text">
+                                        
+                                                <h4>{{ s.event_name }}</h4>
+                                                <div class="users d-flex align-items-center">
+                                                    
+                                                    <div>
+                                                        <span class="fs-16 font-w500 me-3"><b>Date: </b>{{ s.event_date }}</span>
+                                                        <span>Duration:{{ s.duration}}-day(s)</span><br>
+                                                        <span><b>Description:</b>{{ s.event_description}}</span>
+                                                        
+                                                    </div>
                                                 </div>
+                                            </div>
+                                        </div>
+                                    
+                                        <hr>
                                         
-                                        </form>
+                                        
+                                        {% endfor %}
+                                        
+                                        
+                                        <!-- event calendar ends here-->
+                                        
+                                      {% if events.has_other_pages %}
+                                        <nav>
+                                        <ul class="pagination justify-content-center">
+                                            {% if events.has_previous %}
+                                            <li class="page-item">
+                                                <a class="page-link" href="?page={{ events.previous_page_number }}" aria-label="Previous">
+                                                <span aria-hidden="true">&laquo;</span>
+                                                </a>
+                                            </li>
+                                            {% else %}
+                                            <li class="page-item disabled">
+                                                <span class="page-link" aria-hidden="true">&laquo;</span>
+                                            </li>
+                                            {% endif %}
+
+                                            {% for p in events.paginator.page_range %}
+                                            {% if events.number == p %}
+                                                <li class="page-item"><a class="page-link" style="color: red;" href="#">{{ p }}</a></li>
+                                            {% else %}
+                                                <li class="page-item"><a class="page-link" href="?page={{ p }}">{{ p }}</a></li>
+                                            {% endif %}
+                                            {% endfor %}
+
+                                            {% if events.has_next %}
+                                            <li class="page-item">
+                                                <a class="page-link" href="?page={{ events.next_page_number }}" aria-label="Next">
+                                                <span aria-hidden="true">&raquo;</span>
+                                                </a>
+                                            </li>
+                                            {% else %}
+                                            <li class="page-item disabled">
+                                                <span class="page-link" aria-hidden="true">&raquo;</span>
+                                            </li>
+                                            {% endif %}
+                                        </ul>
+                                        </nav>
+                                    {% endif %}
+                                    
                                     </div>
                                 </div>
                             </div>
