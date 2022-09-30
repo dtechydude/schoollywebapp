@@ -7,16 +7,16 @@
       <nav id="navbar" class="navbar">
         <ul>
 
-          <li><a href="{% url 'schoolly_home' %}">Home</a></li>
-          <li><a class="nav-link scrollto" href="{% url 'schoolly_home' %}">About Schoolly</a></li>
-          <li><a class="nav-link scrollto" href="{% url 'schoolly_home' %}">Features</a></li>
-          <li><a class="nav-link scrollto" href="{% url 'schoolly_home' %}">Pricing</a></li>
-          <li><a class="nav-link scrollto" href="{% url 'schoolly_home' %}">Faq</a></li>
-          <li><a href="{% url 'login' %}">Login</a></li>
+          <li><a href="{% url 'pages:schoolly_home' %}">Home</a></li>
+          <li><a class="nav-link scrollto" href="{% url 'pages:schoolly_home' %}">About Schoolly</a></li>
+          <li><a class="nav-link scrollto" href="{% url 'pages:schoolly_home' %}">Features</a></li>
+          <li><a class="nav-link scrollto" href="{% url 'pages:schoolly_home' %}">Pricing</a></li>
+          <li><a class="nav-link scrollto" href="{% url 'pages:schoolly_home' %}">Faq</a></li>
+          <li><a href="{% url 'users:login' %}">Login</a></li>
          
           </li>
           
-          <li><a class="nav-link scrollto" href="{% url 'schoolly_home' %}">Contact</a></li>
+          <li><a class="nav-link scrollto" href="{% url 'pages:schoolly_home' %}">Contact</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle d-none"></i>
       </nav><!-- .navbar -->
@@ -34,7 +34,7 @@
       <div class="d-flex justify-content-between align-items-center">
         <h2>SchoollyBlog</h2>
         <ol>
-          <li><a href="{% url 'schoolly_home' %}">Home</a></li>
+          <li><a href="{% url 'pages:schoolly_home' %}">Home</a></li>
           <li>Blog</li>
         </ol>
       </div>
@@ -219,6 +219,3 @@
   {% endblock content_body %}
 
   <!-- ======= Footer ======= -->
-
-
-
