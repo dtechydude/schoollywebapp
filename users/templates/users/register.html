@@ -1,5 +1,6 @@
 
 {% load static %}
+{% load crispy_forms_tags %}
 
 <!DOCTYPE html>
 <html lang="en" class="h-100">
@@ -35,7 +36,7 @@
                             <div class="col-xl-12">
                                 <div class="auth-form">
 									<div class="text-center mb-2">
-										<a href="{% url 'home' %}"><img src="{% static 'portal/images/logo-full.png' %}" alt=""></a>
+										<a href="{% url 'pages:home' %}"><img src="{% static 'portal/images/logo-full.png' %}" alt=""></a>
 									</div>
                                     <h6 class="text-center mb-2">Register New User</h2>
                                     {% if messages %}
@@ -44,14 +45,14 @@
                                     {% endfor%}
                                     {% endif%}
                                     <div class="new-account mt-3">
-                                        <p>Already have an account? <a class="text-primary" href="{% url 'login' %}">Sign in</a></p>
+                                        <p>Already have an account? <a class="text-primary" href="{% url 'users:login' %}">Sign in</a></p>
                                     </div>
                                     
                                        
                                     <form  action="" method="post">
                                         {% csrf_token %}
                                         
-                                       {{ form.as_p }}
+                                       {{ form|crispy }}
                                        <div class="text-center mt-4">
                                         <button type="submit" value="submit" class="btn btn-primary btn-block">Sign me up</button>
                                     </div>

@@ -8,8 +8,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Education master is one of the best educational html template, it's suitable for all education websites like university,college,school,online education,tution center,distance education,computer education">
-    <meta name="keyword" content="education html template, university template, college template, school template, online education template, tution center template">
+    <meta name="description" content="Schoolly Education Software for school management">
+    <meta name="keyword" content="schoolly, education, software for, school, management">
     <!-- FAV ICON(BROWSER TAB ICON) -->
     <link rel="shortcut icon" href="{% static 'portal/images/favicon.png' %}" type="image/x-icon">
     <!-- GOOGLE FONT -->
@@ -28,6 +28,32 @@
 	<script src="js/html5shiv.js"></script>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
+    <style>
+        body {
+          font-family: Arial, Helvetica, sans-serif;
+          font-size: 20px;
+        }
+        
+        #myBtn {
+          display: none;
+          position: fixed;
+          bottom: 20px;
+          right: 30px;
+          z-index: 99;
+          font-size: 18px;
+          border: none;
+          outline: none;
+          background-color: rgb(228, 100, 100);
+          color: white;
+          cursor: pointer;
+          padding: 15px;
+          border-radius: 4px;
+        }
+        
+        #myBtn:hover {
+          background-color: #555;
+        }
+        </style>
 </head>
 
 <body>
@@ -38,7 +64,7 @@
             <div class="ed-mob-menu-con">
                 <div class="ed-mm-left">
                     <div class="wed-logo">
-                        <a href="#"><img src="{% static 'portal/images/logo.png' %}" alt="" />
+                        <a href="#"><h2>Schoolly</h2>
 						</a>
                     </div>
                 </div>
@@ -52,45 +78,40 @@
                                 <li><a href="{% url 'demoschool:demoschool' %}">Home</a></li>
                                 <li><a href="{% url 'demoschool:about_us' %}">About us</a></li>
                                 <li><a href="{% url 'demoschool:admission' %}">Admission</a></li>
-                                <li><a href="{% url 'curriculum:standard_list' %}">E-Learning</a></li>
+                                <li><a href="{% url 'demoschool:infoblog' %}">Infoblog</a></li>
                                 
                               
                                 
                                 {% if user.is_authenticated %}
-                                <li><a href="{% url 'curriculum:standard_list' %}">All Courses</a></li>
+                                <li><a href="{% url 'curriculum:standard_list' %}">E-learning</a></li>
                          
-                                <li><a class="nav-link scrollto" href="{% url 'user_logout' %}">Logout</a></li>
+                                <li><a class="nav-link scrollto" href="{% url 'users:user_logout' %}">Logout</a></li>
                                 <li><a href="{% url 'portal:portal-home' %}">Dashboard</a></li>
                             
                                           
                                 {% else %}
                                 <li><a href="{% url 'demoschool:school_gallery' %}">Gallery</a>
                                 </li>
-                                 <li><a href="{% url 'login' %}">Portal-Login</a></li>
+                                 <li><a href="{% url 'users:login' %}">Portal-Login</a></li>
                                 {% endif%}
 
                                 <li><a href="{% url 'demoschool:contact_us' %}">Contact us</a></li>
                             </ul>
                             <h4>E-Learning</h4>
                             <ul>
-                                <li><a href="#">All Courses</a></li>
-                                <li><a href="#">Take an Exam</a></li>
-                                <li><a href="#">Take a Test</a></li>
-                                <li><a href="#">Quiz</a></li>
-                                <li><a href="#">Assignment</a></li>
+                                <li><a href="{% url 'curriculum:standard_list' %}">Enter Class</a></li>
                      
                             </ul>
                             <h4>User Account</h4>
                             <ul>
-                                <li><a href="#!" data-toggle="modal" data-target="#modal1">Sign In</a></li>
-                                <li><a href="#!" data-toggle="modal" data-target="#modal2">Register</a></li>
+                                <li><a href="{% url 'users:login' %}" data-toggle="modal" data-target="#modal1">Sign In</a></li>
+                                <li><a href="{% url 'users:register' %}" data-toggle="modal" data-target="#modal2">Register</a></li>
                             </ul>
 
-                            <h4>User Profile</h4>
+                            <h4>User Account</h4>
                             <ul>
-                                <li><a href="#">User profile</a></li>
-                                <li><a href="#">My Courses</a></li>
-                                <li><a href="#">Exams</a></li>                                
+                                <li><a href="{% url 'users:profile' %}">User profile</a></li>
+                                                              
                                 
                             </ul>
                         </div>
@@ -109,7 +130,7 @@
                     <div class="col-md-12">
                         <div class="ed-com-t1-left">
                             <ul>
-                                <li><a href="#">Contact: Delta State, Nigeria.</a>
+                                <li><a href="#">Contact: Abuja, Nigeria.</a>
                                 </li>
                                 <li><a href="#">Phone: +234 00000000000</a>
                                 </li>
@@ -117,9 +138,9 @@
                         </div>
                         <div class="ed-com-t1-right">
                             <ul>
-                                <li><a href="#!" data-toggle="modal" data-target="#modal1">Sign In</a>
+                                <li><a href="{% url 'users:login' %}" data-toggle="modal" data-target="#modal1">Sign In</a>
                                 </li>
-                                <li><a href="#!" data-toggle="modal" data-target="#modal2">Sign Up</a>
+                                <li><a href="{% url 'users:register' %}" data-toggle="modal" data-target="#modal2">Sign Up</a>
                                 </li>
                             </ul>
                         </div>
@@ -144,7 +165,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="wed-logo">
-                            <a href="index-2.html"><img src="{% static 'demoschool/images/logo.png' %}" alt="" />
+                            <a href="{% url 'demoschool:demoschool' %}"><img src="{% static 'demoschool/images/logo.png' %}" alt="Schoolly" />
                             </a>
                         </div>
                         <div class="main-menu">
@@ -173,19 +194,18 @@
                                                 <div class="mm1-com mm1-s3">
                                                     <ul>
                                                         <li><a href="{% url 'curriculum:standard_list' %}">E-Learning</a></li>
-                                                        <li><a href="course-details.html">Course details</a></li>
+                                                    
                                                         <li><a href="{% url 'demoschool:about_us' %}">About</a></li>
                                                         <li><a href="{% url 'demoschool:admission' %}">Admission</a></li>
-                                                        <li><a href="#">Time-Table</a></li>
+                                                        
                                                     </ul>
                                                 </div>
                                                 <div class="mm1-com mm1-s4">
                                                     <ul>
-                                                        <li><a href="#">Gallery</a></li>
-                                                        <li><a href="#">Student Center</a></li>
-                                                        <li><a href="#">Parent/Teacher</a></li>
-                                                        <li><a href="#">Facilities</a></li>
-                                                        <li><a href="#">School Blog</a></li>
+                                                        <li><a href="{% url 'demoschool:school_gallery' %}">Gallery</a></li>
+                                                        <li><a href="{% url 'demoschool:infoblog' %}">Student Center</a></li>                                                      
+                                                        <li><a href="{% url 'demoschool:about_us' %}">Facilities</a></li>
+                                                        
                                                     </ul>
                                                 </div>
                                             </div>
@@ -197,7 +217,7 @@
                                     <!-- MEGA MENU 1 -->
                                     
                                 </li>
-                                <li><a href="{% url 'curriculum:standard_list' %}">E-Learning</a></li>
+                                <li><a href="{% url 'demoschool:infoblog' %}">InfoBlog</a></li>
                                
                                
                                
@@ -206,14 +226,14 @@
                                 {% if user.is_authenticated %}
                                 <li><a href="{% url 'curriculum:standard_list' %}">All Courses</a></li>
                          
-                                <li><a class="nav-link scrollto" href="{% url 'user_logout' %}">Logout</a></li>
+                                <li><a class="nav-link scrollto" href="{% url 'users:user_logout' %}">Logout</a></li>
                                 <li><a href="{% url 'portal:portal-home' %}">Dashboard</a></li>
                             
                                           
                                 {% else %}
                                 <li><a href="{% url 'demoschool:school_gallery' %}">Gallery</a>
                                 </li>
-                                 <li><a href="{% url 'login' %}">Portal-Login</a></li>
+                                 <li><a href="{% url 'users:login' %}">Portal-Login</a></li>
                                 {% endif%}
 
                                 <li><a href="{% url 'demoschool:contact_us' %}">Contact us</a>
@@ -240,17 +260,12 @@
                                     </div>
                                     <div class="sf-list">
                                         <ul>
-                                            <li><a href="course-details.html">Facilities</a></li>
-                                            <li><a href="course-details.html">Aims and Objectives</a></li>
-                                            <li><a href="course-details.html">School Gallery</a></li>
-                                            <li><a href="course-details.html">Marine Engineering</a></li>
-                                            <li><a href="course-details.html">Business Management</a></li>
-                                            <li><a href="course-details.html">Journalism/Writing</a></li>
-                                            <li><a href="course-details.html">Physical Education</a></li>
-                                            <li><a href="course-details.html">Political Science</a></li>
-                                            <li><a href="course-details.html">Sciences</a></li>
-                                            <li><a href="course-details.html">Statistics</a></li>
-                                            <li><a href="course-details.html">Web Design/Development</a></li>
+                                            <li><a href="{% url 'demoschool:school_gallery' %}">Facilities</a></li>
+                                            <li><a href="{% url 'demoschool:about_us' %}">Aims and Objectives</a></li>
+                                            <li><a href="{% url 'demoschool:school_gallery' %}">School Gallery</a></li>
+                                            <li><a href="{% url 'demoschool:admission' %}">Admission</a></li>
+                                            <li><a href="{% url 'demoschool:contact_us' %}">School Address</a></li>
+                                                                             
                                 
                                         </ul>
                                     </div>
@@ -291,7 +306,7 @@
                 <div class="item">
                     <img src="{% static 'demoschool/images/slider/3.jpg' %}" alt="">
                     <div class="carousel-caption slider-con">
-                        <h2>Daniels Model <span>Academy</span></h2>
+                        <h2>My-School <span>Academy</span></h2>
                         <p>MySchool is a fully inclusive school that promotes the well-being of every student through high-quality teaching.</p>
                         <a href="{% url 'curriculum:standard_list' %}" class="bann-btn-1">All Courses</a><a href="#" class="bann-btn-2">Read More</a>
                     </div>
@@ -324,7 +339,7 @@
                             <a href="{% url 'demoschool:about_us' %}" class="waves-effect waves-light btn-large wed-pop-ser-btn"><img src="{% static 'demoschool/images/icon/h-ic4.png' %}" alt=""> Facilities</a>
                         </li>
                         <li>
-                            <a href="{% url 'demoschool:infoblog' %} class="waves-effect waves-light btn-large wed-pop-ser-btn"><img src="{% static 'demoschool/images/icon/h-ic3.png' %}" alt=""> InfoTech</a>
+                            <a href="{% url 'demoschool:infoblog' %}" class="waves-effect waves-light btn-large wed-pop-ser-btn"><img src="{% static 'demoschool/images/icon/h-ic3.png' %}" alt=""> InfoTech</a>
                         </li>
                     </ul>
                 </div>
@@ -812,37 +827,25 @@
     <!-- FOOTER -->
     <section class="wed-hom-footer">
         <div class="container">
-            <!--<div class="row">
-				<div class="col-md-12">
-				<h4>About Wedding Planner</h4>
-				<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum</p>
-				<p>more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text</p>
-				<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
-				<p></p>
-			  </div>
-			  </div>-->
+
             <div class="row wed-foot-link">
                 <div class="col-md-4 foot-tc-mar-t-o">
-                    <h4>Explore DMA</h4>
+                    <h4>Explore Our School</h4>
                     <ul>
                         <li><a href="{% url 'curriculum:standard_list' %}">E-Learning</a></li>
-                        <li><a href="course-details.html">School Blog</a></li>
-                        <li><a href="course-details.html">Students Center</a></li>
-                        <li><a href="course-details.html">Tech Club</a></li>
-                        <li><a href="course-details.html">Library</a></li>
-                        <li><a href="course-details.html">Computer Hall</a></li>
-  
+                        <li><a href="{% url 'demoschool:infoblog' %}">School Blog</a></li>
+                        <li><a href="{% url 'demoschool:infoblog' %}">Students Center</a></li>
+              
                     </ul>
                 </div>
                 <div class="col-md-4">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="course-details.html">Home</a></li>
-                        <li><a href="course-details.html">About Us</a></li>
-                        <li><a href="course-details.html">School Gallery</a></li>                        
-                        <li><a href="course-details.html">CISCO school</a></li>
-                        <li><a href="course-details.html">Events</a></li>
-
+                        <li><a href="{% url 'demoschool:demoschool' %}">Home</a></li>
+                        <li><a href="{% url 'demoschool:about_us' %}">About Us</a></li>
+                        <li><a href="{% url 'demoschool:school_gallery' %}">School Gallery</a></li> 
+                        <li><a href="{% url 'demoschool:admission' %}">Admission</a></li>                        
+               
                     </ul>
                 </div>
                 <div class="col-md-4">
@@ -864,10 +867,9 @@
             <div class="row wed-foot-link-1">
                 <div class="col-md-4 foot-tc-mar-t-o">
                     <h4>Get In Touch</h4>
-                    <p>No.10 Owhorode Road.
-                        By Owhrode Junction, Warri
-                        Oruwhorun Udu LGA, Delta State
-                    <br />>Phone: <a href="#!">+234 00000000000</a><br />
+                    <p>Our address / our address <br>our address
+                        
+                    <br />Phone: <a href="#!">+234 00000000000</a><br />
                     Email: <a href="#!">contact@schoolly.ng</a></p>
                 </div>
                 <div class="col-md-4">
@@ -1061,6 +1063,8 @@
             </div>
         </div>
     </section>
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+
 
     <!-- SOCIAL MEDIA SHARE -->
     <section>
@@ -1082,6 +1086,30 @@
     <script src="{% static 'demoschool/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'demoschool/js/materialize.min.js' %}"></script>
     <script src="{% static 'demoschool/js/custom.js' %}"></script>
+
+
+    <script>
+        // Get the button
+        let mybutton = document.getElementById("myBtn");
+        
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {scrollFunction()};
+        
+        function scrollFunction() {
+          if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            mybutton.style.display = "block";
+          } else {
+            mybutton.style.display = "none";
+          }
+        }
+        
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+          document.body.scrollTop = 0;
+          document.documentElement.scrollTop = 0;
+        }
+        </script>
+        
 </body>
 
 

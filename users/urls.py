@@ -5,7 +5,7 @@ from users import views as user_views
 from django.contrib.auth import views as auth_views
 
 
-
+app_name ='users'
 
 urlpatterns = [
     path('register/', user_views.register, name="register"),

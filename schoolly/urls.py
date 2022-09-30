@@ -13,18 +13,18 @@ from django.views.static import serve
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('curriculum/', include('curriculum.urls')),
+    path('curriculum/', include('curriculum.urls', namespace='curriculum')),
     path('', include('pages.urls')),
-    path('payment/', include('payment.urls')),
-    path('users/', include('users.urls')),
+    path('payment/', include('payment.urls', namespace='payment')),
+    path('users/', include('users.urls', namespace='users')),
    
     path('results/', include('results.urls', namespace='results')),
     path('students/', include('students.urls', namespace='students')),
-    path('staff/', include('staff.urls')),
+    path('staff/', include('staff.urls', namespace='staff')),
 
-    path('attendance/', include('attendance.urls')),
-    path('demoschool', include('demoschool.urls')),
-    path('portal/', include('portal.urls')),
+    path('attendance/', include('attendance.urls', namespace='attendance')),
+    path('demoschool/', include('demoschool.urls', namespace='demoschool')),
+    path('portal/', include('portal.urls', namespace='portal')),
     path('quizes/', include('quizes.urls', namespace = 'quizes')),
     path('blog/', include('blog.urls', namespace = 'blog')),
     path('notification/', include('notification.urls', namespace = 'notification')),

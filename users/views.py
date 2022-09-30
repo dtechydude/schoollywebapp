@@ -54,7 +54,7 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request,user)
-                return HttpResponseRedirect(reverse('profile'))
+                return HttpResponseRedirect(reverse('users:profile'))
             else:
                 return HttpResponse("ACCOUNT IS DEACTIVATED")
 
@@ -66,7 +66,7 @@ def user_login(request):
 @login_required
 def user_logout(request):
     logout(request)
-    return HttpResponseRedirect(reverse('home'))
+    return HttpResponseRedirect(reverse('pages:home'))
 
 
 @login_required
